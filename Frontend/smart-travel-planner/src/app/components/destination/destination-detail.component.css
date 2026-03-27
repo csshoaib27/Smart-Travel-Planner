@@ -1,0 +1,299 @@
+.destination-detail-container {
+    background: #f8f9fa;
+    min-height: 100vh;
+}
+
+.back-btn {
+    position: fixed;
+    top: 90px;
+    left: 20px;
+    background: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    color: #667eea;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    transition: all 0.3s;
+}
+
+.back-btn:hover {
+    background: #667eea;
+    color: white;
+}
+
+.detail-header {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.destination-banner {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.header-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+    color: white;
+    padding: 60px 40px 40px;
+}
+
+.header-overlay h1 {
+    font-size: 3rem;
+    margin: 0 0 10px 0;
+}
+
+.location {
+    font-size: 1.2rem;
+    margin: 0;
+    opacity: 0.9;
+}
+
+.detail-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 20px;
+}
+
+.main-info {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.info-section {
+    margin-bottom: 40px;
+}
+
+.info-section:last-child {
+    margin-bottom: 0;
+}
+
+.info-section h2 {
+    color: #333;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #667eea;
+}
+
+.info-section p {
+    color: #666;
+    line-height: 1.6;
+}
+
+.facts-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.fact {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.fact label {
+    display: block;
+    color: #999;
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+}
+
+.fact .value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #667eea;
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.tag {
+    display: inline-block;
+    background: #e3f2fd;
+    color: #1976d2;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.interest-tag {
+    background: #f3e5f5;
+    color: #6a1b9a;
+}
+
+.activities-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.activities-list li {
+    padding: 12px 0;
+    color: #666;
+    border-bottom: 1px solid #f0f0f0;
+    display: flex;
+    align-items: center;
+}
+
+.activities-list li:before {
+    content: "✓";
+    color: #4caf50;
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+.review-count {
+    color: #999;
+    margin-bottom: 10px;
+}
+
+.stars {
+    font-size: 1.5rem;
+}
+
+.stars span {
+    opacity: 0.3;
+    margin-right: 5px;
+}
+
+.stars span.filled {
+    opacity: 1;
+}
+
+.sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.booking-card,
+.info-card {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.booking-card h3,
+.info-card h3 {
+    margin-top: 0;
+    color: #333;
+}
+
+.price-info {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.price-info p {
+    color: #999;
+    margin: 0;
+}
+
+.price-info h2 {
+    color: #667eea;
+    font-size: 2rem;
+    margin: 10px 0 0 0;
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-top: 12px;
+    transition: all 0.3s;
+}
+
+.btn-primary {
+    background: #667eea;
+    color: white;
+}
+
+.btn-primary:hover {
+    background: #5568d3;
+}
+
+.btn-secondary {
+    background: #f0f0f0;
+    color: #333;
+}
+
+.btn-secondary:hover {
+    background: #e0e0e0;
+}
+
+.info-card p {
+    margin: 12px 0;
+    color: #666;
+}
+
+.info-card strong {
+    color: #333;
+}
+
+.budget-low {
+    color: #4caf50;
+    font-weight: 600;
+}
+
+.budget-medium {
+    color: #ff9800;
+    font-weight: 600;
+}
+
+.budget-high {
+    color: #f44336;
+    font-weight: 600;
+}
+
+.loading {
+    text-align: center;
+    padding: 60px 20px;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+@media (max-width: 768px) {
+    .detail-header {
+        height: 250px;
+    }
+
+    .header-overlay h1 {
+        font-size: 2rem;
+    }
+
+    .detail-content {
+        grid-template-columns: 1fr;
+    }
+
+    .facts-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .back-btn {
+        top: 90px;
+        left: 10px;
+    }
+}

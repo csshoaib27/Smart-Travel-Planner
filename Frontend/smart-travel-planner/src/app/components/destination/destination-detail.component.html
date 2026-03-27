@@ -1,0 +1,103 @@
+<div class="destination-detail-container" *ngIf="!loading && destination">
+    <button class="back-btn" onclick="window.history.back()">← Back</button>
+
+    <div class="detail-header">
+        <img [src]="destination.image" [alt]="destination.name" class="destination-banner">
+        <div class="header-overlay">
+            <h1>{{ destination.name }}</h1>
+            <p class="location">📍 {{ destination.city }}, {{ destination.country }}</p>
+        </div>
+    </div>
+
+    <div class="detail-content">
+        <div class="main-info">
+            <section class="info-section">
+                <h2>About</h2>
+                <p>{{ destination.description }}</p>
+            </section>
+
+            <section class="info-section">
+                <h2>Quick Facts</h2>
+                <div class="facts-grid">
+                    <div class="fact">
+                        <label>Rating</label>
+                        <div class="value">⭐ {{ destination.rating }}/5</div>
+                    </div>
+                    <div class="fact">
+                        <label>Cost per Day</label>
+                        <div class="value">₹{{ destination.costPerDay }}</div>
+                    </div>
+                    <div class="fact">
+                        <label>Temperature</label>
+                        <div class="value">🌡️ {{ destination.temperature }}°C</div>
+                    </div>
+                    <div class="fact">
+                        <label>Distance</label>
+                        <div class="value">📏 {{ destination.distance }} km</div>
+                    </div>
+                    <div class="fact">
+                        <label>Travel Time</label>
+                        <div class="value">⏱️ {{ destination.travelTime }}</div>
+                    </div>
+                    <div class="fact">
+                        <label>Safety Rating</label>
+                        <div class="value">🛡️ {{ destination.safetyRating }}/10</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>Best Time to Visit</h2>
+                <div class="tags">
+                    <span *ngFor="let month of destination.bestTimeToVisit" class="tag">{{ month }}</span>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>Activities</h2>
+                <ul class="activities-list">
+                    <li *ngFor="let activity of destination.activities">{{ activity }}</li>
+                </ul>
+            </section>
+
+            <section class="info-section">
+                <h2>Interests</h2>
+                <div class="tags">
+                    <span *ngFor="let interest of destination.interests" class="tag interest-tag">{{ interest }}</span>
+                </div>
+            </section>
+
+            <section class="info-section">
+                <h2>Reviews</h2>
+                <p class="review-count">Based on {{ destination.reviewCount }} traveler reviews</p>
+                <div class="stars">
+                    <span *ngFor="let i of [1,2,3,4,5]" [class.filled]="i <= destination.rating">⭐</span>
+                </div>
+            </section>
+        </div>
+
+        <div class="sidebar">
+            <div class="booking-card">
+                <h3>Ready to Visit?</h3>
+                <div class="price-info">
+                    <p>Starting from</p>
+                    <h2>₹{{ destination.costPerDay }}/day</h2>
+                </div>
+                <button (click)="bookTrip()" class="btn btn-primary">Book Trip</button>
+                <button (click)="addToWishlist()" class="btn btn-secondary">❤️ Add to Wishlist</button>
+            </div>
+
+            <div class="info-card">
+                <h3>📌 Key Info</h3>
+                <p><strong>Region:</strong> {{ destination.region }}</p>
+                <p><strong>Budget Level:</strong> <span [ngClass]="'budget-' + destination.budget">{{ destination.budget
+                        }}</span></p>
+                <p><strong>Coordinates:</strong> {{ destination.latitude }}, {{ destination.longitude }}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="destination-detail-container" *ngIf="loading">
+    <p class="loading">Loading destination details...</p>
+</div>
