@@ -1,0 +1,89 @@
+<div class="trip-planner-container">
+    <div class="page-header">
+        <h1>Plan Your Trip</h1>
+        <p>Create an amazing itinerary for your next adventure</p>
+    </div>
+
+    <div class="planner-content">
+        <div class="form-section">
+            <form (ngSubmit)="createTrip()" class="trip-form">
+                <div class="form-group">
+                    <label for="destination">Destination *</label>
+                    <input type="text" id="destination" [(ngModel)]="tripForm.destination" name="destination"
+                        placeholder="Enter destination name" required class="form-input">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="startDate">Start Date *</label>
+                        <input type="date" id="startDate" [(ngModel)]="tripForm.startDate" name="startDate"
+                            (change)="calculateCost()" required class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="endDate">End Date *</label>
+                        <input type="date" id="endDate" [(ngModel)]="tripForm.endDate" name="endDate"
+                            (change)="calculateCost()" required class="form-input">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="travelers">Number of Travelers</label>
+                        <input type="number" id="travelers" [(ngModel)]="tripForm.travelers" name="travelers" min="1"
+                            max="10" (change)="calculateCost()" class="form-input">
+                    </div>
+                    <div class="form-group">
+                        <label for="budget">Budget Type *</label>
+                        <select id="budget" [(ngModel)]="tripForm.budget" name="budget" (change)="calculateCost()"
+                            class="form-input">
+                            <option *ngFor="let opt of budgetOptions" [value]="opt.value">
+                                {{ opt.label }}
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Interests</label>
+                    <div class="interests-grid">
+                        <button *ngFor="let interest of interestOptions" type="button" class="interest-btn"
+                            [class.selected]="tripForm.interests.includes(interest)" (click)="toggleInterest(interest)">
+                            {{ interest }}
+                        </button>
+                    </div>
+                </div>
+
+                <div class="estimated-cost">
+                    <p>Estimated Total Cost:</p>
+                    <h3>₹{{ estimatedCost | number }}</h3>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Create Trip</button>
+            </form>
+        </div>
+
+        <div class="info-section">
+            <div class="info-card">
+                <h3>💡 Trip Planning Tips</h3>
+                <ul>
+                    <li>Plan at least 2-4 weeks in advance</li>
+                    <li>Check weather conditions for your destination</li>
+                    <li>Book accommodations early for better rates</li>
+                    <li>Consider travel insurance for international trips</li>
+                    <li>Keep some budget for unexpected expenses</li>
+                </ul>
+            </div>
+
+            <div class="info-card">
+                <h3>🎒 What to Pack</h3>
+                <ul>
+                    <li>Travel documents and ID</li>
+                    <li>Appropriate clothing for the season</li>
+                    <li>Comfortable shoes for walking</li>
+                    <li>Power bank and charging cables</li>
+                    <li>Travel-sized toiletries</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

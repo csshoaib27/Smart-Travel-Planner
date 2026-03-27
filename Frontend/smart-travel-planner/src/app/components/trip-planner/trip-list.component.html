@@ -1,0 +1,53 @@
+<div class="trip-list-container">
+    <div class="page-header">
+        <h1>My Trips</h1>
+        <p>View and manage all your planned trips</p>
+    </div>
+
+    <div *ngIf="loading" class="loading">
+        <p>Loading your trips...</p>
+    </div>
+
+    <div *ngIf="!loading && trips.length === 0" class="no-trips">
+        <p>You haven't planned any trips yet.</p>
+        <a routerLink="/trip-planner" class="btn btn-primary">Start Planning a Trip</a>
+    </div>
+
+    <div *ngIf="!loading && trips.length > 0" class="trips-list">
+        <div *ngFor="let trip of trips" class="trip-card">
+            <div class="trip-header">
+                <h3>{{ trip.title }}</h3>
+                <span class="trip-date">📅 {{ trip.startDate | date: 'MMM dd, yyyy' }}</span>
+            </div>
+
+            <div class="trip-details">
+                <div class="detail-row">
+                    <span class="label">Destination ID:</span>
+                    <span class="value">{{ trip.destinationId }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Duration:</span>
+                    <span class="value">{{ trip.numberOfDays }} days</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Travelers:</span>
+                    <span class="value">{{ trip.participants }} person(s)</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Budget:</span>
+                    <span class="value">₹{{ trip.budget }}</span>
+                </div>
+                <div class="detail-row">
+                    <span class="label">Total Cost:</span>
+                    <span class="value">₹{{ trip.totalCost }}</span>
+                </div>
+            </div>
+
+            <div class="trip-actions">
+                <button class="btn btn-secondary" (click)="viewDetails(trip.title)">View
+                    Details</button>
+                <button class="btn btn-danger" (click)="deleteTrip(trip.id)">Delete</button>
+            </div>
+        </div>
+    </div>
+</div>

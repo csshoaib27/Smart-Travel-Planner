@@ -10,11 +10,23 @@ export const routes: Routes = [
         path: 'home',
         loadComponent: () => import('./components/home/home.component').then(m => m.HomeComponent)
     },
+    {
+        path: 'destinations',
+        loadComponent: () => import('./components/destination/destination-list.component').then(m => m.DestinationListComponent)
+    },
+    {
+        path: 'trip-planner',
+        loadComponent: () => import('./components/trip-planner/trip-planner.component').then(m => m.TripPlannerComponent)
+    },
+    {
+        path: 'trips',
+        loadComponent: () => import('./components/trip-planner/trip-list.component').then(m => m.TripListComponent)
+    },
+    {
+        path: 'chatbot',
+        loadComponent: () => import('./components/chatbot/chatbot.component').then(m => m.ChatbotComponent)
+    }
     // TODO: Implement remaining components below
-    // {
-    //   path: 'destinations',
-    //   loadComponent: () => import('./components/destination/destination-list/destination-list.component').then(m => m.DestinationListComponent)
-    // },
     // {
     //   path: 'destinations/:id',
     //   loadComponent: () => import('./components/destination/destination-detail/destination-detail.component').then(m => m.DestinationDetailComponent)
@@ -22,14 +34,6 @@ export const routes: Routes = [
     // {
     //   path: 'hotels/:destinationId',
     //   loadComponent: () => import('./components/hotels/hotel-list/hotel-list.component').then(m => m.HotelListComponent)
-    // },
-    // {
-    //   path: 'trip-planner',
-    //   loadComponent: () => import('./components/trip-planner/trip-planner.component').then(m => m.TripPlannerComponent)
-    // },
-    // {
-    //   path: 'trips',
-    //   loadComponent: () => import('./components/trip-planner/trip-list/trip-list.component').then(m => m.TripListComponent)
     // },
     // {
     //   path: 'trips/:id',
@@ -46,9 +50,5 @@ export const routes: Routes = [
     // {
     //   path: 'food/:destinationId',
     //   loadComponent: () => import('./components/food/food-list/food-list.component').then(m => m.FoodListComponent)
-    // },
-    // {
-    //   path: 'chatbot',
-    //   loadComponent: () => import('./components/chatbot/chatbot.component').then(m => m.ChatbotComponent)
     // }
 ];

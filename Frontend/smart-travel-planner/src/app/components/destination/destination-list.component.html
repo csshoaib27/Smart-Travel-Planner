@@ -1,0 +1,56 @@
+<div class="destination-list-container">
+    <div class="page-header">
+        <h1>Explore Destinations</h1>
+        <p>Discover amazing travel destinations around the world</p>
+    </div>
+
+    <div class="filters-section">
+        <div class="search-box">
+            <input type="text" placeholder="Search destinations..." [(ngModel)]="searchQuery"
+                (ngModelChange)="onSearchChange($event)" class="search-input">
+        </div>
+
+        <div class="budget-filter">
+            <label>Filter by Budget:</label>
+            <select [(ngModel)]="selectedBudget" (ngModelChange)="onBudgetChange($event)" class="select-input">
+                <option value="all">All Budgets</option>
+                <option value="budget">Budget</option>
+                <option value="standard">Standard</option>
+                <option value="luxury">Luxury</option>
+            </select>
+        </div>
+    </div>
+
+    <div *ngIf="loading" class="loading">
+        <p>Loading destinations...</p>
+    </div>
+
+    <div *ngIf="!loading && filteredDestinations.length === 0" class="no-results">
+        <p>No destinations found. Try adjusting your filters.</p>
+    </div>
+
+    <div *ngIf="!loading && filteredDestinations.length > 0" class="destinations-grid">
+        <div *ngFor="let destination of filteredDestinations" class="destination-card">
+            <div class="destination-image">
+                <img [src]="'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzY2N2VlYSIvPjwvc3ZnPg=='"
+                    alt="{{ destination.name }}" class="img">
+                <div class="destination-overlay">
+                    <button (click)="viewDetails(destination.name)" class="view-btn">View
+                        Details</button>
+                </div>
+            </div>
+            <div class="destination-info">
+                <h3>{{ destination.name }}</h3>
+                <p class="city">{{ destination.city }}</p>
+                <div class="destination-meta">
+                    <span class="rating">⭐ {{ destination.rating }}/5</span>
+                    <span class="cost">₹{{ destination.costPerDay }}/day</span>
+                    <span class="temp">🌡️ {{ destination.temperature }}°C</span>
+                </div>
+                <div class="budget-badge" [ngClass]="destination.budget">
+                    {{ destination.budget }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
