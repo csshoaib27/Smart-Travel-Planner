@@ -60,21 +60,25 @@ export class HomeComponent implements OnInit {
             maxFare: this.maxFare
         };
         console.log('Searching destinations with filters:', filters);
-        alert(`Searching for ${this.budget} destinations with interests: ${this.selectedInterests.join(', ') || 'None selected'}`);
-        // TODO: Navigate to destinations route when component is created
-        // this.router.navigate(['/destinations'], { queryParams: filters });
+        console.log('Navigating to destinations page...');
+        this.router.navigate(['/destinations'], { queryParams: filters });
     }
 
     startPlanningTrip() {
         console.log('Starting trip planning...');
-        alert('Trip planning feature coming soon! Please select a destination first.');
-        // TODO: Navigate to trip-planner route when component is created
-        // this.router.navigate(['/trip-planner']);
+        console.log('Navigating to trip planner...');
+        this.router.navigate(['/trip-planner']);
     }
 
     getSuggestedTrips() {
         console.log('Getting suggested trips based on budget and interests');
-        alert('Suggested trips feature coming soon!');
-        // Get trips based on budget and interests
+        console.log('Navigating to my trips...');
+        this.router.navigate(['/trips']);
+    }
+
+    selectPackageAndPlan(packageType: string) {
+        console.log('Selected package type:', packageType);
+        console.log('Navigating to trip planner...');
+        this.router.navigate(['/trip-planner'], { queryParams: { mode: packageType } });
     }
 }
