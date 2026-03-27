@@ -1,0 +1,86 @@
+<div class="home-container">
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-content">
+            <h1>Smart Travel Planner</h1>
+            <p>Find your perfect destination based on budget, temperature & interests</p>
+        </div>
+    </section>
+
+    <!-- Search Section -->
+    <section class="search-section">
+        <div class="search-container">
+            <h2>Plan Your Trip</h2>
+
+            <!-- Budget Selection -->
+            <div class="filter-group">
+                <label>Select Budget:</label>
+                <select [(ngModel)]="budget" class="form-control">
+                    <option value="low">Budget (&lt; ₹2000/day)</option>
+                    <option value="medium">Medium (₹2000-5000/day)</option>
+                    <option value="high">Luxury (&gt; ₹5000/day)</option>
+                </select>
+            </div>
+
+            <!-- Interest Selection -->
+            <div class="filter-group">
+                <label>Select Interests:</label>
+                <div class="interests-container">
+                    <button *ngFor="let interest of interestOptions" class="interest-btn"
+                        [class.active]="selectedInterests.includes(interest)" (click)="toggleInterest(interest)">
+                        {{ interest }}
+                    </button>
+                </div>
+            </div>
+
+            <!-- Price Range -->
+            <div class="filter-group">
+                <label>Price Range per Day:</label>
+                <div class="price-range">
+                    <input type="range" min="0" max="5000" [(ngModel)]="minFare" class="form-control">
+                    <span>₹{{ minFare }} - ₹{{ maxFare }}</span>
+                </div>
+            </div>
+
+            <button (click)="searchDestinations()" class="btn btn-primary">Search Destinations</button>
+        </div>
+    </section>
+
+    <!-- Package Modes -->
+    <section class="package-section">
+        <h2>Choose Your Travel Mode</h2>
+        <div class="package-grid">
+            <div *ngFor="let mode of packageModes" class="package-card">
+                <div class="package-icon">{{ mode.icon }}</div>
+                <div class="package-name">{{ mode.description }}</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section class="destinations-section">
+        <h2>Popular Destinations</h2>
+        <div class="destinations-grid">
+            <div *ngFor="let dest of popularDestinations" class="destination-card">
+                <img [src]="dest.image" [alt]="dest.name" class="dest-image">
+                <div class="dest-info">
+                    <h3>{{ dest.name }}</h3>
+                    <p class="dest-location">{{ dest.city }}, {{ dest.country }}</p>
+                    <p class="dest-description">{{ dest.description }}</p>
+                    <div class="dest-details">
+                        <span class="rating">⭐ {{ dest.rating }}</span>
+                        <span class="cost">₹{{ dest.costPerDay }}/day</span>
+                        <span class="temp">🌡️ {{ dest.temperature }}°</span>
+                    </div>
+                    <a [routerLink]="['/destinations', dest.id]" class="btn btn-sm btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <h2>Ready to Plan Your Perfect Trip?</h2>
+        <button (click)="startPlanningTrip()" class="btn btn-lg btn-primary">Start Planning</button>
+    </section>
+</div>

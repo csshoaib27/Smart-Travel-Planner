@@ -1,0 +1,285 @@
+[
+    {
+        "id": "hotel-001",
+        "name": "Taj Beachfront Goa",
+        "destinationId": "dest-001",
+        "city": "Goa",
+        "address": "Calangute Beach, Goa",
+        "pricePerNight": 5000,
+        "rating": 4.6,
+        "amenities": [
+            "WiFi",
+            "Swimming Pool",
+            "Beach access",
+            "Restaurant",
+            "Spa"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Taj+Goa",
+        "description": "Luxury beachfront resort with modern amenities",
+        "roomTypes": [
+            "Deluxe Room",
+            "Suite",
+            "Beach Villa"
+        ],
+        "contact": "+91-832-6456789",
+        "checkInTime": "2:00 PM",
+        "checkOutTime": "11:00 AM",
+        "wifi": true,
+        "parking": true,
+        "gym": true,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-002",
+        "name": "Coconut Palms Goa",
+        "destinationId": "dest-001",
+        "city": "Goa",
+        "address": "Baga Beach, Goa",
+        "pricePerNight": 2500,
+        "rating": 4.2,
+        "amenities": [
+            "WiFi",
+            "Rooftop Bar",
+            "Beach access",
+            "Cafe"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Coconut+Palms",
+        "description": "Budget-friendly beachside hotel with vibrant atmosphere",
+        "roomTypes": [
+            "Standard Room",
+            "Deluxe Room"
+        ],
+        "contact": "+91-832-2234567",
+        "checkInTime": "1:00 PM",
+        "checkOutTime": "12:00 PM",
+        "wifi": true,
+        "parking": false,
+        "gym": false,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-003",
+        "name": "The Himalayan Resort Manali",
+        "destinationId": "dest-002",
+        "city": "Manali",
+        "address": "Aleo Road, Manali",
+        "pricePerNight": 4000,
+        "rating": 4.7,
+        "amenities": [
+            "WiFi",
+            "Mountain View",
+            "Bonfire area",
+            "Restaurant",
+            "Adventure desk"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Himalayan+Resort",
+        "description": "Mountain resort with adventure package coordination",
+        "roomTypes": [
+            "Cottage",
+            "Deluxe Room",
+            "Family Room"
+        ],
+        "contact": "+91-1902-258000",
+        "checkInTime": "12:00 PM",
+        "checkOutTime": "11:00 AM",
+        "wifi": true,
+        "parking": true,
+        "gym": true,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-004",
+        "name": "Budget Stay Manali",
+        "destinationId": "dest-002",
+        "city": "Manali",
+        "address": "Main Street, Manali",
+        "pricePerNight": 1200,
+        "rating": 3.8,
+        "amenities": [
+            "WiFi",
+            "Common Kitchen",
+            "Shared bathroom"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Budget+Stay",
+        "description": "Economical stay for backpackers",
+        "roomTypes": [
+            "Dormitory",
+            "Private Room"
+        ],
+        "contact": "+91-1902-255555",
+        "checkInTime": "2:00 PM",
+        "checkOutTime": "10:00 AM",
+        "wifi": true,
+        "parking": false,
+        "gym": false,
+        "restaurant": false
+    },
+    {
+        "id": "hotel-005",
+        "name": "Backwater Palace Kerala",
+        "destinationId": "dest-003",
+        "city": "Kochi",
+        "address": "Fort Kochi, Kerala",
+        "pricePerNight": 3500,
+        "rating": 4.5,
+        "amenities": [
+            "WiFi",
+            "Heritage ambiance",
+            "Restaurant",
+            "Ayurveda spa",
+            "Houseboats"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Backwater+Palace",
+        "description": "Heritage hotel with traditional Kerala experience",
+        "roomTypes": [
+            "Heritage Room",
+            "Suite",
+            "Houseboat"
+        ],
+        "contact": "+91-484-2217711",
+        "checkInTime": "1:00 PM",
+        "checkOutTime": "11:00 AM",
+        "wifi": true,
+        "parking": true,
+        "gym": false,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-006",
+        "name": "Lakeside Inn Kerala",
+        "destinationId": "dest-003",
+        "city": "Kochi",
+        "address": "Alleppey, Kerala",
+        "pricePerNight": 2000,
+        "rating": 4.1,
+        "amenities": [
+            "WiFi",
+            "Backwater view",
+            "Restaurant"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Lakeside+Inn",
+        "description": "Cozy backwater hotel for families",
+        "roomTypes": [
+            "Standard Room",
+            "Family Suite"
+        ],
+        "contact": "+91-477-2244500",
+        "checkInTime": "2:00 PM",
+        "checkOutTime": "10:00 AM",
+        "wifi": true,
+        "parking": true,
+        "gym": false,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-007",
+        "name": "City Palace Hotel Jaipur",
+        "destinationId": "dest-004",
+        "city": "Jaipur",
+        "address": "C Scheme, Jaipur",
+        "pricePerNight": 3000,
+        "rating": 4.4,
+        "amenities": [
+            "WiFi",
+            "City view",
+            "Restaurant",
+            "Rooftop lounge",
+            "Parking"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=City+Palace",
+        "description": "Central location with great city views",
+        "roomTypes": [
+            "Deluxe Room",
+            "Suite",
+            "Penthouse"
+        ],
+        "contact": "+91-141-5102100",
+        "checkInTime": "2:00 PM",
+        "checkOutTime": "11:00 AM",
+        "wifi": true,
+        "parking": true,
+        "gym": true,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-008",
+        "name": "Budget Bazaar Jaipur",
+        "destinationId": "dest-004",
+        "city": "Jaipur",
+        "address": "Block 1, Jaipur",
+        "pricePerNight": 1000,
+        "rating": 3.6,
+        "amenities": [
+            "WiFi",
+            "Restaurant"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Budget+Bazaar",
+        "description": "Budget accommodation near market",
+        "roomTypes": [
+            "Standard Room"
+        ],
+        "contact": "+91-141-5102005",
+        "checkInTime": "1:00 PM",
+        "checkOutTime": "10:00 AM",
+        "wifi": true,
+        "parking": false,
+        "gym": false,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-009",
+        "name": "Ladakh Palace Leh",
+        "destinationId": "dest-005",
+        "city": "Leh",
+        "address": "Main Bazaar, Leh",
+        "pricePerNight": 5500,
+        "rating": 4.8,
+        "amenities": [
+            "WiFi",
+            "Oxygen support",
+            "Mountain view",
+            "Restaurant",
+            "Trek desk"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Ladakh+Palace",
+        "description": "Premium hotel with altitude acclimatization support",
+        "roomTypes": [
+            "Deluxe Room",
+            "Suite"
+        ],
+        "contact": "+91-1982-252081",
+        "checkInTime": "12:00 PM",
+        "checkOutTime": "11:00 AM",
+        "wifi": true,
+        "parking": true,
+        "gym": true,
+        "restaurant": true
+    },
+    {
+        "id": "hotel-010",
+        "name": "Mountain Echo Leh",
+        "destinationId": "dest-005",
+        "city": "Leh",
+        "address": "Changspa Lane, Leh",
+        "pricePerNight": 2500,
+        "rating": 4.2,
+        "amenities": [
+            "WiFi",
+            "Cafe",
+            "Garden"
+        ],
+        "image": "https://via.placeholder.com/400x300?text=Mountain+Echo",
+        "description": "Comfortable stay with local charm",
+        "roomTypes": [
+            "Standard Room",
+            "Deluxe Room"
+        ],
+        "contact": "+91-1982-252050",
+        "checkInTime": "1:00 PM",
+        "checkOutTime": "10:00 AM",
+        "wifi": true,
+        "parking": true,
+        "gym": false,
+        "restaurant": true
+    }
+]

@@ -1,0 +1,21 @@
+<header class="navbar">
+    <div class="navbar-container">
+        <div class="navbar-brand">
+            <a routerLink="/home" class="logo">✈️ Smart Travel Planner</a>
+        </div>
+
+        <nav class="navbar-nav" [class.open]="menuOpen">
+            <a routerLink="/home" class="nav-link" (click)="closeMenu()">Home</a>
+            <a routerLink="/destinations" class="nav-link" (click)="closeMenu()">Destinations</a>
+            <a routerLink="/trips" class="nav-link" (click)="closeMenu()">My Trips</a>
+            <a routerLink="/trip-planner" class="nav-link" (click)="closeMenu()">Plan Trip</a>
+            <a routerLink="/chatbot" class="nav-link" (click)="closeMenu()">Chat Assistant</a>
+        </nav>
+
+        <button class="menu-toggle" (click)="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+</header>
