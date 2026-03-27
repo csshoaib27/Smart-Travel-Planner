@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { DestinationService } from '../../services/destination.service';
 import { Destination } from '../../models/destination.model';
@@ -32,7 +32,7 @@ export class HomeComponent implements OnInit {
         { type: 'adventure', icon: '🧗', description: 'Adventure Package' }
     ];
 
-    constructor(private destinationService: DestinationService) { }
+    constructor(private destinationService: DestinationService, private router: Router) { }
 
     ngOnInit() {
         this.loadPopularDestinations();
@@ -59,14 +59,22 @@ export class HomeComponent implements OnInit {
             minFare: this.minFare,
             maxFare: this.maxFare
         };
-        // Navigate to destinations with filters
+        console.log('Searching destinations with filters:', filters);
+        alert(`Searching for ${this.budget} destinations with interests: ${this.selectedInterests.join(', ') || 'None selected'}`);
+        // TODO: Navigate to destinations route when component is created
+        // this.router.navigate(['/destinations'], { queryParams: filters });
     }
 
     startPlanningTrip() {
-        // Navigate to trip planner
+        console.log('Starting trip planning...');
+        alert('Trip planning feature coming soon! Please select a destination first.');
+        // TODO: Navigate to trip-planner route when component is created
+        // this.router.navigate(['/trip-planner']);
     }
 
     getSuggestedTrips() {
+        console.log('Getting suggested trips based on budget and interests');
+        alert('Suggested trips feature coming soon!');
         // Get trips based on budget and interests
     }
 }
