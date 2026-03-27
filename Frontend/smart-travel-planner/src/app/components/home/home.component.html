@@ -26,8 +26,9 @@
             <div class="filter-group">
                 <label>Select Interests:</label>
                 <div class="interests-container">
-                    <button *ngFor="let interest of interestOptions" class="interest-btn"
-                        [class.active]="selectedInterests.includes(interest)" (click)="toggleInterest(interest)">
+                    <button type="button" *ngFor="let interest of interestOptions" class="interest-btn"
+                        [class.active]="selectedInterests.includes(interest)"
+                        (click)="toggleInterest(interest); $event.preventDefault()">
                         {{ interest }}
                     </button>
                 </div>
@@ -51,7 +52,7 @@
         <h2>Choose Your Travel Mode</h2>
         <div class="package-grid">
             <button type="button" *ngFor="let mode of packageModes" class="package-card"
-                (click)="selectPackageAndPlan(mode.type)">
+                (click)="selectPackageAndPlan(mode.type); $event.preventDefault()">
                 <div class="package-icon">{{ mode.icon }}</div>
                 <div class="package-name">{{ mode.description }}</div>
             </button>

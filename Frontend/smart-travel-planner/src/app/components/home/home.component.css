@@ -72,6 +72,7 @@
     cursor: pointer;
     transition: all 0.3s;
     font-size: 0.9rem;
+    font: inherit;
 }
 
 .interest-btn:hover,
@@ -146,6 +147,11 @@
     cursor: pointer;
     transition: all 0.3s;
     border: 2px solid transparent;
+    font: inherit;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .package-card:hover {
