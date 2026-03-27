@@ -42,7 +42,7 @@
                 </div>
             </div>
 
-            <button (click)="searchDestinations()" class="btn btn-primary">Search Destinations</button>
+            <button type="button" (click)="searchDestinations()" class="btn btn-primary">Search Destinations</button>
         </div>
     </section>
 
@@ -50,10 +50,11 @@
     <section class="package-section">
         <h2>Choose Your Travel Mode</h2>
         <div class="package-grid">
-            <div *ngFor="let mode of packageModes" class="package-card" (click)="selectPackageAndPlan(mode.type)">
+            <button type="button" *ngFor="let mode of packageModes" class="package-card"
+                (click)="selectPackageAndPlan(mode.type)">
                 <div class="package-icon">{{ mode.icon }}</div>
                 <div class="package-name">{{ mode.description }}</div>
-            </div>
+            </button>
         </div>
     </section>
 
@@ -81,6 +82,6 @@
     <!-- Call to Action -->
     <section class="cta-section">
         <h2>Ready to Plan Your Perfect Trip?</h2>
-        <button (click)="startPlanningTrip()" class="btn btn-lg btn-primary">Start Planning</button>
+        <button type="button" (click)="startPlanningTrip()" class="btn btn-lg btn-primary">Start Planning</button>
     </section>
 </div>
