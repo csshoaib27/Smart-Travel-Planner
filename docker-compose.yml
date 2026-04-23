@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # MySQL Database Service
+  mysql:
+    image: mysql:8.0
+    container_name: smart-travel-db
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: smart_travel_planner
+      MYSQL_USER: traveler
+      MYSQL_PASSWORD: traveler123
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./Database/schema.sql:/docker-entrypoint-initdb.d/schema.sql
+      - mysql_data:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+    networks:
+      - travel-network
+
+  # Spring Boot Backend Service
+  backend:
+    build:
+      context: ./Backend
+      dockerfile: Dockerfile
+    container_name: smart-travel-backend
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DATABASE: smart_travel_planner
+      MYSQL_USER: traveler
+      MYSQL_PASSWORD: traveler123
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - travel-network
+    command: >
+      sh -c "java -jar target/smarttravelplanner-0.0.1-SNAPSHOT.jar
+      --spring.datasource.url=jdbc:mysql://mysql:3306/smart_travel_planner
+      --spring.datasource.username=traveler
+      --spring.datasource.password=traveler123"
+
+  # Angular Frontend Service
+  frontend:
+    build:
+      context: ./Frontend/smart-travel-planner
+      dockerfile: Dockerfile
+    container_name: smart-travel-frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+    environment:
+      - API_URL=http://localhost:8080
+    networks:
+      - travel-network
+    volumes:
+      - ./Frontend/smart-travel-planner/src:/app/src
+
+networks:
+  travel-network:
+    driver: bridge
+
+volumes:
+  mysql_data:
+    driver: local
