@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Travel Planner - Project Overview</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            background: white;
+            padding: 40px 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        header h1 {
+            color: #667eea;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            color: #666;
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .card p {
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .card ul {
+            list-style-position: inside;
+            color: #555;
+        }
+
+        .card li {
+            margin-bottom: 8px;
+        }
+
+        .tech-stack {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .tech-stack h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .tech-item {
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+        }
+
+        .tech-item h3 {
+            color: #667eea;
+            margin-bottom: 8px;
+            font-size: 1.1em;
+        }
+
+        .tech-item p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .features {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .features h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background: #f5f7fa;
+            border-radius: 8px;
+            border-top: 4px solid #667eea;
+        }
+
+        .feature-item h3 {
+            color: #764ba2;
+            margin-bottom: 8px;
+        }
+
+        .feature-item p {
+            color: #666;
+            font-size: 0.95em;
+        }
+
+        .beginner-guide {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .beginner-guide h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .step {
+            margin-bottom: 25px;
+            padding: 20px;
+            background: #f5f7fa;
+            border-left: 4px solid #764ba2;
+            border-radius: 4px;
+        }
+
+        .step-number {
+            background: #667eea;
+            color: white;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .step h3 {
+            color: #764ba2;
+            margin-bottom: 8px;
+            margin-top: 5px;
+        }
+
+        .step p {
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .code-example {
+            background: #2d2d2d;
+            color: #f8f8f2;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 10px;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+        }
+
+        .structure-section {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .structure-section h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .folder-tree {
+            background: #f5f7fa;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            color: #333;
+            font-size: 0.95em;
+            line-height: 1.8;
+            overflow-x: auto;
+        }
+
+        footer {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        footer p {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .links {
+            margin-top: 20px;
+        }
+
+        .links a {
+            display: inline-block;
+            margin: 0 15px;
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s ease;
+        }
+
+        .links a:hover {
+            background: #764ba2;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: #4caf50;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-left: 10px;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .feature-list {
+                grid-template-columns: 1fr;
+            }
+
+            .links {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .links a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <h1><span class="emoji">✈️</span>Smart Travel Planner</h1>
+            <p>A Full-Stack Web Application for Planning Your Dream Vacations</p>
+            <span class="status-badge">✅ Complete</span>
+        </header>
+
+        <!-- Quick Overview -->
+        <div class="info-grid">
+            <div class="card">
+                <h2><span class="emoji">🎯</span>What is This Project?</h2>
+                <p>Smart Travel Planner is a web application that helps people plan their trips. You can:</p>
+                <ul>
+                    <li>🔍 Discover travel destinations</li>
+                    <li>🏨 Search and book hotels</li>
+                    <li>💰 Calculate trip costs</li>
+                    <li>🗺️ Create detailed itineraries</li>
+                    <li>👥 Share trips with friends</li>
+                    <li>⭐ Read and write reviews</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">👨‍💻</span>Who Made This?</h2>
+                <p>This is a complete web application built by developers to demonstrate modern web development skills.</p>
+                <p><strong>Developer:</strong> ashokrxddy1</p>
+                <p><strong>Email:</strong> ashokrxddy1@gmail.com</p>
+                <p><strong>Repository:</strong> csshoaib27 on GitHub</p>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">📊</span>Project Stats</h2>
+                <ul>
+                    <li>✅ Frontend Components: 9</li>
+                    <li>✅ Backend Services: 3</li>
+                    <li>✅ Database Tables: 12</li>
+                    <li>✅ REST API Endpoints: 24+</li>
+                    <li>✅ Sample Data: 5 Destinations</li>
+                    <li>✅ Hotels: 10+ per destination</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Technology Stack -->
+        <div class="tech-stack">
+            <h2><span class="emoji">⚙️</span>Technology Stack</h2>
+            <p style="margin-bottom: 20px; color: #666;">The project uses three main layers of technology:</p>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <h3>Frontend (What You See)</h3>
+                    <p><strong>Angular 19</strong> - A JavaScript framework for building interactive user interfaces. It's like creating a beautiful house interior.</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Backend (The Brain)</h3>
+                    <p><strong>Spring Boot 3.2</strong> - A Java framework for server logic. It handles calculations and business rules, like a restaurant kitchen.</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Database (Memory)</h3>
+                    <p><strong>MySQL</strong> - A database for storing information. It's like a filing cabinet that stores all trip and hotel data.</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Language: Frontend</h3>
+                    <p><strong>TypeScript</strong> - A safer version of JavaScript. Like writing with better grammar rules.</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Language: Backend</h3>
+                    <p><strong>Java 17</strong> - A powerful programming language. Like the engine that powers everything behind the scenes.</p>
+                </div>
+                <div class="tech-item">
+                    <h3>Build Tools</h3>
+                    <p><strong>Maven & Angular CLI</strong> - Tools that compile and package the code, like building a car assembly line.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Key Features Explained -->
+        <div class="features">
+            <h2><span class="emoji">🌟</span>Main Features Explained Simply</h2>
+            <div class="feature-list">
+                <div class="feature-item">
+                    <h3>🔍 Destination Discovery</h3>
+                    <p>Browse amazing places to visit. Filter by budget (how much money you want to spend), interests (what you like to do), and ratings (what others think about the place).</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🏨 Hotel Booking</h3>
+                    <p>Find and compare hotels in your chosen destination. See prices, amenities (like WiFi, swimming pool), and ratings from other travelers.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>💰 Cost Calculator</h3>
+                    <p>Automatically calculate how much your entire trip will cost. Get a breakdown of food, hotels, and activities.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🗺️ Itinerary Planning</h3>
+                    <p>Plan your trip day-by-day. Set activities, meals, and sightseeing for each day of your trip.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>👥 Trip Sharing</h3>
+                    <p>Share your trip plans with friends. Collaborate and edit together. Split payment costs fairly among friends.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🚑 Safety Information</h3>
+                    <p>Find hospitals, police stations, and emergency contacts at your destination. Travel safely with emergency info.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>🍽️ Local Cuisine</h3>
+                    <p>Discover traditional food and local restaurants. Filter meals based on dietary preferences.</p>
+                </div>
+                <div class="feature-item">
+                    <h3>⭐ Reviews & Ratings</h3>
+                    <p>Read what other travelers think about destinations. Write and share your own travel experiences.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Project Structure -->
+        <div class="structure-section">
+            <h2><span class="emoji">📁</span>How the Project is Organized</h2>
+            <p style="margin-bottom: 20px; color: #666;">The project is divided into three main folders:</p>
+            <div class="folder-tree">
+Smart-Travel-Planner/<br>
+├── <span style="color: #667eea;">Frontend/</span>                  (What users see)<br>
+│   └── smart-travel-planner/<br>
+│       ├── src/app/<br>
+│       │   ├── components/      (UI parts like buttons, forms)<br>
+│       │   ├── services/        (Logic for data)<br>
+│       │   └── models/          (Data structures)<br>
+│       ├── package.json         (List of tools needed)<br>
+│       └── angular.json         (Configuration)<br>
+│<br>
+├── <span style="color: #667eea;">Backend/</span>                   (The server brain)<br>
+│   ├── src/main/java/com/smarttravelplanner/<br>
+│   │   ├── entity/              (Data definitions)<br>
+│   │   ├── repository/          (Database access)<br>
+│   │   ├── service/             (Business logic)<br>
+│   │   ├── controller/          (API endpoints)<br>
+│   │   └── dto/                 (Data transfer objects)<br>
+│   ├── pom.xml                  (List of tools needed)<br>
+│   └── README.md                (Backend documentation)<br>
+│<br>
+└── <span style="color: #667eea;">Database/</span>                  (Data storage)<br>
+    └── schema.sql               (Database structure)<br>
+            </div>
+        </div>
+
+        <!-- Beginner's Guide -->
+        <div class="beginner-guide">
+            <h2><span class="emoji">📚</span>Beginner's Guide: How It All Works</h2>
+
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>User Opens Website</h3>
+                <p>You visit the website in your browser. The browser loads the Angular app (Frontend).</p>
+                <p><strong>What's happening:</strong> JavaScript code runs in your browser to show the website.</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Frontend Sends Request</h3>
+                <p>You search for destinations. The Frontend sends a request to the Backend (like sending a letter).</p>
+                <div class="code-example">
+Frontend says: "Give me all destinations in Goa with budget $500"
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Backend Processes Request</h3>
+                <p>The Backend receives the request. It uses business logic (Java code) to figure out what data to fetch.</p>
+                <p><strong>Example:</strong> Filter destinations where price ≤ $500 and location = "Goa"</p>
+            </div>
+
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Database Lookup</h3>
+                <p>The Backend asks the Database for matching destinations. The Database (MySQL) searches its tables.</p>
+                <div class="code-example">
+SELECT * FROM destinations WHERE price <= 500 AND location = 'Goa'
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">5</div>
+                <h3>Data Returns</h3>
+                <p>The Database returns the matching data. The Backend formats it (JSON format) and sends it back to Frontend.</p>
+                <div class="code-example">
+{
+  "destinations": [
+    {"name": "Beach Resort", "price": 450, "rating": 4.5},
+    {"name": "Hill Station", "price": 400, "rating": 4.8}
+  ]
+}
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">6</div>
+                <h3>Frontend Shows Results</h3>
+                <p>The Frontend receives the data and displays it beautifully on your screen. You see hotels, prices, ratings!</p>
+                <p><strong>What you see:</strong> A nice, colorful list of destinations you can click on.</p>
+            </div>
+        </div>
+
+        <!-- Key Concepts -->
+        <div class="info-grid">
+            <div class="card">
+                <h2><span class="emoji">🔑</span>Key Concept: Frontend</h2>
+                <p>The <span class="highlight">Frontend</span> is the part you interact with:</p>
+                <ul>
+                    <li>What you see in your browser</li>
+                    <li>Buttons, forms, search boxes</li>
+                    <li>Uses Angular (JavaScript framework)</li>
+                    <li>Runs on your computer/phone</li>
+                    <li>Communicates with Backend via API</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">⚙️</span>Key Concept: Backend</h2>
+                <p>The <span class="highlight">Backend</span> is the hidden logic:</p>
+                <ul>
+                    <li>Runs on a server (remote computer)</li>
+                    <li>Processes business logic</li>
+                    <li>Handles calculations & rules</li>
+                    <li>Uses Java & Spring Boot</li>
+                    <li>Provides data via REST API</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">💾</span>Key Concept: Database</h2>
+                <p>The <span class="highlight">Database</span> is the memory:</p>
+                <ul>
+                    <li>Stores all trip information</li>
+                    <li>Stores user accounts</li>
+                    <li>Stores hotels, reviews, ratings</li>
+                    <li>Uses MySQL (SQL database)</li>
+                    <li>Organized in tables (like Excel)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- API Explanation -->
+        <div class="card" style="margin-bottom: 30px;">
+            <h2><span class="emoji">🌐</span>What is REST API?</h2>
+            <p>REST API is how Frontend talks to Backend. Think of it like a restaurant:</p>
+            <ul>
+                <li><strong>API = Menu:</strong> Shows what requests you can make</li>
+                <li><strong>GET:</strong> "Hey Backend, GET me information about all destinations"</li>
+                <li><strong>POST:</strong> "Hey Backend, create a new trip for me"</li>
+                <li><strong>PUT:</strong> "Hey Backend, update my trip details"</li>
+                <li><strong>DELETE:</strong> "Hey Backend, delete my review"</li>
+            </ul>
+            <p style="margin-top: 15px;"><strong>Example API call:</strong></p>
+            <div class="code-example">
+GET /api/destinations?budget=500  →  Returns all destinations under $500
+POST /api/trips  →  Creates a new trip
+GET /api/hotels/5  →  Gets details of hotel with ID 5
+            </div>
+        </div>
+
+        <!-- Database Tables Explained -->
+        <div class="card" style="margin-bottom: 30px;">
+            <h2><span class="emoji">📊</span>12 Database Tables Explained</h2>
+            <p style="margin-bottom: 15px;">The database has 12 tables (like 12 spreadsheets):</p>
+            <ul>
+                <li><strong>Users:</strong> All registered users and their profiles</li>
+                <li><strong>Destinations:</strong> All travel locations (Goa, Manali, Kerala, etc.)</li>
+                <li><strong>Hotels:</strong> Hotel information with prices and amenities</li>
+                <li><strong>Trips:</strong> User trips/bookings</li>
+                <li><strong>ItineraryDay:</strong> Day-by-day trip plans</li>
+                <li><strong>Activities:</strong> Things to do each day</li>
+                <li><strong>Meals:</strong> Meal plans for each day</li>
+                <li><strong>Reviews:</strong> Reviews written by users</li>
+                <li><strong>SafetyAlerts:</strong> Emergency contacts and safety info</li>
+                <li><strong>TraditionalFood:</strong> Local cuisine information</li>
+                <li><strong>TripHotel:</strong> Connects trips to hotels</li>
+                <li><strong>TripShare:</strong> Trip sharing between friends</li>
+            </ul>
+        </div>
+
+        <!-- Getting Started -->
+        <div class="beginner-guide">
+            <h2><span class="emoji">🚀</span>How to Run This Project (For Beginners)</h2>
+
+            <div class="step">
+                <div class="step-number">A</div>
+                <h3>Prerequisites (Install These First)</h3>
+                <p>Before running the project, you need to install:</p>
+                <ul>
+                    <li><strong>Java 17+:</strong> Programming language for Backend</li>
+                    <li><strong>Node.js 18+:</strong> Runtime for JavaScript/Frontend</li>
+                    <li><strong>MySQL 8.0+:</strong> Database</li>
+                    <li><strong>Maven 3.6+:</strong> Tool to build Java project</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <div class="step-number">B</div>
+                <h3>Setup Database</h3>
+                <p>Create MySQL database and import the schema:</p>
+                <div class="code-example">
+1. Open MySQL Workbench or command line
+2. Run: source Database/schema.sql
+3. This creates tables and sample data
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">C</div>
+                <h3>Start Backend Server</h3>
+                <p>Run the Spring Boot application:</p>
+                <div class="code-example">
+cd Backend
+mvn spring-boot:run
+
+The server starts on http://localhost:8080
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">D</div>
+                <h3>Start Frontend</h3>
+                <p>Run the Angular development server:</p>
+                <div class="code-example">
+cd Frontend/smart-travel-planner
+npm install
+ng serve
+
+Visit http://localhost:4200 in your browser
+                </div>
+            </div>
+
+            <div class="step">
+                <div class="step-number">E</div>
+                <h3>Test the App</h3>
+                <p>Now you should see:</p>
+                <ul>
+                    <li>✅ Beautiful website with navigation</li>
+                    <li>✅ List of destinations</li>
+                    <li>✅ Hotel search functionality</li>
+                    <li>✅ Trip planning features</li>
+                    <li>✅ Sample data loaded</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- File Structure Overview -->
+        <div class="info-grid">
+            <div class="card">
+                <h2><span class="emoji">📝</span>Important Files</h2>
+                <ul>
+                    <li><strong>pom.xml:</strong> Lists all Java dependencies</li>
+                    <li><strong>package.json:</strong> Lists all JavaScript dependencies</li>
+                    <li><strong>schema.sql:</strong> Database structure</li>
+                    <li><strong>app.routes.ts:</strong> Website navigation</li>
+                    <li><strong>application.properties:</strong> Server configuration</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">📂</span>Folder Structure</h2>
+                <ul>
+                    <li><strong>controllers/:</strong> API endpoints</li>
+                    <li><strong>services/:</strong> Business logic</li>
+                    <li><strong>components/:</strong> UI components</li>
+                    <li><strong>models/:</strong> Data definitions</li>
+                    <li><strong>entities/:</strong> Database objects</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2><span class="emoji">🔗</span>Useful Links</h2>
+                <ul>
+                    <li><a href="https://github.com/csshoaib27/Smart-Travel-Planner" style="color: #667eea; text-decoration: none; font-weight: bold;">📌 GitHub Repository</a></li>
+                    <li><a href="https://angular.io" style="color: #667eea; text-decoration: none; font-weight: bold;">📌 Angular Docs</a></li>
+                    <li><a href="https://spring.io/projects/spring-boot" style="color: #667eea; text-decoration: none; font-weight: bold;">📌 Spring Boot Docs</a></li>
+                    <li><a href="https://dev.mysql.com/doc/" style="color: #667eea; text-decoration: none; font-weight: bold;">📌 MySQL Docs</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <p><strong>Smart Travel Planner - Full Stack Web Application</strong></p>
+            <p>A demonstration of modern web development with Angular, Spring Boot, and MySQL</p>
+            <p style="color: #999; font-size: 0.9em; margin-top: 15px;">Built with ❤️ for learning and showcase</p>
+            <div class="links">
+                <a href="https://github.com/csshoaib27/Smart-Travel-Planner">View on GitHub</a>
+                <a href="README.md">Full README</a>
+                <a href="BACKEND_SETUP_COMPLETE.md">Backend Docs</a>
+            </div>
+            <p style="color: #999; font-size: 0.85em; margin-top: 20px;">Last Updated: April 23, 2026</p>
+        </footer>
+    </div>
+</body>
+</html>
