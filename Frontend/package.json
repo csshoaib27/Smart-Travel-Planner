@@ -8,7 +8,7 @@
     "build:prod": "ng build --configuration production --base-href '/Smart-Travel-Planner/'",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "deploy": "ng build --configuration production --base-href '/Smart-Travel-Planner/' && npx angular-cli-ghpages --dir=dist/smart-travel-planner"
+    "deploy": "ng build --configuration production --base-href '/Smart-Travel-Planner/' && npx angular-cli-ghpages --dir=dist/smart-travel-planner --repo=https://github.com/csshoaib27/Smart-Travel-Planner.git --branch=gh-pages"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
