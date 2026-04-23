@@ -50,7 +50,7 @@ services:
   # Angular Frontend Service
   frontend:
     build:
-      context: ./Frontend/smart-travel-planner
+      context: ./Frontend
       dockerfile: Dockerfile
     container_name: smart-travel-frontend
     ports:
@@ -62,7 +62,7 @@ services:
     networks:
       - travel-network
     volumes:
-      - ./Frontend/smart-travel-planner/src:/app/src
+      - ./Frontend/src:/app/src
 
 networks:
   travel-network:

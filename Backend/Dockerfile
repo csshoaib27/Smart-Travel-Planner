@@ -19,7 +19,7 @@ FROM eclipse-temurin:17-jre
 WORKDIR /app
 
 # Copy the JAR from builder stage
-COPY --from=builder /app/target/smarttravelplanner-0.0.1-SNAPSHOT.jar app.jar
+COPY --from=builder /app/target/*.jar app.jar
 
 # Expose port
 EXPOSE 8080
