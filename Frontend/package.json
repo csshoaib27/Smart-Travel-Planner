@@ -5,8 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:prod": "ng build --configuration production --base-href '/Smart-Travel-Planner/'",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --configuration production --base-href '/Smart-Travel-Planner/' && npx angular-cli-ghpages --dir=dist/smart-travel-planner"
   },
   "private": true,
   "packageManager": "npm@11.9.0",
