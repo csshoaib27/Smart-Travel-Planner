@@ -14,10 +14,33 @@
             <label>Filter by Budget:</label>
             <select [(ngModel)]="selectedBudget" (ngModelChange)="onBudgetChange($event)" class="select-input">
                 <option value="all">All Budgets</option>
-                <option value="budget">Budget</option>
-                <option value="standard">Standard</option>
-                <option value="luxury">Luxury</option>
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
             </select>
+        </div>
+
+        <div class="price-filter">
+            <label>Price Range:</label>
+            <div class="price-controls">
+                <input type="number" min="0" [(ngModel)]="minPrice" (ngModelChange)="applyFilters()" class="small-input" placeholder="Min ₹">
+                <input type="number" min="0" [(ngModel)]="maxPrice" (ngModelChange)="applyFilters()" class="small-input" placeholder="Max ₹">
+            </div>
+        </div>
+
+        <div class="rating-filter">
+            <label>Min Rating:</label>
+            <select [(ngModel)]="minRating" (ngModelChange)="applyFilters()" class="select-input">
+                <option [value]="0">Any</option>
+                <option [value]="3">3+</option>
+                <option [value]="4">4+</option>
+                <option [value]="4.5">4.5+</option>
+            </select>
+        </div>
+
+        <div class="distance-filter">
+            <label>Max Distance (km):</label>
+            <input type="number" min="0" [(ngModel)]="maxDistance" (ngModelChange)="applyFilters()" class="small-input" placeholder="Distance">
         </div>
     </div>
 
@@ -32,11 +55,9 @@
     <div *ngIf="!loading && filteredDestinations.length > 0" class="destinations-grid">
         <div *ngFor="let destination of filteredDestinations" class="destination-card">
             <div class="destination-image">
-                <img [src]="'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iIzY2N2VlYSIvPjwvc3ZnPg=='"
-                    alt="{{ destination.name }}" class="img">
+                <img [src]="destination.image" alt="{{ destination.name }}" class="img">
                 <div class="destination-overlay">
-                    <button (click)="viewDetails(destination.name)" class="view-btn">View
-                        Details</button>
+                    <button (click)="viewDetails(destination.id)" class="view-btn">View Details</button>
                 </div>
             </div>
             <div class="destination-info">

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { DestinationService } from '../../services/destination.service';
 import { Destination } from '../../models/destination.model';
@@ -20,10 +20,18 @@ export class DestinationListComponent implements OnInit {
     selectedBudget = 'all';
     searchQuery = '';
     selectedInterests: string[] = [];
+    minPrice = 0;
+    maxPrice = 5000;
+    minRating = 0;
+    maxDistance = 5000;
 
-    budgetOptions = ['all', 'budget', 'standard', 'luxury'];
+    budgetOptions = ['all', 'low', 'medium', 'high'];
 
-    constructor(private destinationService: DestinationService, private route: ActivatedRoute) { }
+    constructor(
+        private destinationService: DestinationService,
+        private route: ActivatedRoute,
+        private router: Router
+    ) { }
 
     ngOnInit() {
         // Load destinations once
@@ -33,6 +41,11 @@ export class DestinationListComponent implements OnInit {
         this.route.queryParams.subscribe(params => {
             console.log('Query params received:', params);
             this.selectedBudget = params['budget'] || 'all';
+
+            this.minPrice = params['minFare'] ? Number(params['minFare']) : 0;
+            this.maxPrice = params['maxFare'] ? Number(params['maxFare']) : 5000;
+            this.minRating = params['minRating'] ? Number(params['minRating']) : 0;
+            this.maxDistance = params['maxDistance'] ? Number(params['maxDistance']) : 5000;
 
             // Handle interests - could be array or comma-separated string
             if (params['interests']) {
@@ -68,13 +81,20 @@ export class DestinationListComponent implements OnInit {
     }
 
     applyFilters() {
+        const query = this.searchQuery.toLowerCase().trim();
         this.filteredDestinations = this.destinations.filter(dest => {
             const matchesBudget = this.selectedBudget === 'all' || dest.budget === this.selectedBudget;
-            const matchesSearch = dest.name.toLowerCase().includes(this.searchQuery.toLowerCase()) ||
-                dest.city.toLowerCase().includes(this.searchQuery.toLowerCase());
+            const matchesSearch = query === '' ||
+                dest.name.toLowerCase().includes(query) ||
+                dest.city.toLowerCase().includes(query) ||
+                dest.country.toLowerCase().includes(query) ||
+                dest.region.toLowerCase().includes(query);
             const matchesInterests = this.selectedInterests.length === 0 ||
                 this.selectedInterests.some(interest => dest.interests.includes(interest));
-            return matchesBudget && matchesSearch && matchesInterests;
+            const matchesPrice = dest.costPerDay >= this.minPrice && dest.costPerDay <= this.maxPrice;
+            const matchesRating = dest.rating >= this.minRating;
+            const matchesDistance = dest.distance <= this.maxDistance;
+            return matchesBudget && matchesSearch && matchesInterests && matchesPrice && matchesRating && matchesDistance;
         });
     }
 
@@ -88,8 +108,7 @@ export class DestinationListComponent implements OnInit {
         this.applyFilters();
     }
 
-    viewDetails(destinationName: string) {
-        console.log('Viewing details for:', destinationName);
-        alert(`View Details for ${destinationName}`);
+    viewDetails(destinationId: string) {
+        this.router.navigate(['/destinations', destinationId]);
     }
 }
