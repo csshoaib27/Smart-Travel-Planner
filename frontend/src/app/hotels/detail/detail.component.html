@@ -1,0 +1,83 @@
+<div class="container py-4">
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <ng-container *ngIf="!loading && hotel">
+    <a routerLink="/hotels" class="btn btn-outline-secondary btn-sm mb-3">← Back to Hotels</a>
+    <div class="row g-4">
+      <!-- Hotel Info -->
+      <div class="col-md-8">
+        <h2>{{ hotel.name }}</h2>
+        <p class="text-muted">{{ hotel.address }}</p>
+        <div class="mb-2">
+          <span class="text-warning me-2">⭐ {{ hotel.starRating }} stars</span>
+          <span class="badge bg-light text-dark border me-1" *ngFor="let a of hotel.amenities?.split(',')">{{ a }}</span>
+        </div>
+        <p>{{ hotel.description }}</p>
+
+        <div class="row g-2 mb-4">
+          <div class="col-6"><strong>Check-in:</strong> {{ hotel.checkInTime }}</div>
+          <div class="col-6"><strong>Check-out:</strong> {{ hotel.checkOutTime }}</div>
+          <div class="col-6"><strong>Room Types:</strong> {{ hotel.roomTypes }}</div>
+          <div class="col-6"><strong>Available Rooms:</strong> {{ hotel.availableRooms }}</div>
+        </div>
+
+        <!-- Reviews -->
+        <h5>Reviews</h5>
+        <div *ngFor="let r of reviews" class="card mb-2">
+          <div class="card-body py-2">
+            <div class="d-flex justify-content-between">
+              <strong>{{ r.title }}</strong>
+              <span class="text-warning">⭐ {{ r.rating }}</span>
+            </div>
+            <p class="mb-0 small text-muted">{{ r.content }}</p>
+          </div>
+        </div>
+        <p *ngIf="reviews.length === 0" class="text-muted">No reviews yet.</p>
+      </div>
+
+      <!-- Booking Panel -->
+      <div class="col-md-4">
+        <div class="card shadow-sm sticky-top" style="top:80px">
+          <div class="card-body">
+            <h5 class="text-primary">${{ hotel.pricePerNight }}<small class="text-muted fs-6">/night</small></h5>
+            <hr />
+            <div class="mb-2">
+              <label class="form-label small">Check-in</label>
+              <input type="date" class="form-control form-control-sm" [(ngModel)]="booking.checkInDate" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Check-out</label>
+              <input type="date" class="form-control form-control-sm" [(ngModel)]="booking.checkOutDate" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Guests</label>
+              <input type="number" class="form-control form-control-sm" [(ngModel)]="booking.numberOfGuests" min="1" />
+            </div>
+            <div class="mb-2">
+              <label class="form-label small">Rooms</label>
+              <input type="number" class="form-control form-control-sm" [(ngModel)]="booking.numberOfRooms" min="1" />
+            </div>
+            <div class="mb-3">
+              <label class="form-label small">Room Type</label>
+              <select class="form-select form-select-sm" [(ngModel)]="booking.roomType">
+                <option *ngFor="let t of hotel.roomTypes?.split(',')" [value]="t">{{ t }}</option>
+              </select>
+            </div>
+            <div *ngIf="nights > 0" class="mb-3 p-2 bg-light rounded">
+              <div class="d-flex justify-content-between">
+                <small>{{ nights }} night(s) × {{ booking.numberOfRooms }} room(s)</small>
+                <strong>${{ totalPrice | number:'1.2-2' }}</strong>
+              </div>
+            </div>
+            <button class="btn btn-primary w-100" (click)="bookNow()" [disabled]="booking_loading">
+              <span *ngIf="booking_loading" class="spinner-border spinner-border-sm me-2"></span>
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>

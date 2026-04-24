@@ -42,10 +42,10 @@ public class Destination {
     @Column(length = 100)
     private String language;
 
-    @Column(precision = 10, scale = 8)
+    @Column
     private Double latitude;
 
-    @Column(precision = 11, scale = 8)
+    @Column
     private Double longitude;
 
     @Column(name = "travel_type", nullable = false)

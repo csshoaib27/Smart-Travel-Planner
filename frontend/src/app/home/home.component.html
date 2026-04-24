@@ -1,0 +1,74 @@
+<!-- Hero Section -->
+<section class="hero-section text-white text-center d-flex align-items-center">
+  <div class="container">
+    <h1 class="display-4 fw-bold mb-3">Plan Your Perfect Trip</h1>
+    <p class="lead mb-4">Discover destinations, find hotels, calculate costs and create itineraries</p>
+    <div class="d-flex justify-content-center gap-2 flex-wrap">
+      <a routerLink="/destinations" class="btn btn-light btn-lg px-4">Explore Destinations</a>
+      <a routerLink="/calculator" class="btn btn-outline-light btn-lg px-4">Cost Calculator</a>
+    </div>
+  </div>
+</section>
+
+<!-- Top Destinations -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="text-center mb-4">Top Rated Destinations</h2>
+    <div *ngIf="loading" class="text-center py-4">
+      <div class="spinner-border text-primary"></div>
+    </div>
+    <div class="row g-4" *ngIf="!loading">
+      <div class="col-md-4" *ngFor="let dest of topDestinations">
+        <div class="card h-100 shadow-sm destination-card" [routerLink]="['/destinations', dest.destinationId]" style="cursor:pointer">
+          <img *ngIf="dest.imageUrl" [src]="dest.imageUrl" class="card-img-top"
+               style="height:180px;object-fit:cover;background:#e9ecef"
+               (error)="dest.imageUrl = null" alt="{{ dest.name }}">
+          <div *ngIf="!dest.imageUrl" class="card-img-placeholder d-flex align-items-center justify-content-center"
+               style="height:180px;background:linear-gradient(135deg,#667eea,#764ba2)">
+            <span style="font-size:3rem">🌍</span>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">{{ dest.name }}</h5>
+            <p class="text-muted mb-1">📍 {{ dest.country }}</p>
+            <p class="text-muted mb-1">⭐ {{ dest.averageRating | number:'1.1-1' }}</p>
+            <span class="badge bg-primary">{{ dest.travelType }}</span>
+            <span class="badge bg-secondary ms-1">{{ dest.budgetCategory }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="text-center mt-4">
+      <a routerLink="/destinations" class="btn btn-primary">View All Destinations</a>
+    </div>
+  </div>
+</section>
+
+<!-- Features -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="text-center mb-4">Why Smart Travel Planner?</h2>
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="p-3">
+          <div class="display-5 mb-2">🗺️</div>
+          <h5>Discover Destinations</h5>
+          <p class="text-muted">Browse hundreds of destinations worldwide filtered by type and budget.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3">
+          <div class="display-5 mb-2">💰</div>
+          <h5>Cost Calculator</h5>
+          <p class="text-muted">Plan your budget accurately with our smart cost calculator.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="p-3">
+          <div class="display-5 mb-2">📅</div>
+          <h5>Trip Itinerary</h5>
+          <p class="text-muted">Generate day-by-day itineraries tailored to your travel style.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

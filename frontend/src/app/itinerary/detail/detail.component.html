@@ -1,0 +1,50 @@
+<div class="container py-4">
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <ng-container *ngIf="!loading && itinerary">
+    <div class="d-flex justify-content-between align-items-start mb-4">
+      <div>
+        <h2>{{ itinerary.title }}</h2>
+        <p class="text-muted">
+          📅 {{ itinerary.startDate | date:'mediumDate' }} → {{ itinerary.endDate | date:'mediumDate' }}
+          &nbsp; ({{ itinerary.numberOfDays }} days)
+        </p>
+        <span class="badge bg-primary me-1">{{ itinerary.packageType }}</span>
+        <span class="badge bg-light text-dark border">{{ itinerary.currency }}</span>
+        <span *ngIf="itinerary.isPublic" class="badge bg-success ms-1">Public</span>
+      </div>
+      <button class="btn btn-outline-danger btn-sm" (click)="delete()">🗑️ Delete</button>
+    </div>
+
+    <p *ngIf="itinerary.description" class="text-muted mb-4">{{ itinerary.description }}</p>
+
+    <div *ngIf="itinerary.totalEstimatedCost" class="alert alert-info mb-4">
+      💰 Estimated Total: <strong>{{ itinerary.currency }} {{ itinerary.totalEstimatedCost | number:'1.2-2' }}</strong>
+    </div>
+
+    <!-- Days -->
+    <h5 class="mb-3">Day-by-Day Plan</h5>
+    <div *ngIf="itinerary.days?.length > 0">
+      <div class="card mb-3 shadow-sm" *ngFor="let day of itinerary.days">
+        <div class="card-header bg-primary text-white">Day {{ day.dayNumber }}</div>
+        <div class="card-body">
+          <p *ngIf="day.activities"><strong>Activities:</strong> {{ day.activities }}</p>
+          <p *ngIf="day.notes"><strong>Notes:</strong> {{ day.notes }}</p>
+          <p *ngIf="day.estimatedBudget" class="mb-0 text-muted">
+            💰 Budget: {{ itinerary.currency }} {{ day.estimatedBudget | number:'1.2-2' }}
+          </p>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="!itinerary.days?.length" class="text-muted">
+      No day plans added yet.
+    </div>
+  </ng-container>
+
+  <div *ngIf="!loading && !itinerary" class="text-center py-5 text-muted">
+    <p>Itinerary not found.</p>
+    <a routerLink="/" class="btn btn-primary">Go Home</a>
+  </div>
+</div>

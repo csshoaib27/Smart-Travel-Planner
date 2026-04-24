@@ -1,0 +1,4 @@
+.hotel-card:hover {
+  transform: translateY(-3px);
+  transition: transform 0.2s;
+}

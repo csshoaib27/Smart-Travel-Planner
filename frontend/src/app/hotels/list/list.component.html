@@ -1,0 +1,29 @@
+<div class="container py-4">
+  <h2 class="mb-4">🏨 Hotels</h2>
+
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <div class="row g-4" *ngIf="!loading">
+    <div class="col-md-4" *ngFor="let hotel of hotels">
+      <div class="card h-100 shadow-sm hotel-card" [routerLink]="['/hotels', hotel.hotelId]" style="cursor:pointer">
+        <div class="card-body">
+          <h5 class="card-title">{{ hotel.name }}</h5>
+          <p class="text-muted small mb-1">{{ hotel.address }}</p>
+          <p class="small mb-2">{{ hotel.description | slice:0:80 }}...</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <span class="fw-bold text-primary fs-5">${{ hotel.pricePerNight }}<small class="text-muted fs-6">/night</small></span>
+            <span class="text-warning">⭐ {{ hotel.starRating }} stars</span>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent">
+          <small class="text-muted">{{ hotel.availableRooms }} rooms available</small>
+        </div>
+      </div>
+    </div>
+    <div *ngIf="hotels.length === 0" class="col-12 text-center text-muted py-4">
+      No hotels found.
+    </div>
+  </div>
+</div>

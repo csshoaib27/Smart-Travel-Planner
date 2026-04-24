@@ -64,10 +64,10 @@ INSERT INTO hotels (destination_id, name, description, address, check_in_time, c
 -- ==================== SAMPLE REVIEWS ====================
 INSERT INTO reviews (user_id, destination_id, hotel_id, rating, title, content, review_type, helpful_count) VALUES
 (1, 1, 1, 5, 'Amazing Stay at Eiffel Tower Hotel', 'The hotel exceeded all my expectations. The location is perfect, the service is impeccable, and the rooms are luxurious. Highly recommended!', 'Hotel', 23),
-(2, 1, 2, 4.5, 'Charming Boutique Hotel in Marais', 'Great location in the historic Marais district. The staff is very friendly and the room is clean and cozy. Would stay again!', 'Hotel', 18),
-(3, 1, NULL, 4.8, 'Paris is Magical', 'Paris lived up to all the hype. The Eiffel Tower, the museums, the food - everything is incredible. A must-visit destination!', 'Destination', 45),
+(1, 1, 2, 4.5, 'Charming Boutique Hotel in Marais', 'Great location in the historic Marais district. The staff is very friendly and the room is clean and cozy. Would stay again!', 'Hotel', 18),
+(1, 1, NULL, 4.8, 'Paris is Magical', 'Paris lived up to all the hype. The Eiffel Tower, the museums, the food - everything is incredible. A must-visit destination!', 'Destination', 45),
 (1, 2, 4, 5, 'Tokyo is Unforgettable', 'This city is a perfect blend of tradition and modernity. The food is amazing, the culture is rich, and the people are friendly. Loved it!', 'Destination', 52),
-(2, 4, 7, 4.7, 'Paradise in Bali', 'Bali is everything you dream of - beautiful beaches, friendly people, and affordable prices. Perfect vacation destination!', 'Destination', 38);
+(1, 4, 7, 4.7, 'Paradise in Bali', 'Bali is everything you dream of - beautiful beaches, friendly people, and affordable prices. Perfect vacation destination!', 'Destination', 38);
 
 -- ==================== UPDATE RATINGS ====================
 -- Update destination ratings

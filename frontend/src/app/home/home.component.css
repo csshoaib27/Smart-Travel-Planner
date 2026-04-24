@@ -1,0 +1,13 @@
+.hero-section {
+  min-height: 420px;
+  background: linear-gradient(135deg, #1a73e8 0%, #0d47a1 100%);
+}
+
+.card-img-placeholder {
+  height: 160px;
+}
+
+.destination-card:hover {
+  transform: translateY(-4px);
+  transition: transform 0.2s;
+}

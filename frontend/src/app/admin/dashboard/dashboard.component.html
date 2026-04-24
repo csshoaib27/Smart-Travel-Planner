@@ -1,0 +1,117 @@
+<div class="container py-4">
+  <h2 class="mb-4">🛠️ Admin Dashboard</h2>
+
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <ng-container *ngIf="!loading">
+    <!-- Tabs -->
+    <ul class="nav nav-tabs mb-4">
+      <li class="nav-item">
+        <button class="nav-link" [class.active]="activeTab === 'stats'" (click)="activeTab = 'stats'">📊 Stats</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" [class.active]="activeTab === 'users'" (click)="activeTab = 'users'">👥 Users</button>
+      </li>
+      <li class="nav-item">
+        <button class="nav-link" [class.active]="activeTab === 'bookings'" (click)="activeTab = 'bookings'">📋 Bookings</button>
+      </li>
+    </ul>
+
+    <!-- Stats Tab -->
+    <div *ngIf="activeTab === 'stats' && stats">
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="card text-center shadow-sm border-primary">
+            <div class="card-body">
+              <div class="display-6 text-primary">{{ stats.totalUsers ?? 0 }}</div>
+              <div class="text-muted">Total Users</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center shadow-sm border-success">
+            <div class="card-body">
+              <div class="display-6 text-success">{{ stats.totalBookings ?? 0 }}</div>
+              <div class="text-muted">Total Bookings</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center shadow-sm border-info">
+            <div class="card-body">
+              <div class="display-6 text-info">{{ stats.totalDestinations ?? 0 }}</div>
+              <div class="text-muted">Destinations</div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="card text-center shadow-sm border-warning">
+            <div class="card-body">
+              <div class="display-6 text-warning">{{ stats.totalHotels ?? 0 }}</div>
+              <div class="text-muted">Hotels</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Users Tab -->
+    <div *ngIf="activeTab === 'users'">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th><th>Username</th><th>Email</th><th>Full Name</th><th>Admin</th><th>Created</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{ user.userId }}</td>
+              <td>{{ user.username }}</td>
+              <td>{{ user.email }}</td>
+              <td>{{ user.fullName }}</td>
+              <td><span class="badge" [class.bg-danger]="user.isAdmin" [class.bg-secondary]="!user.isAdmin">{{ user.isAdmin ? 'Admin' : 'User' }}</span></td>
+              <td>{{ user.createdAt | date:'shortDate' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="users.length === 0" class="text-muted text-center">No users found.</p>
+      </div>
+    </div>
+
+    <!-- Bookings Tab -->
+    <div *ngIf="activeTab === 'bookings'">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th><th>User</th><th>Hotel</th><th>Check-in</th><th>Check-out</th><th>Total</th><th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let b of bookings">
+              <td>{{ b.bookingId }}</td>
+              <td>{{ b.userId }}</td>
+              <td>{{ b.hotelId }}</td>
+              <td>{{ b.checkInDate | date:'shortDate' }}</td>
+              <td>{{ b.checkOutDate | date:'shortDate' }}</td>
+              <td>${{ b.totalPrice | number:'1.2-2' }}</td>
+              <td>
+                <span class="badge"
+                  [class.bg-warning]="b.status === 'Pending'"
+                  [class.bg-success]="b.status === 'Confirmed'"
+                  [class.bg-danger]="b.status === 'Cancelled'"
+                  [class.bg-secondary]="b.status === 'Completed'">
+                  {{ b.status }}
+                </span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p *ngIf="bookings.length === 0" class="text-muted text-center">No bookings found.</p>
+      </div>
+    </div>
+  </ng-container>
+</div>

@@ -1,10 +1,7 @@
 package com.smarttravel.service;
 
-import com.smarttravel.dto.CostBreakdown;
-import com.smarttravel.model.Destination;
-import com.smarttravel.model.Hotel;
-import com.smarttravel.repository.DestinationRepository;
-import com.smarttravel.repository.HotelRepository;
+import com.smarttravel.dto.CostCalculatorRequest;
+import com.smarttravel.dto.TripCostDTO;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
@@ -16,152 +13,40 @@ import java.math.RoundingMode;
 @Slf4j
 public class CostCalculatorService {
 
-    private final HotelRepository hotelRepository;
-    private final DestinationRepository destinationRepository;
+    public TripCostDTO calculate(CostCalculatorRequest request) {
+        int people = request.getNumberOfPeople() != null && request.getNumberOfPeople() > 0 ? request.getNumberOfPeople() : 1;
+        int days   = request.getNumberOfDays()   != null && request.getNumberOfDays()   > 0 ? request.getNumberOfDays()   : 1;
+        int rooms  = request.getNumberOfRooms()  != null && request.getNumberOfRooms()  > 0 ? request.getNumberOfRooms()  : 1;
 
-    public CostBreakdown calculateTripCost(Integer numberOfDays,
-                                          Integer numberOfPeople,
-                                          Integer numberOfRooms,
-                                          Integer hotelId,
-                                          String budgetCategory) {
-        log.info("Calculating trip cost for {} days, {} people, {} rooms", numberOfDays, numberOfPeople, numberOfRooms);
+        BigDecimal hotelRate  = orZero(request.getHotelPricePerNight());
+        BigDecimal transport  = orZero(request.getTransportationCost());
+        BigDecimal foodDay    = orZero(request.getFoodCostPerDay());
+        BigDecimal activities = orZero(request.getActivitiesCost());
+        BigDecimal other      = orZero(request.getOtherCosts());
 
-        Hotel hotel = hotelRepository.findById(hotelId)
-                .orElseThrow(() -> new RuntimeException("Hotel not found"));
+        BigDecimal accommodation = hotelRate.multiply(bd(days)).multiply(bd(rooms));
+        BigDecimal food          = foodDay.multiply(bd(days)).multiply(bd(people));
+        BigDecimal total         = accommodation.add(transport).add(food).add(activities).add(other);
+        BigDecimal perPerson     = total.divide(bd(people), 2, RoundingMode.HALF_UP);
 
-        // Accommodation Cost
-        BigDecimal accommodationCost = hotel.getPricePerNight()
-                .multiply(BigDecimal.valueOf(numberOfDays))
-                .multiply(BigDecimal.valueOf(numberOfRooms));
+        log.info("Trip cost calculated: total={}, perPerson={}", total, perPerson);
 
-        // Estimate other costs based on budget category
-        BigDecimal travelCost = estimateTravelCost(budgetCategory, numberOfPeople);
-        BigDecimal foodEstimate = estimateFoodCost(budgetCategory, numberOfDays, numberOfPeople);
-        BigDecimal activitiesEstimate = estimateActivitiesCost(budgetCategory, numberOfDays, numberOfPeople);
-        BigDecimal miscellaneous = estimateMiscellaneous(accommodationCost);
-
-        BigDecimal totalCost = accommodationCost
-                .add(travelCost)
-                .add(foodEstimate)
-                .add(activitiesEstimate)
-                .add(miscellaneous);
-
-        return CostBreakdown.builder()
-                .travelCost(travelCost)
-                .accommodationCost(accommodationCost)
-                .foodEstimate(foodEstimate)
-                .activitiesEstimate(activitiesEstimate)
-                .miscellaneous(miscellaneous)
-                .totalEstimatedCost(totalCost)
+        return TripCostDTO.builder()
+                .accommodationCost(accommodation)
+                .transportationCost(transport)
+                .foodCost(food)
+                .activitiesCost(activities)
+                .otherCosts(other)
+                .totalCost(total)
+                .costPerPerson(perPerson)
                 .build();
     }
 
-    public CostBreakdown calculateDestinationCost(Integer destinationId,
-                                                 Integer numberOfDays,
-                                                 Integer numberOfPeople,
-                                                 Integer numberOfRooms) {
-        Destination destination = destinationRepository.findById(destinationId)
-                .orElseThrow(() -> new RuntimeException("Destination not found"));
-
-        // Use average hotel price for the destination
-        java.util.List<Hotel> hotels = hotelRepository.findByDestinationId(destinationId);
-        if (hotels.isEmpty()) {
-            throw new RuntimeException("No hotels found for this destination");
-        }
-
-        BigDecimal avgPrice = hotels.stream()
-                .map(Hotel::getPricePerNight)
-                .reduce(BigDecimal.ZERO, BigDecimal::add)
-                .divide(BigDecimal.valueOf(hotels.size()), RoundingMode.HALF_UP);
-
-        BigDecimal accommodationCost = avgPrice
-                .multiply(BigDecimal.valueOf(numberOfDays))
-                .multiply(BigDecimal.valueOf(numberOfRooms));
-
-        String budgetCategory = destination.getBudgetCategory().toString();
-
-        BigDecimal travelCost = estimateTravelCost(budgetCategory, numberOfPeople);
-        BigDecimal foodEstimate = estimateFoodCost(budgetCategory, numberOfDays, numberOfPeople);
-        BigDecimal activitiesEstimate = estimateActivitiesCost(budgetCategory, numberOfDays, numberOfPeople);
-        BigDecimal miscellaneous = estimateMiscellaneous(accommodationCost);
-
-        BigDecimal totalCost = accommodationCost
-                .add(travelCost)
-                .add(foodEstimate)
-                .add(activitiesEstimate)
-                .add(miscellaneous);
-
-        return CostBreakdown.builder()
-                .travelCost(travelCost)
-                .accommodationCost(accommodationCost)
-                .foodEstimate(foodEstimate)
-                .activitiesEstimate(activitiesEstimate)
-                .miscellaneous(miscellaneous)
-                .totalEstimatedCost(totalCost)
-                .build();
+    private BigDecimal orZero(BigDecimal v) {
+        return v != null ? v : BigDecimal.ZERO;
     }
 
-    private BigDecimal estimateTravelCost(String budgetCategory, Integer numberOfPeople) {
-        BigDecimal baseCost = switch (budgetCategory) {
-            case "Budget" -> BigDecimal.valueOf(300);
-            case "MidRange" -> BigDecimal.valueOf(600);
-            case "Luxury" -> BigDecimal.valueOf(1200);
-            default -> BigDecimal.valueOf(500);
-        };
-
-        return baseCost.multiply(BigDecimal.valueOf(numberOfPeople));
-    }
-
-    private BigDecimal estimateFoodCost(String budgetCategory, Integer numberOfDays, Integer numberOfPeople) {
-        BigDecimal dailyPerPersonCost = switch (budgetCategory) {
-            case "Budget" -> BigDecimal.valueOf(20);
-            case "MidRange" -> BigDecimal.valueOf(50);
-            case "Luxury" -> BigDecimal.valueOf(100);
-            default -> BigDecimal.valueOf(35);
-        };
-
-        return dailyPerPersonCost
-                .multiply(BigDecimal.valueOf(numberOfDays))
-                .multiply(BigDecimal.valueOf(numberOfPeople));
-    }
-
-    private BigDecimal estimateActivitiesCost(String budgetCategory, Integer numberOfDays, Integer numberOfPeople) {
-        BigDecimal dailyPerPersonCost = switch (budgetCategory) {
-            case "Budget" -> BigDecimal.valueOf(25);
-            case "MidRange" -> BigDecimal.valueOf(75);
-            case "Luxury" -> BigDecimal.valueOf(200);
-            default -> BigDecimal.valueOf(50);
-        };
-
-        return dailyPerPersonCost
-                .multiply(BigDecimal.valueOf(numberOfDays))
-                .multiply(BigDecimal.valueOf(numberOfPeople));
-    }
-
-    private BigDecimal estimateMiscellaneous(BigDecimal accommodationCost) {
-        // Miscellaneous is 10% of accommodation cost (tips, local transport, etc.)
-        return accommodationCost.multiply(BigDecimal.valueOf(0.10));
-    }
-
-    public BigDecimal calculateCostPerPerson(CostBreakdown breakdown, Integer numberOfPeople) {
-        return breakdown.getTotalEstimatedCost()
-                .divide(BigDecimal.valueOf(numberOfPeople), 2, RoundingMode.HALF_UP);
-    }
-
-    public CostBreakdown adjustCostBySplits(CostBreakdown breakdown, Integer numberOfSplits) {
-        if (numberOfSplits <= 0) {
-            throw new RuntimeException("Number of splits must be greater than 0");
-        }
-
-        BigDecimal divisor = BigDecimal.valueOf(numberOfSplits);
-
-        return CostBreakdown.builder()
-                .travelCost(breakdown.getTravelCost().divide(divisor, 2, RoundingMode.HALF_UP))
-                .accommodationCost(breakdown.getAccommodationCost().divide(divisor, 2, RoundingMode.HALF_UP))
-                .foodEstimate(breakdown.getFoodEstimate().divide(divisor, 2, RoundingMode.HALF_UP))
-                .activitiesEstimate(breakdown.getActivitiesEstimate().divide(divisor, 2, RoundingMode.HALF_UP))
-                .miscellaneous(breakdown.getMiscellaneous().divide(divisor, 2, RoundingMode.HALF_UP))
-                .totalEstimatedCost(breakdown.getTotalEstimatedCost().divide(divisor, 2, RoundingMode.HALF_UP))
-                .build();
+    private BigDecimal bd(int v) {
+        return BigDecimal.valueOf(v);
     }
 }

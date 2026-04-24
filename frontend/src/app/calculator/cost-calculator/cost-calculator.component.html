@@ -1,0 +1,94 @@
+<div class="container py-4">
+  <h2 class="mb-4">💰 Cost Calculator</h2>
+  <div class="row g-4">
+    <!-- Form -->
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <div class="row g-3">
+            <div class="col-6">
+              <label class="form-label">Number of People</label>
+              <input type="number" class="form-control" [(ngModel)]="request.numberOfPeople" min="1" />
+            </div>
+            <div class="col-6">
+              <label class="form-label">Number of Days</label>
+              <input type="number" class="form-control" [(ngModel)]="request.numberOfDays" min="1" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Hotel Price per Night ($)</label>
+              <input type="number" class="form-control" [(ngModel)]="request.hotelPricePerNight" min="0" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Transportation Cost ($)</label>
+              <input type="number" class="form-control" [(ngModel)]="request.transportationCost" min="0" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Food Cost per Day per Person ($)</label>
+              <input type="number" class="form-control" [(ngModel)]="request.foodCostPerDay" min="0" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Activities Cost ($)</label>
+              <input type="number" class="form-control" [(ngModel)]="request.activitiesCost" min="0" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Other Costs ($)</label>
+              <input type="number" class="form-control" [(ngModel)]="request.otherCosts" min="0" />
+            </div>
+            <div class="col-12 d-flex gap-2">
+              <button class="btn btn-primary flex-fill" (click)="calculate()" [disabled]="loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                Calculate
+              </button>
+              <button class="btn btn-outline-secondary" (click)="reset()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="col-md-6">
+      <div class="card shadow-sm h-100" *ngIf="result; else emptyResult">
+        <div class="card-body">
+          <h5 class="mb-4">Trip Cost Summary</h5>
+          <div class="result-item d-flex justify-content-between py-2 border-bottom">
+            <span>🏨 Accommodation</span>
+            <strong>${{ result.accommodationCost | number:'1.2-2' }}</strong>
+          </div>
+          <div class="result-item d-flex justify-content-between py-2 border-bottom">
+            <span>🚗 Transportation</span>
+            <strong>${{ result.transportationCost | number:'1.2-2' }}</strong>
+          </div>
+          <div class="result-item d-flex justify-content-between py-2 border-bottom">
+            <span>🍽️ Food</span>
+            <strong>${{ result.foodCost | number:'1.2-2' }}</strong>
+          </div>
+          <div class="result-item d-flex justify-content-between py-2 border-bottom">
+            <span>🎯 Activities</span>
+            <strong>${{ result.activitiesCost | number:'1.2-2' }}</strong>
+          </div>
+          <div class="result-item d-flex justify-content-between py-2 border-bottom">
+            <span>📦 Other</span>
+            <strong>${{ result.otherCosts | number:'1.2-2' }}</strong>
+          </div>
+          <div class="d-flex justify-content-between py-3 mt-2">
+            <h5>Total Cost</h5>
+            <h5 class="text-primary">${{ result.totalCost | number:'1.2-2' }}</h5>
+          </div>
+          <div class="bg-light rounded p-3 text-center">
+            <div class="text-muted small">Per Person</div>
+            <div class="fs-4 fw-bold text-success">${{ result.costPerPerson | number:'1.2-2' }}</div>
+          </div>
+        </div>
+      </div>
+      <ng-template #emptyResult>
+        <div class="card shadow-sm h-100 d-flex align-items-center justify-content-center text-muted">
+          <div class="text-center p-4">
+            <div class="display-4">💰</div>
+            <p class="mt-2">Fill in the form and click Calculate to see your trip cost breakdown.</p>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</div>

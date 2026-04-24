@@ -1,0 +1,69 @@
+<div class="container py-4">
+  <h2 class="mb-4">🌍 Explore Destinations</h2>
+
+  <!-- Filters -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-4">
+          <input type="text" class="form-control" [(ngModel)]="country" placeholder="Search by country..." />
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="travelType">
+            <option value="">All Travel Types</option>
+            <option *ngFor="let t of travelTypes" [value]="t">{{ t }}</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="budgetCategory">
+            <option value="">All Budgets</option>
+            <option *ngFor="let b of budgetCategories" [value]="b">{{ b }}</option>
+          </select>
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+          <button class="btn btn-primary flex-fill" (click)="search()">Search</button>
+          <button class="btn btn-outline-secondary" (click)="clearFilters()" title="Clear">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Results -->
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <div *ngIf="!loading && destinations.length === 0" class="text-center py-5 text-muted">
+    <p class="display-6">🔍</p>
+    <p>No destinations found. Try different filters.</p>
+  </div>
+
+  <div class="row g-4" *ngIf="!loading">
+    <div class="col-md-4" *ngFor="let dest of destinations">
+      <div class="card h-100 shadow-sm dest-card" [routerLink]="['/destinations', dest.destinationId]" style="cursor:pointer">
+        <img *ngIf="dest.imageUrl" [src]="dest.imageUrl" class="card-img-top"
+             style="height:180px;object-fit:cover;background:#e9ecef"
+             (error)="onImageError(dest)" alt="{{ dest.name }}">
+        <div *ngIf="!dest.imageUrl" class="card-img-top d-flex align-items-center justify-content-center"
+             style="height:180px;background:linear-gradient(135deg,#667eea,#764ba2)">
+          <span style="font-size:3rem">🌍</span>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title">{{ dest.name }}</h5>
+          <p class="text-muted small mb-1">📍 {{ dest.country }}</p>
+          <p class="text-muted small mb-2">{{ dest.description | slice:0:80 }}...</p>
+          <div class="d-flex justify-content-between align-items-center">
+            <div>
+              <span class="badge bg-primary me-1">{{ dest.travelType }}</span>
+              <span class="badge bg-secondary">{{ dest.budgetCategory }}</span>
+            </div>
+            <span class="text-warning">⭐ {{ dest.averageRating | number:'1.1-1' }}</span>
+          </div>
+        </div>
+        <div class="card-footer bg-transparent">
+          <small class="text-muted">🌡️ Avg {{ dest.temperatureAvg }}°C &nbsp; 💱 {{ dest.currency }}</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

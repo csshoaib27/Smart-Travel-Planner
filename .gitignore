@@ -1,0 +1,6 @@
+frontend/.angular/cache/
+frontend/node_modules/
+backend/target/
+node_modules/
+.DS_Store
+.env

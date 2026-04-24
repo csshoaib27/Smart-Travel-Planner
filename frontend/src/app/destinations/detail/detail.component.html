@@ -1,0 +1,85 @@
+<div class="container py-4">
+  <div *ngIf="loading" class="text-center py-5">
+    <div class="spinner-border text-primary"></div>
+  </div>
+
+  <ng-container *ngIf="!loading && destination">
+    <!-- Header -->
+    <div class="row mb-4">
+      <div class="col">
+        <a routerLink="/destinations" class="btn btn-outline-secondary btn-sm mb-3">← Back</a>
+        <img *ngIf="destination.imageUrl" [src]="destination.imageUrl" class="w-100 rounded mb-3"
+             style="height:320px;object-fit:cover;background:#e9ecef"
+             (error)="destination.imageUrl = null" alt="{{ destination.name }}">
+        <h2>{{ destination.name }}</h2>
+        <p class="text-muted">📍 {{ destination.country }} &nbsp; ⭐ {{ destination.averageRating | number:'1.1-1' }} ({{ destination.reviewCount }} reviews)</p>
+        <span class="badge bg-primary me-1">{{ destination.travelType }}</span>
+        <span class="badge bg-secondary">{{ destination.budgetCategory }}</span>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Info -->
+      <div class="col-md-8">
+        <div class="card shadow-sm mb-4">
+          <div class="card-body">
+            <h5>About</h5>
+            <p>{{ destination.description }}</p>
+            <div class="row">
+              <div class="col-6"><strong>🌡️ Avg Temp:</strong> {{ destination.temperatureAvg }}°C</div>
+              <div class="col-6"><strong>📅 Best Time:</strong> {{ destination.bestTimeToVisit }}</div>
+              <div class="col-6 mt-2"><strong>💱 Currency:</strong> {{ destination.currency }}</div>
+              <div class="col-6 mt-2"><strong>🗣️ Language:</strong> {{ destination.language }}</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hotels -->
+        <h5 class="mb-3">🏨 Hotels in {{ destination.name }}</h5>
+        <div class="row g-3" *ngIf="hotels.length > 0">
+          <div class="col-md-6" *ngFor="let hotel of hotels">
+            <div class="card h-100 shadow-sm" [routerLink]="['/hotels', hotel.hotelId]" style="cursor:pointer">
+              <div class="card-body">
+                <h6 class="card-title">{{ hotel.name }}</h6>
+                <p class="text-muted small mb-1">⭐ {{ hotel.starRating }} stars</p>
+                <p class="fw-bold text-primary mb-0">${{ hotel.pricePerNight }}/night</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <p *ngIf="hotels.length === 0" class="text-muted">No hotels listed for this destination yet.</p>
+      </div>
+
+      <!-- Side Panel -->
+      <div class="col-md-4">
+        <div class="card shadow-sm mb-3">
+          <div class="card-body">
+            <h6>Quick Actions</h6>
+            <a routerLink="/calculator" class="btn btn-primary w-100 mb-2">💰 Calculate Cost</a>
+            <a routerLink="/itineraries/new" class="btn btn-outline-primary w-100">📅 Plan Itinerary</a>
+          </div>
+        </div>
+
+        <!-- Reviews -->
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h6>Recent Reviews</h6>
+            <div *ngFor="let review of reviews.slice(0,3)" class="border-bottom py-2">
+              <div class="d-flex justify-content-between">
+                <small class="fw-bold">{{ review.title }}</small>
+                <small class="text-warning">⭐ {{ review.rating }}</small>
+              </div>
+              <small class="text-muted">{{ review.content | slice:0:80 }}...</small>
+            </div>
+            <p *ngIf="reviews.length === 0" class="text-muted small">No reviews yet.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+
+  <div *ngIf="!loading && !destination" class="text-center py-5 text-muted">
+    <p>Destination not found.</p>
+    <a routerLink="/destinations" class="btn btn-primary">Back to Destinations</a>
+  </div>
+</div>

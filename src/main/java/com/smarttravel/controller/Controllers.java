@@ -49,9 +49,7 @@ class AuthController {
 
     @GetMapping("/validate-token")
     public ResponseEntity<?> validateToken(@RequestHeader("Authorization") String token) {
-        if (token.startsWith("Bearer ")) {
-            token = token.substring(7);
-        }
+        if (token.startsWith("Bearer ")) token = token.substring(7);
         boolean isValid = authService.validateToken(token);
         return ResponseEntity.ok(new ApiResponse<>(true, "Token validation result", isValid,
                 java.time.LocalDateTime.now().toString()));
@@ -72,12 +70,11 @@ class DestinationController {
     public ResponseEntity<?> getAllDestinations() {
         try {
             List<DestinationDTO> destinations = destinationService.getAllDestinations();
-            return ResponseEntity.ok(new ApiResponse<>(true, "Destinations retrieved successfully",
-                    destinations, java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.ok(new ApiResponse<>(true, "Destinations retrieved", destinations,
+                    java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.status(500).body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -85,12 +82,11 @@ class DestinationController {
     public ResponseEntity<?> getDestinationById(@PathVariable Integer id) {
         try {
             DestinationDTO destination = destinationService.getDestinationById(id);
-            return ResponseEntity.ok(new ApiResponse<>(true, "Destination retrieved",
-                    destination, java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.ok(new ApiResponse<>(true, "Destination retrieved", destination,
+                    java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.status(404)
-                    .body(new ApiResponse<>(false, "Destination not found", null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.status(404).body(new ApiResponse<>(false, "Destination not found", null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -115,9 +111,8 @@ class DestinationController {
             return ResponseEntity.ok(new ApiResponse<>(true, "Search completed", results,
                     java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.badRequest()
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -125,12 +120,11 @@ class DestinationController {
     public ResponseEntity<?> getTopRatedDestinations() {
         try {
             List<DestinationDTO> destinations = destinationService.getTopRatedDestinations();
-            return ResponseEntity.ok(new ApiResponse<>(true, "Top rated destinations",
-                    destinations, java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.ok(new ApiResponse<>(true, "Top rated destinations", destinations,
+                    java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.status(500).body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -142,9 +136,8 @@ class DestinationController {
                     .body(new ApiResponse<>(true, "Destination created", created,
                             java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.badRequest()
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 }
@@ -166,9 +159,8 @@ class HotelController {
             return ResponseEntity.ok(new ApiResponse<>(true, "Hotels retrieved", hotels,
                     java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.status(500).body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -179,9 +171,8 @@ class HotelController {
             return ResponseEntity.ok(new ApiResponse<>(true, "Hotel retrieved", hotel,
                     java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.status(404)
-                    .body(new ApiResponse<>(false, "Hotel not found", null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.status(404).body(new ApiResponse<>(false, "Hotel not found", null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -192,9 +183,8 @@ class HotelController {
             return ResponseEntity.ok(new ApiResponse<>(true, "Hotels retrieved", hotels,
                     java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.status(500)
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.status(500).body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -204,19 +194,14 @@ class HotelController {
             @RequestParam(required = false) BigDecimal minPrice,
             @RequestParam(required = false) BigDecimal maxPrice) {
         try {
-            if (minPrice != null && maxPrice != null) {
-                List<HotelDTO> hotels = hotelService.getHotelsByDestinationAndPrice(destinationId, minPrice, maxPrice);
-                return ResponseEntity.ok(new ApiResponse<>(true, "Hotels found", hotels,
-                        java.time.LocalDateTime.now().toString()));
-            } else {
-                List<HotelDTO> hotels = hotelService.getHotelsByDestination(destinationId);
-                return ResponseEntity.ok(new ApiResponse<>(true, "Hotels found", hotels,
-                        java.time.LocalDateTime.now().toString()));
-            }
+            List<HotelDTO> hotels = (minPrice != null && maxPrice != null)
+                    ? hotelService.getHotelsByDestinationAndPrice(destinationId, minPrice, maxPrice)
+                    : hotelService.getHotelsByDestination(destinationId);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Hotels found", hotels,
+                    java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.badRequest()
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
@@ -228,9 +213,8 @@ class HotelController {
                     .body(new ApiResponse<>(true, "Hotel created", created,
                             java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.badRequest()
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 }
@@ -248,39 +232,24 @@ class CostCalculatorController {
     @PostMapping("/calculate")
     public ResponseEntity<?> calculateCost(@RequestBody CostCalculatorRequest request) {
         try {
-            CostBreakdown breakdown = costCalculatorService.calculateTripCost(
-                    request.getNumberOfDays(),
-                    request.getNumberOfPeople(),
-                    request.getNumberOfRooms(),
-                    request.getDestinationId(),
-                    request.getBudgetCategory()
-            );
-            return ResponseEntity.ok(new ApiResponse<>(true, "Cost calculated", breakdown,
+            TripCostDTO result = costCalculatorService.calculate(request);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Cost calculated", result,
                     java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.badRequest()
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 
     @PostMapping("/calculate-per-person")
     public ResponseEntity<?> calculatePerPerson(@RequestBody CostCalculatorRequest request) {
         try {
-            CostBreakdown breakdown = costCalculatorService.calculateTripCost(
-                    request.getNumberOfDays(),
-                    request.getNumberOfPeople(),
-                    request.getNumberOfRooms(),
-                    request.getDestinationId(),
-                    request.getBudgetCategory()
-            );
-            BigDecimal perPerson = costCalculatorService.calculateCostPerPerson(breakdown, request.getNumberOfPeople());
-            return ResponseEntity.ok(new ApiResponse<>(true, "Cost per person calculated", perPerson,
+            TripCostDTO result = costCalculatorService.calculate(request);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Cost per person calculated", result,
                     java.time.LocalDateTime.now().toString()));
         } catch (Exception e) {
-            return ResponseEntity.badRequest()
-                    .body(new ApiResponse<>(false, e.getMessage(), null,
-                            java.time.LocalDateTime.now().toString()));
+            return ResponseEntity.badRequest().body(new ApiResponse<>(false, e.getMessage(), null,
+                    java.time.LocalDateTime.now().toString()));
         }
     }
 }

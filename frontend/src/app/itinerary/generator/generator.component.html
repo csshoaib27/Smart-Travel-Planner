@@ -1,0 +1,66 @@
+<div class="container py-4">
+  <h2 class="mb-4">📅 Plan Your Trip</h2>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card shadow-sm">
+        <div class="card-body p-4">
+          <div class="row g-3">
+            <div class="col-12">
+              <label class="form-label">Trip Title <span class="text-danger">*</span></label>
+              <input type="text" class="form-control" [(ngModel)]="itinerary.title" placeholder="e.g. Paris Adventure 2025" />
+            </div>
+            <div class="col-12">
+              <label class="form-label">Destination</label>
+              <select class="form-select" [(ngModel)]="itinerary.destinationId">
+                <option [value]="null">Select destination (optional)</option>
+                <option *ngFor="let d of destinations" [value]="d.destinationId">{{ d.name }}, {{ d.country }}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Start Date <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" [(ngModel)]="itinerary.startDate" />
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">End Date <span class="text-danger">*</span></label>
+              <input type="date" class="form-control" [(ngModel)]="itinerary.endDate" />
+            </div>
+            <div class="col-12" *ngIf="numberOfDays > 0">
+              <div class="alert alert-info py-2 mb-0">📅 {{ numberOfDays }} day(s) trip</div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Package Type</label>
+              <select class="form-select" [(ngModel)]="itinerary.packageType">
+                <option *ngFor="let p of packageTypes" [value]="p">{{ p }}</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Currency</label>
+              <select class="form-select" [(ngModel)]="itinerary.currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <option value="GBP">GBP</option>
+                <option value="JPY">JPY</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <label class="form-label">Description</label>
+              <textarea class="form-control" [(ngModel)]="itinerary.description" rows="3" placeholder="Describe your trip..."></textarea>
+            </div>
+            <div class="col-12">
+              <div class="form-check">
+                <input type="checkbox" class="form-check-input" id="isPublic" [(ngModel)]="itinerary.isPublic" />
+                <label class="form-check-label" for="isPublic">Make this itinerary public</label>
+              </div>
+            </div>
+            <div class="col-12">
+              <button class="btn btn-primary w-100" (click)="onSubmit()" [disabled]="loading">
+                <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
+                Create Itinerary
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

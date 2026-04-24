@@ -1,0 +1,974 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ----------------< com.smarttravel:smart-travel-planner >----------------
+[INFO] Building Smart Travel Planner 1.0.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] >>> spring-boot:3.1.5:run (default-cli) > test-compile @ smart-travel-planner >>>
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ smart-travel-planner ---
+[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.11.0:compile (default-compile) @ smart-travel-planner ---
+[INFO] Changes detected - recompiling the module! :source
+[INFO] Compiling 40 source files with javac [debug release 21] to target\classes
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[11,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[12,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[13,21] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[14,24] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[15,24] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[16,24] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[17,24] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/dto/CostCalculatorRequest.java:[18,24] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/User.java:[58,26] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/User.java:[61,28] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/User.java:[64,25] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/Destination.java:[76,24] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/Destination.java:[79,25] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/Destination.java:[82,26] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/Itinerary.java:[74,31] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/Hotel.java:[88,26] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[WARNING] /C:/Users/Shoaib Basha/Desktop/smart-travel-planner/src/main/java/com/smarttravel/model/Hotel.java:[91,25] @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ smart-travel-planner ---
+[INFO] skip non existing resourceDirectory C:\Users\Shoaib Basha\Desktop\smart-travel-planner\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.11.0:testCompile (default-testCompile) @ smart-travel-planner ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] <<< spring-boot:3.1.5:run (default-cli) < test-compile @ smart-travel-planner <<<
+[INFO] 
+[INFO] 
+[INFO] --- spring-boot:3.1.5:run (default-cli) @ smart-travel-planner ---
+[INFO] Attaching agents: []
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+ :: Spring Boot ::                (v3.1.5)
+
+2026-04-24 17:06:53 - Starting SmartTravelApp using Java 21.0.8 with PID 28204 (C:\Users\Shoaib Basha\Desktop\smart-travel-planner\target\classes started by Shoaib Basha in C:\Users\Shoaib Basha\Desktop\smart-travel-planner)
+2026-04-24 17:06:53 - Running with Spring Boot v3.1.5, Spring v6.0.13
+2026-04-24 17:06:53 - No active profile set, falling back to 1 default profile: "default"
+2026-04-24 17:06:53 - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-04-24 17:06:54 - Finished Spring Data repository scanning in 124 ms. Found 10 JPA repository interfaces.
+2026-04-24 17:06:54 - Tomcat initialized with port(s): 8080 (http)
+2026-04-24 17:06:54 - Starting service [Tomcat]
+2026-04-24 17:06:54 - Starting Servlet engine: [Apache Tomcat/10.1.15]
+2026-04-24 17:06:54 - Initializing Spring embedded WebApplicationContext
+2026-04-24 17:06:54 - Root WebApplicationContext: initialization completed in 1691 ms
+2026-04-24 17:06:54 - HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-04-24 17:06:54 - HHH000412: Hibernate ORM core version 6.2.13.Final
+2026-04-24 17:06:54 - HHH000406: Using bytecode reflection optimizer
+2026-04-24 17:06:55 - No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-04-24 17:06:55 - HikariPool-1 - Starting...
+2026-04-24 17:06:55 - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@60c96eb4
+2026-04-24 17:06:55 - HikariPool-1 - Start completed.
+2026-04-24 17:06:55 - HHH90000025: MySQL8Dialect does not need to be specified explicitly using 'hibernate.dialect' (remove the property setting and it will be selected by default)
+2026-04-24 17:06:55 - HHH90000026: MySQL8Dialect has been deprecated; use org.hibernate.dialect.MySQLDialect instead
+2026-04-24 17:06:56 - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-04-24 17:06:56 - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-04-24 17:06:56 - Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-04-24 17:06:57 - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-04-24 17:06:57 - 31 mappings in 'requestMappingHandlerMapping'
+2026-04-24 17:06:57 - Patterns [/webjars/**, /**, /swagger-ui*/*swagger-initializer.js, /swagger-ui*/**] in 'resourceHandlerMapping'
+2026-04-24 17:06:57 - Will secure any request with [org.springframework.security.web.session.DisableEncodeUrlFilter@66626c96, org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@7b828793, org.springframework.security.web.context.SecurityContextHolderFilter@474172e5, org.springframework.security.web.header.HeaderWriterFilter@6f4327ab, org.springframework.security.web.authentication.logout.LogoutFilter@1b7bab7e, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@138f597, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@42f2c28d, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@30cd72a4, org.springframework.security.web.session.SessionManagementFilter@29b23bc4, org.springframework.security.web.access.ExceptionTranslationFilter@290db92f, org.springframework.security.web.access.intercept.AuthorizationFilter@456b12c3]
+2026-04-24 17:06:57 - ControllerAdvice beans: 0 @ModelAttribute, 0 @InitBinder, 1 RequestBodyAdvice, 1 ResponseBodyAdvice
+2026-04-24 17:06:57 - ControllerAdvice beans: 1 @ExceptionHandler, 1 ResponseBodyAdvice
+2026-04-24 17:06:58 - Tomcat started on port(s): 8080 (http) with context path '/api'
+2026-04-24 17:06:58 - Started SmartTravelApp in 5.445 seconds (process running for 5.856)
+2026-04-24 17:07:05 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-04-24 17:07:05 - Initializing Servlet 'dispatcherServlet'
+2026-04-24 17:07:05 - Detected StandardServletMultipartResolver
+2026-04-24 17:07:05 - Detected AcceptHeaderLocaleResolver
+2026-04-24 17:07:05 - Detected FixedThemeResolver
+2026-04-24 17:07:05 - Detected org.springframework.web.servlet.view.DefaultRequestToViewNameTranslator@357f7e2d
+2026-04-24 17:07:05 - Detected org.springframework.web.servlet.support.SessionFlashMapManager@172e4d3a
+2026-04-24 17:07:05 - enableLoggingRequestDetails='false': request parameters and headers will be masked to prevent unsafe logging of potentially sensitive data
+2026-04-24 17:07:05 - Completed initialization in 0 ms
+2026-04-24 17:07:05 - Securing GET /destinations/top-rated
+2026-04-24 17:07:05 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:05 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:05 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:05 - Secured GET /destinations/top-rated
+2026-04-24 17:07:05 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:07:05 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:05 - Fetching top rated destinations
+2026-04-24 17:07:05 - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-24 17:07:05 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:07:05 - Completed 200 OK
+2026-04-24 17:07:17 - Securing OPTIONS /destinations/search?
+2026-04-24 17:07:17 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:17 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:17 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:17 - Secured OPTIONS /destinations/search?
+2026-04-24 17:07:17 - OPTIONS "/api/destinations/search", parameters={}
+2026-04-24 17:07:17 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:17 - Completed 200 OK
+2026-04-24 17:07:17 - Securing GET /destinations/search?
+2026-04-24 17:07:17 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:17 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:17 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:17 - Secured GET /destinations/search?
+2026-04-24 17:07:17 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:07:17 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:17 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:07:17 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:07:17 - Completed 200 OK
+2026-04-24 17:07:26 - Securing OPTIONS /destinations/top-rated
+2026-04-24 17:07:26 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:26 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:26 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:26 - Secured OPTIONS /destinations/top-rated
+2026-04-24 17:07:26 - OPTIONS "/api/destinations/top-rated", parameters={}
+2026-04-24 17:07:26 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:26 - Completed 200 OK
+2026-04-24 17:07:26 - Securing GET /destinations/top-rated
+2026-04-24 17:07:26 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:26 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:26 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:26 - Secured GET /destinations/top-rated
+2026-04-24 17:07:26 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:07:26 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:07:26 - Fetching top rated destinations
+2026-04-24 17:07:26 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:07:26 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:07:26 - Completed 200 OK
+2026-04-24 17:07:30 - Securing OPTIONS /hotels
+2026-04-24 17:07:30 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Secured OPTIONS /hotels
+2026-04-24 17:07:30 - OPTIONS "/api/hotels", parameters={}
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Completed 200 OK
+2026-04-24 17:07:30 - Securing GET /hotels
+2026-04-24 17:07:30 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Secured GET /hotels
+2026-04-24 17:07:30 - GET "/api/hotels", parameters={}
+2026-04-24 17:07:30 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:07:30 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:07:30 - Writing [ApiResponse(success=true, message=Hotels retrieved, data=[HotelDTO(hotelId=1, destinationId=1, name= (truncated)...]
+2026-04-24 17:07:30 - Completed 200 OK
+2026-04-24 17:07:31 - Securing GET /destinations/search?
+2026-04-24 17:07:31 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:07:31 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:31 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:31 - Secured GET /destinations/search?
+2026-04-24 17:07:31 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:07:31 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:07:31 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:07:31 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:07:31 - Completed 200 OK
+2026-04-24 17:08:08 - Securing GET /destinations/search?
+2026-04-24 17:08:08 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:08 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:08 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:08 - Secured GET /destinations/search?
+2026-04-24 17:08:08 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:08:08 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:08 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:08 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:08:08 - Completed 200 OK
+2026-04-24 17:08:09 - Securing GET /destinations/top-rated
+2026-04-24 17:08:09 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:09 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:09 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:09 - Secured GET /destinations/top-rated
+2026-04-24 17:08:09 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:08:09 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:09 - Fetching top rated destinations
+2026-04-24 17:08:09 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:09 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:08:09 - Completed 200 OK
+2026-04-24 17:08:14 - Securing GET /destinations/search?
+2026-04-24 17:08:14 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:14 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:14 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:14 - Secured GET /destinations/search?
+2026-04-24 17:08:14 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:08:14 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:14 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:14 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:08:14 - Completed 200 OK
+2026-04-24 17:08:14 - Securing GET /destinations/top-rated
+2026-04-24 17:08:14 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:14 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:14 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:14 - Secured GET /destinations/top-rated
+2026-04-24 17:08:14 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:08:14 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:14 - Fetching top rated destinations
+2026-04-24 17:08:14 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:14 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:08:14 - Completed 200 OK
+2026-04-24 17:08:24 - Securing GET /destinations/search?
+2026-04-24 17:08:24 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:24 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:24 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:24 - Secured GET /destinations/search?
+2026-04-24 17:08:24 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:08:24 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:24 - Securing GET /destinations/top-rated
+2026-04-24 17:08:24 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:24 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:24 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:24 - Secured GET /destinations/top-rated
+2026-04-24 17:08:24 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:08:24 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:24 - Fetching top rated destinations
+2026-04-24 17:08:24 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:24 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:08:24 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:24 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:08:24 - Completed 200 OK
+2026-04-24 17:08:24 - Completed 200 OK
+2026-04-24 17:08:43 - Securing GET /destinations/search?
+2026-04-24 17:08:43 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:43 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:43 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:43 - Secured GET /destinations/search?
+2026-04-24 17:08:43 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:08:43 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:43 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:43 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:08:43 - Completed 200 OK
+2026-04-24 17:08:44 - Securing GET /destinations/search?
+2026-04-24 17:08:44 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:44 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:44 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:44 - Secured GET /destinations/search?
+2026-04-24 17:08:44 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:08:44 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:08:44 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:44 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:08:44 - Completed 200 OK
+2026-04-24 17:08:46 - Securing GET /destinations/top-rated
+2026-04-24 17:08:46 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:08:46 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:46 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:46 - Secured GET /destinations/top-rated
+2026-04-24 17:08:46 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:08:46 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:08:46 - Fetching top rated destinations
+2026-04-24 17:08:46 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:08:46 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:08:46 - Completed 200 OK
+2026-04-24 17:09:06 - Securing GET /destinations/top-rated
+2026-04-24 17:09:06 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:06 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:06 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:06 - Secured GET /destinations/top-rated
+2026-04-24 17:09:06 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:09:06 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:06 - Fetching top rated destinations
+2026-04-24 17:09:06 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:06 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:09:06 - Completed 200 OK
+2026-04-24 17:09:07 - Securing GET /destinations/top-rated
+2026-04-24 17:09:07 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:07 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:07 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:07 - Secured GET /destinations/top-rated
+2026-04-24 17:09:07 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:09:07 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:07 - Fetching top rated destinations
+2026-04-24 17:09:07 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:07 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:09:07 - Completed 200 OK
+2026-04-24 17:09:08 - Securing GET /destinations/search?
+2026-04-24 17:09:08 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:08 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:08 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:08 - Secured GET /destinations/search?
+2026-04-24 17:09:08 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:09:08 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:08 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:08 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:09:08 - Completed 200 OK
+2026-04-24 17:09:12 - Securing GET /destinations/search?
+2026-04-24 17:09:12 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:12 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:12 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:12 - Secured GET /destinations/search?
+2026-04-24 17:09:12 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:09:12 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:13 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:13 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:09:13 - Completed 200 OK
+2026-04-24 17:09:14 - Securing GET /destinations/search?
+2026-04-24 17:09:14 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:14 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:14 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:14 - Secured GET /destinations/search?
+2026-04-24 17:09:14 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:09:14 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:14 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:14 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:09:14 - Completed 200 OK
+2026-04-24 17:09:15 - Securing GET /destinations/top-rated
+2026-04-24 17:09:15 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:15 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:15 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:15 - Secured GET /destinations/top-rated
+2026-04-24 17:09:15 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:09:15 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:15 - Fetching top rated destinations
+2026-04-24 17:09:15 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:15 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:09:15 - Completed 200 OK
+2026-04-24 17:09:19 - Securing GET /destinations/search?
+2026-04-24 17:09:19 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:19 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:19 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:19 - Secured GET /destinations/search?
+2026-04-24 17:09:19 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:09:19 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:09:19 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:19 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:09:19 - Completed 200 OK
+2026-04-24 17:09:27 - Securing GET /hotels
+2026-04-24 17:09:27 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:27 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:09:27 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:09:27 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:09:27 - Secured GET /hotels
+2026-04-24 17:09:27 - GET "/api/hotels", parameters={}
+2026-04-24 17:09:27 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:09:27 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:27 - Writing [ApiResponse(success=true, message=Hotels retrieved, data=[HotelDTO(hotelId=1, destinationId=1, name= (truncated)...]
+2026-04-24 17:09:27 - Completed 200 OK
+2026-04-24 17:09:39 - Securing OPTIONS /destinations
+2026-04-24 17:09:39 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:39 - Mapped to com.smarttravel.controller.DestinationController#getAllDestinations()
+2026-04-24 17:09:39 - Mapped to com.smarttravel.controller.DestinationController#getAllDestinations()
+2026-04-24 17:09:39 - Secured OPTIONS /destinations
+2026-04-24 17:09:39 - OPTIONS "/api/destinations", parameters={}
+2026-04-24 17:09:39 - Mapped to com.smarttravel.controller.DestinationController#getAllDestinations()
+2026-04-24 17:09:39 - Completed 200 OK
+2026-04-24 17:09:39 - Securing GET /destinations
+2026-04-24 17:09:39 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:39 - Mapped to com.smarttravel.controller.DestinationController#getAllDestinations()
+2026-04-24 17:09:39 - Mapped to com.smarttravel.controller.DestinationController#getAllDestinations()
+2026-04-24 17:09:39 - Secured GET /destinations
+2026-04-24 17:09:39 - GET "/api/destinations", parameters={}
+2026-04-24 17:09:39 - Mapped to com.smarttravel.controller.DestinationController#getAllDestinations()
+2026-04-24 17:09:39 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:39 - Writing [ApiResponse(success=true, message=Destinations retrieved, data=[DestinationDTO(destinationId=1, name (truncated)...]
+2026-04-24 17:09:39 - Completed 200 OK
+2026-04-24 17:09:54 - Securing POST /auth/login
+2026-04-24 17:09:54 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:54 - Mapped to com.smarttravel.controller.AuthController#login(LoginRequest)
+2026-04-24 17:09:54 - Secured POST /auth/login
+2026-04-24 17:09:54 - POST "/api/auth/login", parameters={}
+2026-04-24 17:09:54 - Mapped to com.smarttravel.controller.AuthController#login(LoginRequest)
+2026-04-24 17:09:55 - Read "application/json;charset=UTF-8" to [LoginRequest(username=admin, password=admin)]
+2026-04-24 17:09:55 - Login attempt for user: admin
+2026-04-24 17:09:55 - Authenticated user
+2026-04-24 17:09:55 - User logged in successfully: 1
+2026-04-24 17:09:55 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:55 - Writing [ApiResponse(success=true, message=Login successful, data=AuthResponse(userId=1, username=admin, emai (truncated)...]
+2026-04-24 17:09:55 - Completed 200 OK
+2026-04-24 17:09:55 - Securing GET /destinations/top-rated
+2026-04-24 17:09:55 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:55 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:55 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:55 - Secured GET /destinations/top-rated
+2026-04-24 17:09:55 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:09:55 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:09:55 - Fetching top rated destinations
+2026-04-24 17:09:55 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:09:55 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:09:55 - Completed 200 OK
+2026-04-24 17:09:58 - Securing OPTIONS /admin/stats
+2026-04-24 17:09:58 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Securing OPTIONS /admin/bookings
+2026-04-24 17:09:58 - Securing OPTIONS /admin/users
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:58 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:09:58 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:09:58 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:09:58 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:09:58 - Securing OPTIONS /error
+2026-04-24 17:09:58 - Securing OPTIONS /error
+2026-04-24 17:09:58 - Securing OPTIONS /error
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:58 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:58 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:09:58 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:09:58 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:10:48 - Securing GET /destinations/search?
+2026-04-24 17:10:48 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:10:48 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:10:48 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:10:48 - Secured GET /destinations/search?
+2026-04-24 17:10:48 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:10:48 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:10:48 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:10:48 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:10:48 - Completed 200 OK
+2026-04-24 17:11:19 - Securing GET /destinations/search?
+2026-04-24 17:11:19 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:11:19 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:19 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:19 - Secured GET /destinations/search?
+2026-04-24 17:11:19 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:11:19 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:19 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:11:19 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:11:19 - Completed 200 OK
+2026-04-24 17:11:20 - Securing GET /destinations/search?
+2026-04-24 17:11:20 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:11:20 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:20 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:20 - Secured GET /destinations/search?
+2026-04-24 17:11:20 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:11:20 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:20 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:11:20 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:11:20 - Completed 200 OK
+2026-04-24 17:11:21 - Securing GET /hotels
+2026-04-24 17:11:21 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:11:21 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:11:21 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:11:21 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:11:21 - Secured GET /hotels
+2026-04-24 17:11:21 - GET "/api/hotels", parameters={}
+2026-04-24 17:11:21 - Mapped to com.smarttravel.controller.HotelController#getAllHotels()
+2026-04-24 17:11:21 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:11:21 - Writing [ApiResponse(success=true, message=Hotels retrieved, data=[HotelDTO(hotelId=1, destinationId=1, name= (truncated)...]
+2026-04-24 17:11:21 - Completed 200 OK
+2026-04-24 17:11:22 - Securing GET /destinations/top-rated
+2026-04-24 17:11:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:11:22 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:11:22 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:11:22 - Secured GET /destinations/top-rated
+2026-04-24 17:11:22 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:11:22 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:11:22 - Fetching top rated destinations
+2026-04-24 17:11:22 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:11:22 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:11:22 - Completed 200 OK
+2026-04-24 17:11:26 - Securing GET /destinations/search?
+2026-04-24 17:11:26 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:11:26 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:26 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:26 - Secured GET /destinations/search?
+2026-04-24 17:11:26 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:11:26 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:26 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:11:26 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:11:26 - Completed 200 OK
+2026-04-24 17:11:45 - Securing OPTIONS /destinations/search?country=India&
+2026-04-24 17:11:45 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:11:45 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:45 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:45 - Secured OPTIONS /destinations/search?country=India&
+2026-04-24 17:11:45 - OPTIONS "/api/destinations/search?country=India&", parameters={masked}
+2026-04-24 17:11:45 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:45 - Completed 200 OK
+2026-04-24 17:11:45 - Securing GET /destinations/search?country=India&
+2026-04-24 17:11:45 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:11:45 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:45 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:45 - Secured GET /destinations/search?country=India&
+2026-04-24 17:11:45 - GET "/api/destinations/search?country=India&", parameters={masked}
+2026-04-24 17:11:45 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:11:45 - Fetching destinations for country: India
+2026-04-24 17:11:45 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:11:45 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=11, name=Agra (truncated)...]
+2026-04-24 17:11:45 - Completed 200 OK
+2026-04-24 17:13:22 - Securing OPTIONS /admin/stats
+2026-04-24 17:13:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Securing OPTIONS /admin/users
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Securing OPTIONS /admin/bookings
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:22 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:22 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Securing OPTIONS /error
+2026-04-24 17:13:22 - Securing OPTIONS /error
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:22 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Securing OPTIONS /error
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:22 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:22 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:22 - Securing GET /destinations/search?
+2026-04-24 17:13:22 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:22 - Secured GET /destinations/search?
+2026-04-24 17:13:22 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:13:22 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:22 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:13:22 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:13:22 - Completed 200 OK
+2026-04-24 17:13:27 - Securing GET /destinations/top-rated
+2026-04-24 17:13:27 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:27 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:13:27 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:13:27 - Secured GET /destinations/top-rated
+2026-04-24 17:13:27 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:13:27 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:13:27 - Fetching top rated destinations
+2026-04-24 17:13:28 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:13:28 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:13:28 - Completed 200 OK
+2026-04-24 17:13:31 - Securing GET /destinations/search?
+2026-04-24 17:13:31 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:31 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:31 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:31 - Secured GET /destinations/search?
+2026-04-24 17:13:31 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:13:31 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:31 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:13:31 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:13:31 - Completed 200 OK
+2026-04-24 17:13:34 - Securing OPTIONS /admin/stats
+2026-04-24 17:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Securing OPTIONS /admin/users
+2026-04-24 17:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Securing OPTIONS /admin/bookings
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:34 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Securing OPTIONS /error
+2026-04-24 17:13:34 - Securing OPTIONS /error
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Securing OPTIONS /error
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:34 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Securing GET /destinations/search?
+2026-04-24 17:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:34 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:34 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:34 - Secured GET /destinations/search?
+2026-04-24 17:13:34 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:34 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:13:34 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:34 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:13:34 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:13:34 - Completed 200 OK
+2026-04-24 17:13:42 - Securing GET /destinations/search?
+2026-04-24 17:13:42 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:42 - Secured GET /destinations/search?
+2026-04-24 17:13:42 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:42 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:13:42 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:13:42 - Completed 200 OK
+2026-04-24 17:13:42 - Securing OPTIONS /admin/stats
+2026-04-24 17:13:42 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Securing OPTIONS /admin/users
+2026-04-24 17:13:42 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:42 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:42 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:42 - Securing OPTIONS /admin/bookings
+2026-04-24 17:13:42 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:42 - Securing OPTIONS /error
+2026-04-24 17:13:42 - Securing OPTIONS /error
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:42 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:42 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:42 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:42 - Securing OPTIONS /error
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:42 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:42 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:47 - Securing GET /destinations/search?
+2026-04-24 17:13:47 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:47 - Secured GET /destinations/search?
+2026-04-24 17:13:47 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:13:47 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:13:47 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:13:47 - Completed 200 OK
+2026-04-24 17:13:47 - Securing OPTIONS /admin/stats
+2026-04-24 17:13:47 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Securing OPTIONS /admin/users
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:13:47 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:47 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Securing OPTIONS /error
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Securing OPTIONS /admin/bookings
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:47 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Securing OPTIONS /error
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:13:47 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:47 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:13:47 - Securing OPTIONS /error
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:13:47 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:13:47 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:14:28 - Securing GET /destinations/top-rated
+2026-04-24 17:14:28 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:14:28 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:14:28 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:14:28 - Secured GET /destinations/top-rated
+2026-04-24 17:14:28 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:14:28 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:14:28 - Fetching top rated destinations
+2026-04-24 17:14:28 - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-24 17:14:28 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:14:28 - Completed 200 OK
+2026-04-24 17:27:16 - Securing GET /destinations/search?
+2026-04-24 17:27:16 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:16 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:27:16 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:27:16 - Secured GET /destinations/search?
+2026-04-24 17:27:16 - GET "/api/destinations/search", parameters={}
+2026-04-24 17:27:16 - Mapped to com.smarttravel.controller.DestinationController#searchDestinations(String, String, String)
+2026-04-24 17:27:16 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:27:16 - Writing [ApiResponse(success=true, message=Search completed, data=[DestinationDTO(destinationId=1, name=Paris (truncated)...]
+2026-04-24 17:27:16 - Completed 200 OK
+2026-04-24 17:27:27 - Securing GET /destinations/top-rated
+2026-04-24 17:27:27 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:27 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:27:27 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:27:27 - Secured GET /destinations/top-rated
+2026-04-24 17:27:27 - GET "/api/destinations/top-rated", parameters={}
+2026-04-24 17:27:27 - Mapped to com.smarttravel.controller.DestinationController#getTopRatedDestinations()
+2026-04-24 17:27:27 - Fetching top rated destinations
+2026-04-24 17:27:27 - Using 'application/json', given [application/json, text/plain, */*] and supported [application/json, application/*+json]
+2026-04-24 17:27:27 - Writing [ApiResponse(success=true, message=Top rated destinations, data=[DestinationDTO(destinationId=5, name (truncated)...]
+2026-04-24 17:27:27 - Completed 200 OK
+2026-04-24 17:27:29 - Securing OPTIONS /admin/stats
+2026-04-24 17:27:29 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Securing OPTIONS /admin/users
+2026-04-24 17:27:29 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Securing OPTIONS /admin/bookings
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getSystemStatistics()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllUsers()
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:27:29 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Securing OPTIONS /error
+2026-04-24 17:27:29 - Mapped to com.smarttravel.controller.AdminController#getAllBookings(Integer, Integer, String)
+2026-04-24 17:27:29 - Securing OPTIONS /error
+2026-04-24 17:27:29 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Securing OPTIONS /error
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Mapped to org.springframework.boot.autoconfigure.web.servlet.error.BasicErrorController#error(HttpServletRequest)
+2026-04-24 17:27:29 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:29 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:29 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:29 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:27:29 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:27:29 - Pre-authenticated entry point called. Rejecting access
+2026-04-24 17:27:38 - Securing POST /auth/login
+2026-04-24 17:27:38 - Set SecurityContextHolder to anonymous SecurityContext
+2026-04-24 17:27:38 - Mapped to com.smarttravel.controller.AuthController#login(LoginRequest)
+2026-04-24 17:27:38 - Secured POST /auth/login
+2026-04-24 17:27:38 - POST "/api/auth/login", parameters={}
+2026-04-24 17:27:38 - Mapped to com.smarttravel.controller.AuthController#login(LoginRequest)
+2026-04-24 17:27:38 - Read "application/json;charset=UTF-8" to [LoginRequest(username=admin, password=admin123)]
+2026-04-24 17:27:38 - Login attempt for user: admin
+2026-04-24 17:27:38 - Failed to authenticate since password does not match stored value
+2026-04-24 17:27:38 - Login failed for user: admin
+2026-04-24 17:27:38 - Using 'application/json', given [*/*] and supported [application/json, application/*+json]
+2026-04-24 17:27:38 - Writing [ApiResponse(success=false, message=Invalid credentials, data=null, timestamp=2026-04-24T17:27:38.370 (truncated)...]
+2026-04-24 17:27:38 - Completed 401 UNAUTHORIZED
