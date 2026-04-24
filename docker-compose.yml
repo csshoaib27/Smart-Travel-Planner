@@ -28,8 +28,8 @@ services:
   # Spring Boot Backend
   backend:
     build:
-      context: ./backend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: backend/Dockerfile
     container_name: smart-travel-backend
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/smart_travel_db
@@ -57,8 +57,8 @@ services:
   # Angular Frontend
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: frontend/Dockerfile
     container_name: smart-travel-frontend
     environment:
       API_URL: http://localhost:8080/api

@@ -1,16 +1,16 @@
 FROM node:18-alpine AS builder
 
 WORKDIR /build
-COPY package*.json ./
-RUN npm install
+COPY frontend/package*.json ./
+RUN npm install --legacy-peer-deps
 
-COPY . .
+COPY frontend . 
 RUN npm run build
 
 FROM nginx:alpine
 
 COPY --from=builder /build/dist/smart-travel-planner /usr/share/nginx/html
-COPY ../nginx.conf /etc/nginx/nginx.conf
+COPY nginx.conf /etc/nginx/nginx.conf
 
 EXPOSE 4200
 
