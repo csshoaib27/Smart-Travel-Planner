@@ -6,7 +6,7 @@ A **production-ready full-stack travel planning application** with:
 
 ### ✨ Easy Startup
 - **1-Click Launch**: Run `./start.sh` (Mac/Linux) or `start.bat` (Windows)
-- **Automatic Setup**: Docker Compose handles all services
+- **Automatic Setup**: Startup scripts handle backend and frontend
 - **Health Checks**: System verifies everything is working
 - **Browser Ready**: Opens application automatically
 
@@ -30,12 +30,6 @@ A **production-ready full-stack travel planning application** with:
 
 ```
 Smart Travel Planner/
-├── 🐳 Docker Files
-│   ├── docker-compose.yml          ← Orchestrates MySQL, Backend, Frontend
-│   ├── backend_Dockerfile          ← Builds Spring Boot container
-│   ├── frontend_Dockerfile         ← Builds Angular container
-│   └── nginx.conf                  ← Nginx configuration for frontend
-│
 ├── 🚀 Startup Scripts
 │   ├── start.sh                    ← For Mac/Linux (chmod +x then run)
 │   └── start.bat                   ← For Windows (double-click)
@@ -91,8 +85,8 @@ User had to manually:
 **After Enhancement:**
 ```
 User runs: ./start.sh (or start.bat on Windows)
-- Automatically builds Docker images
-- Starts all 3 services
+- Checks prerequisites (Java, Maven, Node.js, MySQL)
+- Starts backend and frontend
 - Verifies health
 - Opens browser
 - DONE!
@@ -201,7 +195,7 @@ Can see ALL bookings (25+ bookings)
 |--------|--------|-------|
 | **Startup Method** | 3 separate commands | 1 command (./start.sh) |
 | **Startup Time** | 2-3 minutes manual | 30-60 seconds automatic |
-| **Setup Knowledge** | Need Docker/Java/MySQL knowledge | Just run a script |
+| **Setup Knowledge** | Need Java/Maven/Node.js/MySQL knowledge | Just run a script |
 | **User Registration** | ✅ Works | ✅ Works + saves to DB |
 | **Normal User in DB** | ✅ Saved | ✅ Saved with role=USER |
 | **Admin Sees Own Bookings** | ✅ Yes | ✅ Yes |
@@ -235,7 +229,7 @@ Can see ALL bookings (25+ bookings)
 ├─────────────────────────────────────────────────────────────┤
 │                                                               │
 │  ┌────────────────────────────────────────────────────────┐ │
-│  │           Docker Compose (docker-compose.yml)         │ │
+│  │                Smart Travel Planner                   │ │
 │  ├────────────────────────────────────────────────────────┤ │
 │  │                                                        │ │
 │  │  ┌──────────────┐  ┌──────────────┐  ┌────────────┐  │ │
@@ -293,7 +287,7 @@ After running `./start.sh` or `start.bat`:
 2. **User Registration**: Added proper role assignment
 3. **Admin Features**: Added 8 new endpoints for complete visibility
 4. **Documentation**: Added 2 new comprehensive guides
-5. **Infrastructure**: Docker Compose for production-ready deployment
+5. **Infrastructure**: Startup scripts for easy development setup
 
 ### What Stayed the Same
 - All original features work perfectly
@@ -302,7 +296,7 @@ After running `./start.sh` or `start.bat`:
 - No breaking changes
 
 ### What You Get
-✅ Professional deployment setup with Docker  
+✅ Easy startup scripts for development  
 ✅ Easy onboarding for new developers  
 ✅ Complete admin oversight  
 ✅ Production-ready application  
@@ -318,7 +312,7 @@ After running `./start.sh` or `start.bat`:
 4. **Login as admin** - Explore admin features
 5. **View all bookings** - See the new admin capability
 6. **Review code** - Check AdminController.java
-7. **Deploy** - Use Docker Compose for production
+7. **Deploy** - Build JAR/dist and deploy to your server
 
 ---
 
@@ -338,17 +332,17 @@ See EASY_START_GUIDE.md section "Troubleshooting" for:
 
 ### Useful Commands
 ```bash
-# View all logs
-docker-compose logs -f
+# Stop backend (in backend terminal)
+Ctrl+C
 
-# Stop services
-docker-compose down
+# Stop frontend (in frontend terminal)
+Ctrl+C
 
-# Restart
-docker-compose restart
+# Restart backend
+cd backend && mvn spring-boot:run
 
-# Clean everything
-docker-compose down -v
+# Restart frontend
+cd frontend && npm start
 ```
 
 ---
@@ -357,7 +351,7 @@ docker-compose down -v
 
 You now have a **complete, professional-grade travel planning application** with:
 
-✅ **One-click startup** with Docker  
+✅ **One-click startup** with startup scripts  
 ✅ **User registration** with automatic role assignment  
 ✅ **Complete admin visibility** with 8 new endpoints  
 ✅ **Booking management** for admins  
@@ -380,8 +374,8 @@ You now have a **complete, professional-grade travel planning application** with
 ### For Developers:
 1. Read: **DEVELOPER_GUIDE.html** (deep technical details)
 2. Review: **AdminController.java** (8 endpoints)
-3. Check: Docker configuration files
-4. Deploy: Use docker-compose.yml
+3. Check: `backend/src/main/resources/application.properties`
+4. Deploy: Build JAR/dist and deploy to server
 
 ### For Project Managers:
 1. Check: **PROJECT_SUMMARY.md** (what was built)

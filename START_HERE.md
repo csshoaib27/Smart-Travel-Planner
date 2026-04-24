@@ -25,8 +25,7 @@ chmod +x start.sh
 ```
 
 ### Step 3: Wait & Enjoy
-- Script builds Docker images (1-2 minutes first time)
-- Starts all services automatically
+- Script checks prerequisites and starts all services
 - Opens application in browser
 - You're done! 🎉
 
@@ -148,12 +147,6 @@ Project Root/
 ├── ✨ ENHANCEMENTS.md             ← What's new
 ├── 📊 FINAL_SUMMARY.md            ← High-level overview
 │
-├── 🐳 Docker Files
-│   ├── docker-compose.yml
-│   ├── Dockerfile (backend)
-│   ├── Dockerfile (frontend)
-│   └── nginx.conf
-│
 ├── 🚀 Startup Scripts
 │   ├── start.sh (Mac/Linux)
 │   └── start.bat (Windows)
@@ -201,7 +194,7 @@ Project Root/
 **A:** Check EASY_START_GUIDE.md "Troubleshooting" section
 
 ### Q: How do I stop services?
-**A:** Run `docker-compose down` in project folder
+**A:** Press `Ctrl+C` in the backend and frontend terminals, then stop MySQL via your system's service manager
 
 ### Q: Can I access from another computer?
 **A:** Change CORS origins in application.properties

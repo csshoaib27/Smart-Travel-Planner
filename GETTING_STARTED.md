@@ -6,10 +6,10 @@ Before you can run the Smart Travel Planner application, ensure you have the fol
 
 ### Required Software
 
-1. **Docker** (for MySQL Database)
-   - Download: https://www.docker.com/products/docker-desktop
-   - Verify: `docker --version`
-   - Status: Required for database
+1. **MySQL 8.0+** (Database)
+   - Download: https://dev.mysql.com/downloads/mysql/
+   - Verify: `mysql -u root -p -e "SELECT 1;"`
+   - Status: REQUIRED - Must be running before starting the backend
 
 2. **Java 17+** (for Spring Boot Backend)
    - Download: https://www.oracle.com/java/technologies/downloads/
@@ -42,11 +42,10 @@ chmod +x start-all.sh
 ```
 
 The script will:
-1. ✅ Start MySQL database in Docker
-2. ✅ Set up database schema and sample data
-3. ✅ Build and start Spring Boot backend
-4. ✅ Install frontend dependencies and start Angular app
-5. ✅ Wait for all services to be healthy
+1. ✅ Check prerequisites (Java, Maven, Node.js, MySQL)
+2. ✅ Start Spring Boot backend
+3. ✅ Install frontend dependencies and start Angular app
+4. ✅ Wait for all services to be healthy
 
 ### Option 2: One Command Startup (Windows)
 
@@ -90,24 +89,14 @@ These are for the admin account. Regular users can self-register.
 
 ### Step 1: Start MySQL Database
 
+Ensure MySQL 8.0+ is running, then import the schema and sample data:
+
 ```bash
-# Start MySQL in Docker
-docker run --name smart-travel-mysql \
-  -e MYSQL_ROOT_PASSWORD=root \
-  -e MYSQL_DATABASE=smart_travel_db \
-  -e MYSQL_USER=travel_user \
-  -e MYSQL_PASSWORD=travel_password \
-  -p 3306:3306 \
-  -d mysql:8.0
-
-# Wait 10 seconds for MySQL to be ready, then initialize database:
-sleep 10
-
 # Import database schema
-mysql -h 127.0.0.1 -u root -proot smart_travel_db < database/database_schema.sql
+mysql -u root -p < database/database_schema.sql
 
 # Import sample data
-mysql -h 127.0.0.1 -u root -proot smart_travel_db < database/sample_data.sql
+mysql -u root -p < database/sample_data.sql
 ```
 
 ### Step 2: Start Spring Boot Backend
@@ -136,19 +125,11 @@ npm start
 
 ## ⏹️ Stopping Services
 
-### Using the Combined Script
-Press `Ctrl+C` in the main terminal. The script will automatically:
-- Kill the backend process
-- Kill the frontend process
-- Stop the MySQL container
-- Clean up resources
+### Using the Startup Script
+Press `Ctrl+C` in the terminal running the script (or in each service's terminal window on Windows).
 
 ### Manual Cleanup
 ```bash
-# Stop MySQL container
-docker stop smart-travel-mysql
-docker rm smart-travel-mysql
-
 # Kill Spring Boot (if still running)
 pkill -f "mvn spring-boot:run"
 
@@ -160,17 +141,13 @@ pkill -f "ng serve"
 
 ## 🆘 Troubleshooting
 
-### Docker Port 3306 Already in Use
+### Port 3306 Already in Use
 
 **Problem:** Error like "port 3306 is already allocated"
 
 **Solution:**
 ```bash
-# Kill the existing MySQL container
-docker stop smart-travel-mysql 2>/dev/null || true
-docker rm smart-travel-mysql 2>/dev/null || true
-
-# Or kill process using port 3306
+# Find and kill process using port 3306
 lsof -i :3306
 kill -9 <PID>
 ```
@@ -293,8 +270,7 @@ Smart-Travel-Planner/
 ├── pom.xml                              # Maven project config
 ├── package.json                         # Root npm config (legacy)
 ├── start-all.sh                         # Mac/Linux startup script
-├── start-all.bat                        # Windows startup script
-└── docker-compose.yml                   # Docker Compose config (optional)
+└── start-all.bat                        # Windows startup script
 ```
 
 ---
@@ -397,7 +373,7 @@ http://localhost:8080/swagger-ui.html
 
 After startup, verify:
 
-- [ ] MySQL container is running (`docker ps` should list smart-travel-mysql)
+- [ ] MySQL is running (`mysql -u root -p -e "SELECT 1;"`)
 - [ ] Backend is responding (`curl http://localhost:8080/actuator/health`)
 - [ ] Frontend is loading (http://localhost:4200 shows login page)
 - [ ] Can login with admin/admin

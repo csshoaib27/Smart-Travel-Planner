@@ -140,17 +140,16 @@ brew install maven        # Mac
 sudo apt-get install maven # Linux
 ```
 
-### Docker Not Running
-- Mac: Click Docker icon in menu bar
-- Windows: Start Docker Desktop
-- Linux: `sudo service docker start`
+### MySQL Not Running
+- Mac/Linux: `sudo service mysql start` or `brew services start mysql`
+- Windows: Start MySQL from Services or MySQL Workbench
 
 ---
 
 ## ✅ Verification
 
 After startup, verify:
-- [ ] MySQL running: `docker ps | grep mysql`
+- [ ] MySQL running: `mysqladmin ping -h 127.0.0.1`
 - [ ] Backend responding: `curl http://localhost:8080/actuator/health`
 - [ ] Frontend loading: Open http://localhost:4200 in browser
 - [ ] Can login with admin/admin
@@ -231,7 +230,7 @@ After startup, verify:
 
 ## 🏁 Ready?
 
-1. Ensure Java 17+, Maven, Node.js, Docker installed
+1. Ensure Java 17+, Maven, Node.js, and MySQL 8.0+ installed and running
 2. Run `./start-all.sh` or `start-all.bat`
 3. Wait for "✅ ALL SERVICES STARTED SUCCESSFULLY!"
 4. Open http://localhost:4200

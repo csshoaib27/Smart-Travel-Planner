@@ -64,17 +64,13 @@ All components have been implemented, tested for structure, and prepared for dep
 
 ### Startup Scripts
 - ✅ **start-all.sh** (Mac/Linux) - Bash script that:
-  - Starts MySQL in Docker
-  - Sets up database with schema and sample data
+  - Checks prerequisites (Java, Maven, Node.js, MySQL)
   - Builds and runs Spring Boot backend
   - Installs frontend dependencies
   - Starts Angular dev server
-  - Implements health checks
   - Graceful shutdown with Ctrl+C
 
 - ✅ **start-all.bat** (Windows) - Batch script with same functionality
-
-- ✅ **docker-compose.yml** (Optional) - Docker Compose orchestration
 
 ### Documentation
 - ✅ **README_MAIN.md** - Main entry point with quick start
@@ -90,7 +86,7 @@ All components have been implemented, tested for structure, and prepared for dep
 ## 🚀 Quick Start Verification
 
 ### Before First Run
-- [ ] Verify Docker is installed: `docker --version`
+- [ ] Verify MySQL is running: `mysqladmin ping -h 127.0.0.1`
 - [ ] Verify Java 17+: `java -version` (should show 17 or higher)
 - [ ] Verify Maven: `mvn --version`
 - [ ] Verify Node.js: `node --version` (should be 18+)
@@ -298,7 +294,7 @@ start-all.bat
 - [ ] Java 17+ installed
 - [ ] Maven 3.8+ installed
 - [ ] Node.js 18+ installed
-- [ ] Docker installed and running
+- [ ] MySQL 8.0+ installed and running
 
 ### File Structure
 - [ ] All 20 Java files in correct directories
@@ -343,7 +339,7 @@ start-all.bat
 java -version        # Must be 17 or higher
 mvn --version       # Must be 3.8 or higher
 node --version      # Must be 18 or higher
-docker --version    # Required
+mysqladmin ping -h 127.0.0.1   # MySQL must be running
 ```
 
 ### Step 2: Navigate to Project
@@ -383,7 +379,7 @@ The script will display "✅ ALL SERVICES STARTED SUCCESSFULLY!" when done.
 ### Check Services Running
 ```bash
 # MySQL running
-docker ps | grep smart-travel-mysql
+mysqladmin ping -h 127.0.0.1
 
 # Backend health check
 curl http://localhost:8080/actuator/health

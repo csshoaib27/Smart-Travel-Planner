@@ -245,7 +245,6 @@ Choose your path:
 - **Spring Boot:** https://spring.io/projects/spring-boot
 - **Angular:** https://angular.io
 - **MySQL:** https://dev.mysql.com
-- **Docker:** https://docs.docker.com
 - **Maven:** https://maven.apache.org
 
 ---

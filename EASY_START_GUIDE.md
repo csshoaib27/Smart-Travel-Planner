@@ -3,7 +3,7 @@
 ## 🚀 One-Click Application Startup
 
 ### Overview
-We've added Docker Compose support to make starting the entire application as easy as possible. No need to start services separately!
+Use the startup scripts to get everything running quickly. You'll need MySQL, Java, and Node.js installed on your machine.
 
 ---
 
@@ -11,13 +11,23 @@ We've added Docker Compose support to make starting the entire application as ea
 
 Before starting, ensure you have:
 
-1. **Docker Desktop** installed
-   - Download: https://www.docker.com/products/docker-desktop
-   - Includes both Docker and Docker Compose
+1. **Java 17+** (for Spring Boot Backend)
+   - Download: https://adoptium.net/
+   - Verify: `java -version`
 
-2. **At least 4GB of free disk space**
+2. **Maven 3.8+** (for building the backend)
+   - Download: https://maven.apache.org/download.cgi
+   - Verify: `mvn -version`
 
-3. **Ports available**:
+3. **Node.js 18+** (for Angular Frontend)
+   - Download: https://nodejs.org/
+   - Verify: `node -v`
+
+4. **MySQL 8.0+** (running locally)
+   - Download: https://dev.mysql.com/downloads/mysql/
+   - Verify: `mysql -u root -p -e "SELECT 1;"`
+
+5. **Ports available**:
    - 3306 (MySQL)
    - 8080 (Backend)
    - 4200 (Frontend)
@@ -53,10 +63,9 @@ cd /path/to/smart-travel-planner
 
 ### Step 3: Wait for Startup (30-60 seconds)
 The script will:
-- ✅ Check Docker installation
-- ✅ Build Docker images
-- ✅ Start all 3 services (MySQL, Backend, Frontend)
-- ✅ Verify health checks
+- ✅ Check prerequisites (Java, Maven, Node.js, MySQL)
+- ✅ Start Spring Boot backend
+- ✅ Install frontend dependencies and start Angular
 - ✅ Open browser to http://localhost:4200
 
 ---
@@ -397,17 +406,14 @@ Response:
 
 ### Services won't start
 ```bash
-# Check if Docker is running
-docker ps
+# Check if MySQL is running
+mysqladmin ping -h 127.0.0.1
 
-# Check logs
-docker-compose logs -f
+# Check Java version
+java -version  # Should be 17+
 
-# Rebuild images
-docker-compose build --no-cache
-
-# Restart services
-docker-compose restart
+# Check Node version
+node -v  # Should be 18+
 ```
 
 ### Can't access frontend
@@ -419,32 +425,33 @@ netstat -ano | findstr :4200
 # Mac/Linux:
 lsof -i :4200
 
-# Stop using service:
-docker-compose down
+# Clear Angular cache and restart
+cd frontend
+rm -rf .angular
+npm start
 ```
 
 ### Database connection issues
 ```bash
 # Check MySQL is running
-docker-compose exec mysql mysqladmin ping -h localhost
+mysql -u root -p -e "SELECT 1;"
 
 # Check database exists
-docker-compose exec mysql mysql -u root -proot -e "SHOW DATABASES;"
+mysql -u root -p -e "SHOW DATABASES;"
 
 # Check tables created
-docker-compose exec mysql mysql -u travel_user -ptravel_password -e "USE smart_travel_db; SHOW TABLES;"
+mysql -u root -p -e "USE smart_travel_db; SHOW TABLES;"
+
+# Reimport schema if needed
+mysql -u root -p < database/database_schema.sql
+mysql -u root -p < database/sample_data.sql
 ```
 
-### Need to restart database
+### Need to reset database
 ```bash
-# Stop all services
-docker-compose down
-
-# Remove database volume to clear data
-docker-compose down -v
-
-# Start fresh
-docker-compose up -d
+mysql -u root -p -e "DROP DATABASE smart_travel_db;"
+mysql -u root -p < database/database_schema.sql
+mysql -u root -p < database/sample_data.sql
 ```
 
 ---
@@ -452,34 +459,23 @@ docker-compose up -d
 ## 📝 Useful Commands
 
 ```bash
-# View logs of all services
-docker-compose logs -f
+# Stop backend (in backend terminal)
+Ctrl+C
 
-# View logs of specific service
-docker-compose logs -f backend
-docker-compose logs -f mysql
-docker-compose logs -f frontend
-
-# Stop services
-docker-compose down
-
-# Restart services
-docker-compose restart
-
-# Clean up everything (including database)
-docker-compose down -v
-
-# Rebuild Docker images
-docker-compose build --no-cache
+# Stop frontend (in frontend terminal)
+Ctrl+C
 
 # Access MySQL directly
-docker-compose exec mysql mysql -u travel_user -ptravel_password
+mysql -u root -p smart_travel_db
 
-# Access backend shell
-docker-compose exec backend bash
+# Check backend health
+curl http://localhost:8080/actuator/health
 
-# View running containers
-docker-compose ps
+# Rebuild backend
+cd backend && mvn clean package
+
+# Reinstall frontend dependencies
+cd frontend && rm -rf node_modules && npm install
 ```
 
 ---
@@ -532,7 +528,6 @@ These are for **DEVELOPMENT ONLY**:
 The application is now running with:
 - ✅ All users registered saved to database
 - ✅ Admin can view ALL user bookings
-- ✅ Easy one-click startup
-- ✅ Docker Compose for simplified management
+- ✅ Easy startup scripts for Windows and Mac/Linux
 
 **Enjoy Smart Travel Planner! 🌍✈️🏖️**

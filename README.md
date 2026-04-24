@@ -113,7 +113,6 @@ A comprehensive full-stack web application that helps users find, plan, and book
 ### DevOps & Deployment
 - **Version Control**: Git
 - **CI/CD**: GitHub Actions (Optional)
-- **Containerization**: Docker (Optional)
 - **Hosting**: AWS/GCP/Azure (Optional)
 
 ---
@@ -436,22 +435,20 @@ npm test
 
 ## Deployment
 
-### Docker Deployment
+### Production Build
 
-1. **Build Docker images**:
+1. **Build Backend JAR**:
 ```bash
-# Backend
 cd backend
-docker build -t smart-travel-backend .
-
-# Frontend
-cd ../frontend
-docker build -t smart-travel-frontend .
+mvn clean package -DskipTests
+java -jar target/smart-travel-planner-1.0.0.jar
 ```
 
-2. **Run with Docker Compose**:
+2. **Build Frontend**:
 ```bash
-docker-compose up
+cd frontend
+ng build --configuration production
+# Output in dist/smart-travel-planner/
 ```
 
 ### Cloud Deployment (AWS Example)

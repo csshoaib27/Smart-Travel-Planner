@@ -1,53 +1,35 @@
-# Smart Travel Planner - SIMPLE Startup Guide
+# Smart Travel Planner - Simple Startup Guide
 
-## 🚀 Quick Start (No Docker Complexity)
+## Prerequisites
 
-This is the simplest way to get everything running!
+- Java 17+
+- Maven 3.8+
+- Node.js 18+
+- MySQL 8.0+ (running locally)
 
 ---
 
-## **Step 1: Rename Folder (One Time)**
+## Step 1: Setup Database
+
+Start MySQL and import the schema:
 
 ```bash
-cd /Users/arunreddy/Documents/Claude/Projects/
-mv "Smart-travel-planner (1)" Smart-Travel-Planner
-cd Smart-Travel-Planner
+mysql -u root -p < database/database_schema.sql
+mysql -u root -p < database/sample_data.sql
+```
+
+Verify:
+```bash
+mysql -u root -p -e "USE smart_travel_db; SELECT COUNT(*) FROM users;"
 ```
 
 ---
 
-## **Step 2: Start MySQL Only with Docker**
+## Step 2: Start Backend (Spring Boot)
+
+Open a terminal and run:
 
 ```bash
-# Start just the database
-docker run --name smart-travel-mysql \
-  -e MYSQL_ROOT_PASSWORD=root \
-  -e MYSQL_DATABASE=smart_travel_db \
-  -p 3306:3306 \
-  -d mysql:8.0
-```
-
-Then setup the database:
-
-```bash
-# Wait 5 seconds for MySQL to start
-sleep 5
-
-# Create tables
-mysql -h 127.0.0.1 -u root -proot smart_travel_db < database/database_schema.sql
-
-# Add sample data
-mysql -h 127.0.0.1 -u root -proot smart_travel_db < database/sample_data.sql
-```
-
----
-
-## **Step 3: Start Backend (Spring Boot)**
-
-Open a **NEW TERMINAL TAB** and run:
-
-```bash
-cd Smart-Travel-Planner
 cd backend
 mvn spring-boot:run
 ```
@@ -59,12 +41,11 @@ Tomcat started on port(s): 8080
 
 ---
 
-## **Step 4: Start Frontend (Angular)**
+## Step 3: Start Frontend (Angular)
 
-Open **ANOTHER NEW TERMINAL TAB** and run:
+Open a **new terminal** and run:
 
 ```bash
-cd Smart-Travel-Planner
 cd frontend
 npm install
 npm start
@@ -79,16 +60,16 @@ Application opens at: **http://localhost:4200**
 
 ---
 
-## ✅ Done!
+## Done!
 
 You now have all 3 services running:
-- ✅ MySQL on localhost:3306
-- ✅ Backend on localhost:8080
-- ✅ Frontend on localhost:4200
+- MySQL on localhost:3306
+- Backend on localhost:8080
+- Frontend on localhost:4200
 
 ---
 
-## 🔐 Login
+## Login
 
 ```
 Username: admin
@@ -97,55 +78,38 @@ Password: admin
 
 ---
 
-## 🛑 Stop Everything
+## Stop Everything
 
-When done, stop in this order:
+Press `Ctrl+C` in each terminal to stop the backend and frontend.
 
-```bash
-# Terminal 1 (Frontend) - Press Ctrl+C
-# Terminal 2 (Backend) - Press Ctrl+C
-# Terminal 3 - Run:
-docker stop smart-travel-mysql
-docker rm smart-travel-mysql
-```
+To stop MySQL, use your system's service manager (e.g., `sudo service mysql stop` on Linux, or stop it via MySQL Workbench / Windows Services on Windows).
 
 ---
 
-## 🆘 If Something Goes Wrong
-
-### MySQL already running?
-```bash
-docker stop smart-travel-mysql
-docker rm smart-travel-mysql
-# Then start again
-```
+## Troubleshooting
 
 ### Backend won't start?
 ```bash
-# Make sure MySQL is running
-mysql -h 127.0.0.1 -u root -proot -e "SELECT 1;"
+# Check MySQL is running and credentials are correct in backend/src/main/resources/application.properties
+mysql -h 127.0.0.1 -u root -p -e "SELECT 1;"
 
-# Check Java is installed
-java -version
-
-# Try again
-cd backend
-mvn spring-boot:run
+# Check Java version
+java -version  # Should be 17+
 ```
 
 ### Frontend won't start?
 ```bash
-# Clear cache
 cd frontend
 rm -rf node_modules
 npm install
 npm start
 ```
 
----
+### Port already in use?
+```bash
+# Find process on port 8080 (Backend)
+lsof -ti:8080 | xargs kill -9
 
-## 📚 That's It!
-
-This is the simplest way to run the app without Docker complexity.
-
-Just 3 terminal tabs, that's all you need!
+# Find process on port 4200 (Frontend)
+lsof -ti:4200 | xargs kill -9
+```

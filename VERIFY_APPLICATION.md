@@ -97,8 +97,7 @@ After login, you should see:
 
 ### Check Database Connection
 ```bash
-# From project root, connect to MySQL
-docker exec -it smart-travel-mysql mysql -uroot -proot smart_travel_db -e "SELECT id, email, is_admin FROM users;"
+mysql -u root -p smart_travel_db -e "SELECT id, email, is_admin FROM users;"
 ```
 
 **Expected Output:**
@@ -113,25 +112,7 @@ docker exec -it smart-travel-mysql mysql -uroot -proot smart_travel_db -e "SELEC
 
 ### Check Hotels Table
 ```bash
-docker exec -it smart-travel-mysql mysql -uroot -proot smart_travel_db -e "SELECT id, name, city, price FROM hotels LIMIT 5;"
-```
-
----
-
-## 🐳 Docker Container Status
-
-```bash
-# Check all containers are running
-docker-compose ps
-
-# View backend logs
-docker-compose logs backend
-
-# View MySQL logs
-docker-compose logs mysql
-
-# View frontend logs
-docker-compose logs frontend
+mysql -u root -p smart_travel_db -e "SELECT id, name, city, price FROM hotels LIMIT 5;"
 ```
 
 ---
@@ -146,8 +127,8 @@ lsof -i :8080
 # Kill if needed
 kill -9 <PID>
 
-# Restart backend
-docker-compose restart backend
+# Restart backend manually
+cd backend && mvn spring-boot:run
 ```
 
 ### Frontend Not Loading
@@ -155,12 +136,12 @@ docker-compose restart backend
 # Check if port 4200 is in use
 lsof -i :4200
 
-# Restart frontend
-docker-compose restart frontend
+# Restart frontend manually
+cd frontend && npm start
 ```
 
 ### Login Still Failing
-1. Check backend logs: `docker-compose logs backend | tail -50`
+1. Check the terminal running the backend for errors
 2. Verify database has admin user: See "Database Verification" above
 3. Check API directly: `curl http://localhost:8080/api/auth/login` with email/password
 
@@ -171,8 +152,6 @@ lsof -i :<PORT>
 
 # Kill process
 sudo kill -9 <PID>
-
-# Or change Docker port in docker-compose.yml
 ```
 
 ---

@@ -5,7 +5,7 @@ This is a complete, production-ready Smart Travel Planner application built with
 ## 📋 What's Included
 
 ✅ Full-stack application (Frontend + Backend + Database)  
-✅ One-command Docker startup (`./start-all.sh` or `start-all.bat`)  
+✅ One-command startup (`./start-all.sh` or `start-all.bat`)  
 ✅ 40+ REST API endpoints with Swagger documentation  
 ✅ Complete MySQL database with 100+ sample records  
 ✅ JWT-based authentication with role-based access control  
@@ -46,16 +46,12 @@ Password: admin
 
 ## 📦 System Requirements
 
-**Only Docker is required!**
+**Required:**
 
-- Docker Desktop (includes Docker & Docker Compose)
-- That's it! Everything else (Java, MySQL, Node.js) runs in containers
-
-### For Manual Setup (Optional):
 - Java 17+
-- Maven
+- Maven 3.8+
 - Node.js 18+
-- MySQL 8.0
+- MySQL 8.0+
 
 ---
 
@@ -65,19 +61,16 @@ Password: admin
 Smart-Travel-Planner/
 ├── backend/                   # Spring Boot 3.1.5 Backend
 │   ├── src/main/java/        # Java source code
-│   ├── pom.xml               # Maven configuration
-│   └── Dockerfile            # Docker image configuration
+│   └── pom.xml               # Maven configuration
 │
 ├── frontend/                 # Angular 17 Frontend
 │   ├── src/                  # Angular source
-│   ├── package.json          # npm dependencies
-│   └── Dockerfile            # Docker image configuration
+│   └── package.json          # npm dependencies
 │
 ├── database/                 # MySQL Setup
 │   ├── database_schema.sql   # Table definitions
 │   └── sample_data.sql       # 100+ sample records
 │
-├── docker-compose.yml        # Docker orchestration (MySQL + Backend + Frontend)
 ├── start-all.sh             # Linux/Mac startup script
 ├── start-all.bat            # Windows startup script
 ├── check-status.sh          # Health check script
@@ -136,7 +129,7 @@ New users automatically register with `is_admin = FALSE`.
 | Database | MySQL 8.0 |
 | Authentication | JWT Tokens |
 | Security | Spring Security, BCrypt |
-| Build | Maven, npm, Docker Compose |
+| Build | Maven, npm |
 | API Docs | Swagger/OpenAPI |
 
 ---
@@ -144,13 +137,21 @@ New users automatically register with `is_admin = FALSE`.
 ## 🚀 Getting Started
 
 ### Step 1: System Check
-Ensure Docker is installed:
+Ensure prerequisites are installed:
 ```bash
-docker --version
-docker-compose --version
+java -version      # Must be 17+
+mvn --version      # Must be 3.8+
+node --version     # Must be 18+
+mysqladmin ping -h 127.0.0.1   # MySQL must be running
 ```
 
-### Step 2: Start Application
+### Step 2: Import Database (first time only)
+```bash
+mysql -u root -p < database/database_schema.sql
+mysql -u root -p < database/sample_data.sql
+```
+
+### Step 3: Start Application
 ```bash
 # Mac/Linux
 chmod +x start-all.sh
@@ -158,17 +159,13 @@ chmod +x start-all.sh
 
 # Windows
 start-all.bat
-
-# Or use Docker Compose directly
-docker-compose up
 ```
 
 The script will:
-1. Start MySQL database container
-2. Wait for database to be ready (40 seconds)
-3. Start Spring Boot backend (port 8080)
-4. Start Angular frontend (port 4200)
-5. Show completion message
+1. Check prerequisites (Java, Maven, Node.js, MySQL)
+2. Start Spring Boot backend (port 8080)
+3. Start Angular frontend (port 4200)
+4. Show completion message
 
 ### Step 3: Verify Everything Works
 ```bash
@@ -253,15 +250,14 @@ curl -X GET http://localhost:8080/api/admin/bookings \
 
 ### Services Not Starting
 ```bash
-# Check Docker is running
-docker ps
+# Check MySQL is running
+mysqladmin ping -h 127.0.0.1
 
-# Check logs
-docker-compose logs
+# Restart backend manually
+cd backend && mvn spring-boot:run
 
-# Restart everything
-docker-compose down
-docker-compose up
+# Restart frontend manually
+cd frontend && npm start
 ```
 
 ### Port Conflicts
@@ -276,21 +272,21 @@ kill -9 <PID>
 ```
 
 ### Login Issues
-- Verify admin user exists: `docker exec -it smart-travel-mysql mysql -uroot -proot smart_travel_db -e "SELECT * FROM users;"`
-- Check backend logs: `docker-compose logs backend | tail -50`
+- Verify admin user exists: `mysql -u root -p smart_travel_db -e "SELECT * FROM users;"`
+- Check the terminal running the backend for errors
 - Try clearing browser cache
 - Use correct email: admin@smarttravel.com (not just "admin")
 
 ### Database Errors
-- Check MySQL is running: `docker-compose logs mysql`
-- Verify credentials: Check docker-compose.yml for MYSQL_PASSWORD
+- Check MySQL is running: `mysqladmin ping -h 127.0.0.1`
+- Verify credentials in `backend/src/main/resources/application.properties`
 - Ensure port 3306 is free: `lsof -i :3306`
 
 ---
 
 ## 🔧 Development
 
-### Manual Setup (Without Docker)
+### Setup
 
 **Backend:**
 ```bash
@@ -389,19 +385,14 @@ See **DEVELOPER_GUIDE.html** for detailed examples.
 
 ## 🚀 Deployment
 
-### Docker Deployment
+### Production Build
 ```bash
-# Build images
-docker-compose build
+# Backend JAR
+cd backend && mvn clean package -DskipTests
+java -jar target/smart-travel-planner-1.0.0.jar
 
-# Start containers
-docker-compose up -d
-
-# View logs
-docker-compose logs -f
-
-# Stop containers
-docker-compose down
+# Frontend
+cd frontend && ng build --configuration production
 ```
 
 ### Cloud Deployment
@@ -463,7 +454,7 @@ See **DEPLOYMENT_CHECKLIST.md** for:
 ✨ **Comprehensive Docs** - 10+ guides for all skill levels  
 ✨ **API Documentation** - Auto-generated Swagger docs  
 ✨ **Role-Based Access** - Admin can see all user bookings  
-✨ **Docker Containerized** - Run anywhere Docker is installed  
+✨ **Easy Startup Scripts** - Start everything with one command  
 ✨ **Professional UI** - Responsive design with Bootstrap  
 
 ---
@@ -487,16 +478,13 @@ See **DEPLOYMENT_CHECKLIST.md** for:
 # Check health
 ./check-status.sh
 
-# Stop everything
-docker-compose down
-
-# View logs
-docker-compose logs -f backend
+# Stop backend/frontend
+Ctrl+C in each terminal
 
 # Access database
-docker exec -it smart-travel-mysql mysql -uroot -proot smart_travel_db
+mysql -u root -p smart_travel_db
 
-# Connect to backend
+# Backend health check
 curl http://localhost:8080/actuator/health
 ```
 

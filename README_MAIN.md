@@ -74,13 +74,13 @@ Password: admin
 | **Backend** | Java 17, Spring Boot 3.1.5, JPA/Hibernate |
 | **Database** | MySQL 8.0 |
 | **Authentication** | JWT Tokens, Spring Security |
-| **Infrastructure** | Docker, Maven, Node.js |
+| **Infrastructure** | Maven, Node.js |
 
 ---
 
 ## 📋 Prerequisites
 
-- ✅ **Docker** - For MySQL database
+- ✅ **MySQL 8.0+** - Database (running locally)
 - ✅ **Java 17+** - For Spring Boot backend
 - ✅ **Maven 3.8+** - For building backend
 - ✅ **Node.js 18+** - For Angular frontend
@@ -107,8 +107,7 @@ Smart-Travel-Planner/
 │   ├── database_schema.sql
 │   └── sample_data.sql
 ├── pom.xml                                  # Maven configuration
-├── start-all.sh / start-all.bat            # Startup scripts
-└── docker-compose.yml                      # Docker compose
+└── start-all.sh / start-all.bat            # Startup scripts
 ```
 
 ---
@@ -116,8 +115,8 @@ Smart-Travel-Planner/
 ## 🚀 What Happens When You Start
 
 ### Step 1: MySQL Database
-- Starts MySQL 8.0 in Docker
-- Sets up `smart_travel_db` database
+- Connects to local MySQL 8.0
+- Verifies `smart_travel_db` database
 - Imports schema with 11 tables
 - Loads sample data (10 destinations, 120+ hotels)
 
@@ -204,7 +203,6 @@ The script automatically:
 
 ### Method 2: Manual
 ```bash
-docker stop smart-travel-mysql
 pkill -f "mvn spring-boot:run"
 pkill -f "ng serve"
 ```

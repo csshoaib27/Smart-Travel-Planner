@@ -19,30 +19,19 @@ This was confusing and error-prone for new developers.
 ### Solution Implemented
 
 #### Files Added:
-1. **docker-compose.yml** - Orchestrates all services
-2. **start.sh** - Automated startup script for Mac/Linux
-3. **start.bat** - Automated startup script for Windows
-4. **backend_Dockerfile** - Docker image for Spring Boot
-5. **frontend_Dockerfile** - Docker image for Angular
-6. **nginx.conf** - Nginx configuration for frontend
+1. **start.sh** - Automated startup script for Mac/Linux
+2. **start.bat** - Automated startup script for Windows
 
 ### How It Works
 
 ```
 User runs: ./start.sh (Mac/Linux) or start.bat (Windows)
     ↓
-Script checks Docker installation
+Script checks prerequisites (Java, Maven, Node.js, MySQL)
     ↓
-Builds Docker images for backend and frontend
+Starts Spring Boot backend
     ↓
-Starts Docker Compose with 3 services:
-    - MySQL (Database)
-    - Spring Boot (Backend API)
-    - Angular (Frontend)
-    ↓
-Verifies all services are healthy
-    ↓
-Opens browser to http://localhost:4200
+Starts Angular frontend
     ↓
 Application is ready to use!
 ```
@@ -68,7 +57,7 @@ chmod +x start.sh
 - ✅ Automatic health checks
 - ✅ Clear status messages
 - ✅ Works on all platforms (Windows, Mac, Linux)
-- ✅ Production-ready Docker setup
+- ✅ Works on all platforms (Windows, Mac, Linux)
 
 ---
 
@@ -413,12 +402,10 @@ CREATE INDEX idx_admin ON users(is_admin);
 ### New Files
 1. **EASY_START_GUIDE.md** - Complete guide for easy startup and new features
 2. **ENHANCEMENTS.md** - This file, documenting all enhancements
-3. **docker-compose.yml** - Docker orchestration
-4. **start.sh & start.bat** - Startup scripts
-5. **Dockerfiles** - Container configurations
+3. **start.sh & start.bat** - Startup scripts
 
 ### Updated Files
-- README.md (added Docker section)
+- README.md
 - DEVELOPER_GUIDE.html (added admin endpoints)
 
 ---
@@ -505,30 +492,26 @@ After deployment, verify:
 
 ### Files Added/Modified
 
-**New Files (11):**
-1. docker-compose.yml
-2. start.sh
-3. start.bat
-4. backend_Dockerfile
-5. frontend_Dockerfile
-6. nginx.conf
-7. AdminController.java
-8. EASY_START_GUIDE.md
-9. ENHANCEMENTS.md
-10. Updated application.properties
-11. Updated README.md
+**New Files:**
+1. start.sh
+2. start.bat
+3. AdminController.java
+4. EASY_START_GUIDE.md
+5. ENHANCEMENTS.md
+6. Updated application.properties
+7. Updated README.md
 
 ---
 
 ## 🎉 Result
 
 Users can now:
-1. **Start everything with one command** - Docker handles complexity
+1. **Start everything with one command** - Scripts handle startup
 2. **Register users** - Properly saved to database
 3. **Admin view all bookings** - Complete visibility for admins
 4. **Manage system** - Full admin dashboard with statistics
 
-**Total enhancement: +250 lines of code + 3 documentation files + Docker setup**
+**Total enhancement: +250 lines of code + 3 documentation files + startup scripts**
 
 ---
 

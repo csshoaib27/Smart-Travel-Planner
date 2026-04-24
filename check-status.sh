@@ -5,18 +5,16 @@ echo "║   Smart Travel Planner - Application Status Check          ║"
 echo "╚════════════════════════════════════════════════════════════╝"
 echo ""
 
-# Color codes
 GREEN='\033[0;32m'
 RED='\033[0;31m'
-YELLOW='\033[1;33m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
 # Check MySQL
 echo "Checking MySQL..."
-if docker ps | grep -q smart-travel-mysql; then
-    echo -e "${GREEN}✓${NC} MySQL running"
+if mysqladmin ping -h 127.0.0.1 --silent 2>/dev/null; then
+    echo -e "${GREEN}✓${NC} MySQL running on localhost:3306"
 else
-    echo -e "${RED}✗${NC} MySQL NOT running"
+    echo -e "${RED}✗${NC} MySQL NOT responding on localhost:3306"
 fi
 
 # Check Backend
@@ -36,11 +34,6 @@ if curl -s http://localhost:4200 > /dev/null 2>&1; then
 else
     echo -e "${RED}✗${NC} Frontend NOT responding on port 4200"
 fi
-
-echo ""
-echo "Docker Container Status:"
-echo "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
-docker-compose ps 2>/dev/null || echo "Docker Compose not running"
 
 echo ""
 echo "Access URLs:"

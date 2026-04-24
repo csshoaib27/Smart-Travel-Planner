@@ -12,7 +12,6 @@ A complete, production-ready full-stack web application for travel planning with
 - ✅ Angular 17 Frontend
 - ✅ Spring Boot 3.1.5 Backend  
 - ✅ MySQL 8.0 Database
-- ✅ Docker Containerization
 - ✅ **One-Command Startup** (key requirement!)
 - ✅ Admin features to view all user bookings
 
@@ -43,8 +42,6 @@ A complete, production-ready full-stack web application for travel planning with
 | Database | MySQL | 8.0 |
 | Authentication | JWT | Standard |
 | Password Security | BCrypt | Encrypted |
-| Container | Docker | Latest |
-| Orchestration | Docker Compose | 3.8 |
 
 ---
 
@@ -97,8 +94,7 @@ Smart-Travel-Planner/
 │   │   ├── entity/                   # JPA Entities
 │   │   ├── security/                 # JWT & Security
 │   │   └── config/                   # Configuration
-│   ├── pom.xml                       # Maven Dependencies
-│   └── Dockerfile                    # Docker Configuration
+│   └── pom.xml                       # Maven Dependencies
 │
 ├── frontend/                         # Angular Frontend
 │   ├── src/app/
@@ -107,17 +103,14 @@ Smart-Travel-Planner/
 │   │   ├── models/                   # TypeScript Models
 │   │   ├── guards/                   # Auth Guards
 │   │   └── interceptors/             # JWT Interceptor
-│   ├── package.json                  # npm Dependencies
-│   └── Dockerfile                    # Docker Configuration
+│   └── package.json                  # npm Dependencies
 │
 ├── database/                         # Database Setup
 │   ├── database_schema.sql           # Create tables
 │   └── sample_data.sql               # 100+ records
 │
-└── Docker Files
-    ├── docker-compose.yml            # Orchestration
-    ├── start-all.sh                  # Linux/Mac startup
-    └── start-all.bat                 # Windows startup
+├── start-all.sh                      # Linux/Mac startup
+└── start-all.bat                     # Windows startup
 ```
 
 ### Documentation (Complete)
@@ -285,26 +278,6 @@ curl http://localhost:8080/api/admin/bookings \
 
 ---
 
-## 🐳 Docker Features
-
-### Containerization Benefits
-- ✅ No local installations needed (except Docker)
-- ✅ Portable across Windows, Mac, Linux
-- ✅ Automatic health checks
-- ✅ Service dependencies managed
-- ✅ Volume mounts for data persistence
-- ✅ Network isolation between services
-- ✅ One-command startup and shutdown
-
-### Docker Compose Configuration
-- **MySQL:** Healthcheck with retries, auto-initialization
-- **Backend:** Healthcheck on /actuator/health endpoint
-- **Frontend:** Automatic restart on failure
-- **Networks:** Bridge network for service communication
-- **Volumes:** Data persistence for MySQL
-
----
-
 ## 📝 Documentation Quality
 
 ### Documentation Coverage
@@ -321,7 +294,7 @@ curl http://localhost:8080/api/admin/bookings \
 - **Project Managers:** README.md, PROJECT_SUMMARY.md, DEPLOYMENT_CHECKLIST.md
 - **Developers (Deploy):** GETTING_STARTED.md, QUICK_REFERENCE.md
 - **Developers (Modify):** DEVELOPER_DOCUMENTATION.html, DEVELOPER_GUIDE.html, ARCHITECTURE.html
-- **DevOps:** DEPLOYMENT_CHECKLIST.md, Docker configuration files
+- **DevOps:** DEPLOYMENT_CHECKLIST.md
 - **Anyone:** DOCUMENTATION_INDEX.md for navigation
 
 ---
@@ -376,12 +349,10 @@ curl http://localhost:8080/api/admin/bookings \
 - ✅ Error handling complete
 - ✅ Logging configured
 - ✅ API documented
-- ✅ Docker containerized
 - ✅ Performance optimized
 
 ### Deployment Configuration
 - ✅ Environment variables support
-- ✅ Docker Compose ready
 - ✅ Database migration scripts
 - ✅ Health check endpoints
 - ✅ Graceful shutdown handling
@@ -436,7 +407,7 @@ curl http://localhost:8080/api/admin/bookings \
 2. Update production credentials
 3. Configure environment variables
 4. Setup production database
-5. Deploy containers
+5. Deploy application JAR and frontend build
 6. Verify in production
 
 ---
@@ -462,7 +433,7 @@ curl http://localhost:8080/api/admin/bookings \
 ✨ **Production Quality** - Security, error handling, logging implemented  
 ✨ **Comprehensive Documentation** - 11+ guides for all roles  
 ✨ **Admin Features** - View all user bookings (key requirement)  
-✨ **Docker Containerized** - Run anywhere Docker is available  
+✨ **Easy Startup Scripts** - Start everything with a single command  
 ✨ **Secure Authentication** - JWT + BCrypt implementation  
 ✨ **Responsive Design** - Works on desktop and mobile  
 ✨ **API Documentation** - Auto-generated Swagger docs  
@@ -473,26 +444,26 @@ curl http://localhost:8080/api/admin/bookings \
 ## 💡 Quick Commands Reference
 
 ```bash
-# Start application
-./start-all.sh                         # All platforms
+# Start application (Mac/Linux)
+./start-all.sh
+
+# Start application (Windows)
+start-all.bat
 
 # Check status
 ./check-status.sh
 
-# Stop application
-docker-compose down
-
-# View logs
-docker-compose logs -f
+# Stop backend/frontend
+Ctrl+C in each terminal
 
 # Access database
-docker exec -it smart-travel-mysql mysql -uroot -proot smart_travel_db
+mysql -u root -p smart_travel_db
 
-# Rebuild images
-docker-compose build
+# Rebuild backend
+cd backend && mvn clean package
 
-# Clean everything
-docker-compose down -v
+# Reinstall frontend dependencies
+cd frontend && rm -rf node_modules && npm install
 ```
 
 ---
@@ -500,8 +471,7 @@ docker-compose down -v
 ## 📋 Files Modified/Created
 
 ### Configuration Files
-- ✅ docker-compose.yml - Corrected database credentials & health checks
-- ✅ start-all.sh - Fixed directory navigation
+- ✅ start-all.sh - Startup script for Mac/Linux
 - ✅ start-all.bat - Windows version with corrections
 
 ### Application Code
@@ -536,7 +506,6 @@ The Smart Travel Planner is a **complete, production-ready full-stack applicatio
 ✅ Itinerary generation  
 ✅ Community reviews system  
 ✅ Secure authentication & authorization  
-✅ Docker containerization  
 ✅ Comprehensive documentation  
 
 **The application is ready for use, testing, and deployment!**

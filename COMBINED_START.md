@@ -164,14 +164,6 @@ chmod +x start-all.sh
 ./start-all.sh
 ```
 
-### Docker not found
-
-```bash
-# Make sure Docker is running
-# On Mac, click Docker icon in top menu
-# On Linux, check: sudo service docker status
-```
-
 ### Port already in use?
 
 ```bash
@@ -189,12 +181,17 @@ kill -9 <PID>
 
 ```bash
 # Check if MySQL is running
-docker ps
+mysqladmin ping -h 127.0.0.1
 
-# If not, restart the script
-docker stop smart-travel-mysql
-docker rm smart-travel-mysql
-./start-all.sh
+# Start MySQL if needed (Linux)
+sudo service mysql start
+
+# Start MySQL if needed (Mac)
+brew services start mysql
+
+# Then import database if not yet done:
+mysql -u root -p < database/database_schema.sql
+mysql -u root -p < database/sample_data.sql
 ```
 
 ---
