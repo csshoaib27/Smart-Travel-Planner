@@ -25,8 +25,8 @@ import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
 // Services
-import { ApiService } from './services/api.service';
-import { AuthService } from './services/auth.service';
+import { ApiService } from './api.service';
+import { AuthService } from './auth.service';
 import { JwtInterceptor } from './shared/interceptor/jwt.interceptor';
 
 @NgModule({

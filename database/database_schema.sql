@@ -230,6 +230,6 @@ CREATE INDEX idx_users_admin ON users(is_admin);
 -- INSERT SAMPLE ADMIN USER
 -- ============================================
 INSERT INTO users (username, email, password, full_name, is_admin)
-VALUES ('admin', 'admin@smarttravel.com', 'admin', 'Administrator', TRUE);
+VALUES ('admin', 'admin@smarttravel.com', '$2y$10$jDduRPDBk2FcMN85d3p/GODIySCWF./jqph3A6D3bpnejzE2vgkHK', 'Administrator', TRUE);
 
 COMMIT;
