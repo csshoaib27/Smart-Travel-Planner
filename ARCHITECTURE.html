@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Travel Planner - System Architecture</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        section {
+            margin-bottom: 50px;
+        }
+
+        h2 {
+            color: #667eea;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #764ba2;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.3em;
+        }
+
+        .diagram {
+            background: #f8f9fa;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1);
+        }
+
+        .feature-card h4 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .tech-stack {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .tech-item {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .tech-item strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background: #667eea;
+            color: white;
+            font-weight: bold;
+        }
+
+        tr:hover {
+            background: #f8f9fa;
+        }
+
+        .api-endpoint {
+            background: #f0f4ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 10px;
+            color: white;
+        }
+
+        .get { background: #61affe; }
+        .post { background: #49cc90; }
+        .put { background: #fca130; }
+        .delete { background: #f93e3e; }
+
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .success {
+            background: #d4edda;
+            border-left: 4px solid #28a745;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        .info {
+            background: #d1ecf1;
+            border-left: 4px solid #17a2b8;
+            padding: 15px;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        code {
+            background: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+        }
+
+        footer {
+            background: #f8f9fa;
+            border-top: 1px solid #ddd;
+            padding: 20px;
+            text-align: center;
+            color: #666;
+        }
+
+        .toc {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+        }
+
+        .toc h3 {
+            margin-top: 0;
+        }
+
+        .toc ul {
+            list-style: none;
+        }
+
+        .toc li {
+            padding: 5px 0;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .toc a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🌍 Smart Travel Planner</h1>
+            <p>System Architecture & Technical Documentation</p>
+        </header>
+
+        <main>
+            <!-- Table of Contents -->
+            <div class="toc">
+                <h3>📑 Table of Contents</h3>
+                <ul>
+                    <li><a href="#overview">System Overview</a></li>
+                    <li><a href="#architecture">Architecture Diagram</a></li>
+                    <li><a href="#technology">Technology Stack</a></li>
+                    <li><a href="#features">Core Features</a></li>
+                    <li><a href="#database">Database Design</a></li>
+                    <li><a href="#api">REST API Specification</a></li>
+                    <li><a href="#authentication">Authentication & Security</a></li>
+                    <li><a href="#deployment">Deployment & Startup</a></li>
+                </ul>
+            </div>
+
+            <!-- Overview Section -->
+            <section id="overview">
+                <h2>1. System Overview</h2>
+                <p>
+                    Smart Travel Planner is a full-stack web application that helps users find travel destinations based on budget, temperature preferences, and travel type. The system includes advanced features like cost calculation, hotel booking, itinerary generation, reviews, and an admin dashboard for managing users and bookings.
+                </p>
+
+                <h3>Key Objectives</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Budget-Aware Search:</strong> Find destinations within user's budget constraints</li>
+                    <li><strong>Multi-Factor Filtering:</strong> Search by temperature, distance, budget category, and travel type</li>
+                    <li><strong>Comprehensive Cost Calculation:</strong> Break down costs across travel, accommodation, food, and activities</li>
+                    <li><strong>Itinerary Generation:</strong> Auto-generate travel plans for 3-14 days</li>
+                    <li><strong>Community Reviews:</strong> User ratings and reviews for destinations and hotels</li>
+                    <li><strong>Admin Management:</strong> View all users, bookings, and system statistics</li>
+                    <li><strong>Group Travel Support:</strong> Split payments among friends for group trips</li>
+                </ul>
+            </section>
+
+            <!-- Architecture Section -->
+            <section id="architecture">
+                <h2>2. System Architecture</h2>
+
+                <h3>High-Level Architecture</h3>
+                <div class="diagram">
+┌─────────────────────────────────────────────────────────────────────┐
+│                          Web Browser (Client)                        │
+│                     http://localhost:4200                            │
+└────────────────────────────────┬────────────────────────────────────┘
+                                 │
+                    ┌────────────▼────────────┐
+                    │   Angular 17 Frontend   │
+                    │  (Components, Services) │
+                    │   Bootstrap + ng-boot   │
+                    └────────────┬────────────┘
+                                 │
+                    HTTP Requests │ REST API Calls
+                    JSON / JWT    │
+                                 │
+          ┌──────────────────────▼──────────────────────┐
+          │                                               │
+          │   Spring Boot 3.1.5 Backend                  │
+          │   http://localhost:8080                      │
+          │                                               │
+          │  ┌──────────────────────────────────────┐   │
+          │  │ Controllers (REST Endpoints)         │   │
+          │  │ - AuthController                     │   │
+          │  │ - DestinationController             │   │
+          │  │ - HotelController                   │   │
+          │  │ - BookingController                 │   │
+          │  │ - AdminController                   │   │
+          │  └──────────────────────────────────────┘   │
+          │               │                               │
+          │  ┌────────────▼──────────────────────────┐   │
+          │  │ Business Logic Layer (Services)      │   │
+          │  │ - AuthService                        │   │
+          │  │ - DestinationService                │   │
+          │  │ - HotelService                      │   │
+          │  │ - CostCalculatorService             │   │
+          │  │ - BookingService                    │   │
+          │  └────────────┬──────────────────────────┘   │
+          │               │                               │
+          │  ┌────────────▼──────────────────────────┐   │
+          │  │ Data Access Layer (JPA Repositories) │   │
+          │  │ - UserRepository                     │   │
+          │  │ - DestinationRepository             │   │
+          │  │ - HotelRepository                   │   │
+          │  │ - BookingRepository                 │   │
+          │  │ - ReviewRepository                  │   │
+          │  └────────────┬──────────────────────────┘   │
+          │               │                               │
+          │  ┌────────────▼──────────────────────────┐   │
+          │  │ Entity Models (JPA)                  │   │
+          │  │ - User, Destination, Hotel          │   │
+          │  │ - Booking, Review, Itinerary        │   │
+          │  └──────────────────────────────────────┘   │
+          │                                               │
+          └──────────────────┬───────────────────────────┘
+                             │
+                             │ JDBC / Hibernate
+                             │
+          ┌──────────────────▼───────────────────────┐
+          │      MySQL 8.0 Database                   │
+          │   localhost:3306                          │
+          │                                           │
+          │  smart_travel_db                          │
+          │  ├── users (with is_admin flag)          │
+          │  ├── destinations                         │
+          │  ├── hotels (10-15 per destination)      │
+          │  ├── bookings                            │
+          │  ├── reviews                             │
+          │  ├── itineraries                         │
+          │  ├── payment_splits                      │
+          │  └── search_history                      │
+          │                                           │
+          └───────────────────────────────────────────┘
+                </div>
+
+                <h3>Application Layers</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>🎨 Presentation Layer</h4>
+                        <p>
+                            Angular 17 frontend components providing user interface for:
+                            <ul style="margin-left: 15px; margin-top: 10px;">
+                                <li>User authentication (login/register)</li>
+                                <li>Destination search and filtering</li>
+                                <li>Hotel browsing and selection</li>
+                                <li>Booking management</li>
+                                <li>Admin dashboard</li>
+                            </ul>
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h4>⚙️ Business Logic Layer</h4>
+                        <p>
+                            Spring Boot services handling:
+                            <ul style="margin-left: 15px; margin-top: 10px;">
+                                <li>User authentication & JWT tokens</li>
+                                <li>Destination search logic</li>
+                                <li>Cost calculation algorithms</li>
+                                <li>Booking management</li>
+                                <li>Admin operations</li>
+                            </ul>
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h4>💾 Data Layer</h4>
+                        <p>
+                            JPA repositories and entities for:
+                            <ul style="margin-left: 15px; margin-top: 10px;">
+                                <li>CRUD operations</li>
+                                <li>Custom queries</li>
+                                <li>Relationships between entities</li>
+                                <li>Database transactions</li>
+                            </ul>
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Technology Stack -->
+            <section id="technology">
+                <h2>3. Technology Stack</h2>
+
+                <h3>Backend Technologies</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <strong>Java 17+</strong>
+                        <span>Programming Language</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Spring Boot 3.1.5</strong>
+                        <span>Web Framework</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Spring Data JPA</strong>
+                        <span>Database ORM</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Spring Security</strong>
+                        <span>Authentication & Authorization</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>JWT (JJWT)</strong>
+                        <span>Token-based Auth</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Maven 3.8+</strong>
+                        <span>Build Management</span>
+                    </div>
+                </div>
+
+                <h3>Frontend Technologies</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <strong>Angular 17</strong>
+                        <span>Web Framework</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>TypeScript 5.2</strong>
+                        <span>Language</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Bootstrap 5.3</strong>
+                        <span>CSS Framework</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>ng-bootstrap</strong>
+                        <span>Angular Bootstrap Components</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>RxJS 7.8</strong>
+                        <span>Reactive Programming</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Angular CLI</strong>
+                        <span>Build Tool</span>
+                    </div>
+                </div>
+
+                <h3>Database & Infrastructure</h3>
+                <div class="tech-stack">
+                    <div class="tech-item">
+                        <strong>MySQL 8.0</strong>
+                        <span>Relational Database</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Docker</strong>
+                        <span>Containerization</span>
+                    </div>
+                    <div class="tech-item">
+                        <strong>Docker Compose</strong>
+                        <span>Multi-container Orchestration</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features">
+                <h2>4. Core Features</h2>
+
+                <h3>User Authentication & Authorization</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>User Registration:</strong> New users register with email and password, automatically marked as non-admin (is_admin=FALSE)</li>
+                    <li><strong>User Login:</strong> JWT token-based authentication with 24-hour expiration</li>
+                    <li><strong>Admin Account:</strong> Default admin credentials (admin/admin) for system management</li>
+                    <li><strong>Role-Based Access Control:</strong> Different permissions for admin vs regular users</li>
+                    <li><strong>Password Security:</strong> BCrypt encryption for password storage</li>
+                </ul>
+
+                <h3>Destination Search & Discovery</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Multi-Factor Filtering:</strong> Search by budget, temperature, distance, travel type</li>
+                    <li><strong>Budget Categories:</strong> Economy, Standard, Premium, Luxury</li>
+                    <li><strong>Travel Types:</strong> Adventure, Family, Couple, Business, Solo, Nature</li>
+                    <li><strong>Temperature Preferences:</strong> Cold, Mild, Hot, Tropical</li>
+                    <li><strong>Sample Destinations:</strong> 10+ pre-loaded destinations (Paris, Tokyo, Bali, etc.)</li>
+                    <li><strong>Search History:</strong> Track user searches for personalized recommendations</li>
+                </ul>
+
+                <h3>Hotel Management & Booking</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Hotel Database:</strong> 12+ hotels per major destination with varying prices</li>
+                    <li><strong>Hotel Filtering:</strong> Filter by price, rating, amenities</li>
+                    <li><strong>Booking Management:</strong> Create, view, update booking status (Pending, Confirmed, Cancelled, Completed)</li>
+                    <li><strong>Price Tracking:</strong> Real-time price updates for hotels</li>
+                    <li><strong>Availability Checking:</strong> Real-time hotel availability status</li>
+                </ul>
+
+                <h3>Cost Calculator</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Multi-Category Breakdown:</strong>
+                        <ul style="margin-left: 20px;">
+                            <li>Travel (flights/transportation)</li>
+                            <li>Accommodation (hotel)</li>
+                            <li>Food (meals)</li>
+                            <li>Activities (tours, attractions)</li>
+                            <li>Miscellaneous</li>
+                        </ul>
+                    </li>
+                    <li><strong>Budget Estimation:</strong> Intelligent estimation based on destination and travel type</li>
+                    <li><strong>Dynamic Updates:</strong> Calculate total cost based on travel dates</li>
+                    <li><strong>Cost Tracking:</strong> Store cost breakdown for each booking</li>
+                </ul>
+
+                <h3>Itinerary Generation</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Auto-Generation:</strong> Generate daily itineraries for 3-14 day trips</li>
+                    <li><strong>Package Types:</strong> Family, Solo, Couple, Adventure</li>
+                    <li><strong>Day-by-Day Planning:</strong> Detailed activities for each day</li>
+                    <li><strong>Dynamic Customization:</strong> Users can modify generated itineraries</li>
+                </ul>
+
+                <h3>Reviews & Ratings</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>5-Star Rating System:</strong> Users rate destinations and hotels</li>
+                    <li><strong>Review Types:</strong> Destination reviews and hotel reviews</li>
+                    <li><strong>Community Feedback:</strong> Users share experiences and recommendations</li>
+                    <li><strong>Helpful Sorting:</strong> Most helpful reviews highlighted first</li>
+                </ul>
+
+                <h3>Group Travel Support</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Payment Splitting:</strong> Split trip costs among group members</li>
+                    <li><strong>Expense Tracking:</strong> Track who owes whom in group trips</li>
+                    <li><strong>Settlement Management:</strong> Mark payments as settled</li>
+                </ul>
+
+                <h3>Admin Dashboard</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>User Management:</strong> View all registered users and details</li>
+                    <li><strong>Booking Management:</strong> View ALL bookings from ALL users</li>
+                    <li><strong>Booking Status Updates:</strong> Change booking status (confirm, cancel, complete)</li>
+                    <li><strong>System Statistics:</strong>
+                        <ul style="margin-left: 20px;">
+                            <li>Total users</li>
+                            <li>Total revenue</li>
+                            <li>Booking breakdown by status</li>
+                            <li>Average booking value</li>
+                        </ul>
+                    </li>
+                    <li><strong>Dashboard Summary:</strong> Quick overview with recent bookings</li>
+                </ul>
+
+                <h3>Additional Features</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Emergency & Safety:</strong> Nearby hospitals, police stations, SOS contacts</li>
+                    <li><strong>Traditional Foods:</strong> Suggestions for local cuisine at each destination</li>
+                    <li><strong>Travel Tips:</strong> Destination-specific information (snow gear, entry passes, etc.)</li>
+                    <li><strong>Best Time to Visit:</strong> Seasonal recommendations</li>
+                    <li><strong>Cheapest Routes:</strong> Transportation cost comparison</li>
+                </ul>
+            </section>
+
+            <!-- Database Design -->
+            <section id="database">
+                <h2>5. Database Design</h2>
+
+                <p>The Smart Travel Planner uses MySQL 8.0 with 11 core tables managing all system data.</p>
+
+                <h3>Entity-Relationship Overview</h3>
+                <div class="diagram">
+USERS (1)────────(N) BOOKINGS
+  │                      │
+  │                      └──────(N) PAYMENT_SPLITS
+  │
+  ├──(1)───────(N) ITINERARIES
+  │                   │
+  │                   └──(1)───(N) ITINERARY_DAYS
+  │
+  ├──(1)───────(N) REVIEWS
+  │
+  └──(1)───────(N) SEARCH_HISTORY
+
+
+DESTINATIONS (1)────────(N) HOTELS
+       │                       │
+       │                       └──(N) BOOKINGS
+       │
+       └──(1)───────(N) REVIEWS
+
+
+COST_BREAKDOWN ────── belongs to BOOKING
+                </div>
+
+                <h3>Core Tables</h3>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Table</th>
+                            <th>Purpose</th>
+                            <th>Key Fields</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>users</strong></td>
+                            <td>User accounts</td>
+                            <td>email, password_hash, is_admin, created_at</td>
+                        </tr>
+                        <tr>
+                            <td><strong>destinations</strong></td>
+                            <td>Travel destinations</td>
+                            <td>name, description, temperature, budget_category, travel_types</td>
+                        </tr>
+                        <tr>
+                            <td><strong>hotels</strong></td>
+                            <td>Accommodations</td>
+                            <td>name, price_per_night, rating, destination_id</td>
+                        </tr>
+                        <tr>
+                            <td><strong>bookings</strong></td>
+                            <td>Trip reservations</td>
+                            <td>user_id, hotel_id, check_in, check_out, total_cost, status</td>
+                        </tr>
+                        <tr>
+                            <td><strong>reviews</strong></td>
+                            <td>User ratings</td>
+                            <td>user_id, rating, review_type, destination_id/hotel_id, text</td>
+                        </tr>
+                        <tr>
+                            <td><strong>itineraries</strong></td>
+                            <td>Trip plans</td>
+                            <td>booking_id, package_type, total_days</td>
+                        </tr>
+                        <tr>
+                            <td><strong>itinerary_days</strong></td>
+                            <td>Daily activities</td>
+                            <td>itinerary_id, day_number, activities</td>
+                        </tr>
+                        <tr>
+                            <td><strong>payment_splits</strong></td>
+                            <td>Group cost sharing</td>
+                            <td>booking_id, payer_id, payee_id, amount, status</td>
+                        </tr>
+                        <tr>
+                            <td><strong>cost_breakdown</strong></td>
+                            <td>Expense categories</td>
+                            <td>booking_id, category, amount, description</td>
+                        </tr>
+                        <tr>
+                            <td><strong>search_history</strong></td>
+                            <td>User searches</td>
+                            <td>user_id, destination_id, search_date, filters</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="note">
+                    <strong>Note:</strong> All tables include timestamps (created_at, updated_at) for audit trails and soft delete support where applicable.
+                </div>
+            </section>
+
+            <!-- API Specification -->
+            <section id="api">
+                <h2>6. REST API Specification</h2>
+
+                <p>The API is documented with Swagger/OpenAPI at: <code>http://localhost:8080/swagger-ui.html</code></p>
+
+                <h3>Authentication Endpoints</h3>
+                <div class="api-endpoint">
+                    <span class="method post">POST</span>
+                    <code>/api/auth/register</code>
+                    <p>Register new user account</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method post">POST</span>
+                    <code>/api/auth/login</code>
+                    <p>Authenticate user and receive JWT token</p>
+                </div>
+
+                <h3>Destination Endpoints</h3>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/destinations</code>
+                    <p>List all destinations</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/destinations/{id}</code>
+                    <p>Get destination details with hotels and reviews</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method post">POST</span>
+                    <code>/api/destinations/search</code>
+                    <p>Search destinations with filters (budget, temperature, travel_type)</p>
+                </div>
+
+                <h3>Hotel Endpoints</h3>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/hotels</code>
+                    <p>List all hotels with pagination</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/hotels/{id}</code>
+                    <p>Get hotel details including reviews and ratings</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/hotels/destination/{destinationId}</code>
+                    <p>Get all hotels for specific destination</p>
+                </div>
+
+                <h3>Booking Endpoints</h3>
+                <div class="api-endpoint">
+                    <span class="method post">POST</span>
+                    <code>/api/bookings</code>
+                    <p>Create new booking</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/bookings/{id}</code>
+                    <p>Get booking details</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/bookings/user/{userId}</code>
+                    <p>Get all bookings for current user</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method put">PUT</span>
+                    <code>/api/bookings/{id}</code>
+                    <p>Update booking details</p>
+                </div>
+
+                <h3>Cost Calculator Endpoints</h3>
+                <div class="api-endpoint">
+                    <span class="method post">POST</span>
+                    <code>/api/cost-calculator/estimate</code>
+                    <p>Calculate cost breakdown for destination and dates</p>
+                </div>
+
+                <h3>Review Endpoints</h3>
+                <div class="api-endpoint">
+                    <span class="method post">POST</span>
+                    <code>/api/reviews</code>
+                    <p>Create review for destination or hotel</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/reviews/destination/{destinationId}</code>
+                    <p>Get all reviews for destination</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/reviews/hotel/{hotelId}</code>
+                    <p>Get all reviews for hotel</p>
+                </div>
+
+                <h3>Admin Endpoints (Admin Only)</h3>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/admin/users</code>
+                    <p>List all users in system</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/admin/users/{id}</code>
+                    <p>Get specific user details including bookings</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/admin/bookings</code>
+                    <p><strong>KEY FEATURE:</strong> Get ALL bookings from ALL users</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/admin/bookings/{id}</code>
+                    <p>Get specific booking details</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/admin/bookings/user/{userId}</code>
+                    <p>Get all bookings for specific user</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method put">PUT</span>
+                    <code>/api/admin/bookings/{id}/status</code>
+                    <p>Update booking status (confirm, cancel, complete)</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/admin/stats</code>
+                    <p>Get system statistics and analytics</p>
+                </div>
+                <div class="api-endpoint">
+                    <span class="method get">GET</span>
+                    <code>/api/admin/dashboard</code>
+                    <p>Get admin dashboard summary with recent bookings</p>
+                </div>
+
+                <div class="success">
+                    <strong>✅ All API responses:</strong> Include proper HTTP status codes, error messages, and pagination where applicable.
+                </div>
+            </section>
+
+            <!-- Authentication & Security -->
+            <section id="authentication">
+                <h2>7. Authentication & Security</h2>
+
+                <h3>JWT Token Authentication</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Token Format:</strong> Bearer tokens in Authorization header</li>
+                    <li><strong>Expiration:</strong> 24 hours (86,400,000 milliseconds)</li>
+                    <li><strong>Secret Key:</strong> Configured in application.properties</li>
+                    <li><strong>Claims:</strong> Includes user ID and role information</li>
+                </ul>
+
+                <h3>Password Security</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>Encryption:</strong> BCrypt with strength factor 10</li>
+                    <li><strong>Storage:</strong> Only hashed passwords stored in database</li>
+                    <li><strong>Validation:</strong> Password requirements enforced on registration</li>
+                </ul>
+
+                <h3>Role-Based Access Control (RBAC)</h3>
+                <div class="diagram">
+ROLES:
+├── ADMIN
+│   ├── Can view all users
+│   ├── Can view all bookings
+│   ├── Can update booking status
+│   ├── Can view system statistics
+│   └── Can access admin dashboard
+│
+└── USER
+    ├── Can register and login
+    ├── Can search destinations
+    ├── Can view hotels and prices
+    ├── Can create bookings
+    ├── Can view own bookings
+    ├── Can create reviews
+    ├── Cannot view other users' data
+    └── Cannot access admin features
+                </div>
+
+                <h3>Security Features</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>CORS Configuration:</strong> Restricted to http://localhost:4200 and http://localhost:3000</li>
+                    <li><strong>Spring Security:</strong> Protects all endpoints with authentication checks</li>
+                    <li><strong>Input Validation:</strong> All user inputs validated at controller and service level</li>
+                    <li><strong>SQL Injection Prevention:</strong> Uses JPA parameterized queries</li>
+                    <li><strong>HTTPS Recommended:</strong> For production deployment</li>
+                </ul>
+
+                <div class="note">
+                    <strong>Important:</strong> The default admin credentials (admin/admin) should be changed in production environments.
+                </div>
+            </section>
+
+            <!-- Deployment & Startup -->
+            <section id="deployment">
+                <h2>8. Deployment & Startup</h2>
+
+                <h3>Prerequisites</h3>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>✅ Docker (for MySQL database)</li>
+                    <li>✅ Java 17+ (for Spring Boot backend)</li>
+                    <li>✅ Maven 3.8+ (for building backend)</li>
+                    <li>✅ Node.js 18+ (for Angular frontend)</li>
+                </ul>
+
+                <h3>One-Command Startup</h3>
+
+                <h4>Mac/Linux</h4>
+                <div class="diagram">
+chmod +x start-all.sh
+./start-all.sh
+                </div>
+
+                <h4>Windows</h4>
+                <div class="diagram">
+Double-click start-all.bat
+or in Command Prompt:
+start-all.bat
+                </div>
+
+                <h3>What the Startup Script Does</h3>
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h4>Step 1: MySQL Database</h4>
+                        <p>
+                            • Starts MySQL 8.0 in Docker<br>
+                            • Creates database and user<br>
+                            • Imports schema<br>
+                            • Loads sample data<br>
+                            • Verifies readiness
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h4>Step 2: Spring Boot Backend</h4>
+                        <p>
+                            • Runs Maven build<br>
+                            • Compiles Java source code<br>
+                            • Starts on port 8080<br>
+                            • Initializes database connections<br>
+                            • Verifies health check
+                        </p>
+                    </div>
+
+                    <div class="feature-card">
+                        <h4>Step 3: Angular Frontend</h4>
+                        <p>
+                            • Installs npm dependencies<br>
+                            • Starts dev server on 4200<br>
+                            • Watches for file changes<br>
+                            • Compiles TypeScript<br>
+                            • Opens in browser
+                        </p>
+                    </div>
+                </div>
+
+                <h3>Docker Compose Alternative</h3>
+                <p>For containerized deployment, use Docker Compose:</p>
+                <div class="diagram">
+docker-compose up
+                </div>
+                <p>This starts all three services (MySQL, Backend, Frontend) in containers with proper networking and health checks.</p>
+
+                <h3>Stopping Services</h3>
+                <h4>With Script</h4>
+                <p>Press Ctrl+C in the terminal running start-all.sh</p>
+
+                <h4>Manual Cleanup</h4>
+                <div class="diagram">
+# Stop MySQL
+docker stop smart-travel-mysql
+docker rm smart-travel-mysql
+
+# Kill Backend and Frontend
+pkill -f "mvn spring-boot:run"
+pkill -f "ng serve"
+                </div>
+
+                <div class="success">
+                    <strong>✅ Verified Services:</strong> After successful startup, you should see:
+                    <ul style="margin-top: 10px; margin-left: 20px;">
+                        <li>MySQL listening on localhost:3306</li>
+                        <li>Backend responding on localhost:8080/actuator/health</li>
+                        <li>Frontend accessible at localhost:4200</li>
+                        <li>Default admin login working (admin/admin)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section style="background: #f8f9fa; padding: 30px; border-radius: 10px; margin-top: 40px;">
+                <h3>📊 Quick Reference</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
+                    <div>
+                        <h4>🎯 Main URLs</h4>
+                        <ul style="margin-left: 20px;">
+                            <li>Frontend: http://localhost:4200</li>
+                            <li>API: http://localhost:8080</li>
+                            <li>API Docs: http://localhost:8080/swagger-ui.html</li>
+                            <li>DB: localhost:3306</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>🔐 Default Credentials</h4>
+                        <ul style="margin-left: 20px;">
+                            <li>Username: admin</li>
+                            <li>Password: admin</li>
+                            <li>JWT Expiration: 24h</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4>💾 Database</h4>
+                        <ul style="margin-left: 20px;">
+                            <li>Type: MySQL 8.0</li>
+                            <li>Database: smart_travel_db</li>
+                            <li>Tables: 11</li>
+                            <li>Sample Data: ✅</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p>Smart Travel Planner v1.0.0 | Complete Documentation</p>
+            <p>Created with ❤️ for travel enthusiasts worldwide</p>
+        </footer>
+    </div>
+</body>
+</html>

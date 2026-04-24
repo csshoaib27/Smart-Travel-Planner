@@ -1,0 +1,167 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+
+  private baseUrl = 'http://localhost:8080/api';
+
+  constructor(private http: HttpClient) { }
+
+  // ==================== AUTH ENDPOINTS ====================
+  register(userData: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/register`, userData);
+  }
+
+  login(credentials: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/login`, credentials);
+  }
+
+  validateToken(token: string): Observable<any> {
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.get(`${this.baseUrl}/auth/validate-token`, { headers });
+  }
+
+  // ==================== DESTINATION ENDPOINTS ====================
+  getAllDestinations(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/destinations`);
+  }
+
+  getDestinationById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/destinations/${id}`);
+  }
+
+  searchDestinations(country?: string, travelType?: string, budgetCategory?: string): Observable<any> {
+    let url = `${this.baseUrl}/destinations/search?`;
+    if (country) url += `country=${country}&`;
+    if (travelType) url += `travelType=${travelType}&`;
+    if (budgetCategory) url += `budgetCategory=${budgetCategory}&`;
+    return this.http.get(url);
+  }
+
+  getTopRatedDestinations(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/destinations/top-rated`);
+  }
+
+  createDestination(destination: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/destinations`, destination);
+  }
+
+  // ==================== HOTEL ENDPOINTS ====================
+  getAllHotels(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/hotels`);
+  }
+
+  getHotelById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/hotels/${id}`);
+  }
+
+  getHotelsByDestination(destinationId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/hotels/destination/${destinationId}`);
+  }
+
+  searchHotels(destinationId: number, minPrice?: number, maxPrice?: number): Observable<any> {
+    let url = `${this.baseUrl}/hotels/search?destinationId=${destinationId}`;
+    if (minPrice) url += `&minPrice=${minPrice}`;
+    if (maxPrice) url += `&maxPrice=${maxPrice}`;
+    return this.http.get(url);
+  }
+
+  createHotel(hotel: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/hotels`, hotel);
+  }
+
+  // ==================== COST CALCULATOR ENDPOINTS ====================
+  calculateCost(request: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/calculator/calculate`, request);
+  }
+
+  calculateCostPerPerson(request: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/calculator/calculate-per-person`, request);
+  }
+
+  // ==================== ITINERARY ENDPOINTS ====================
+  createItinerary(itinerary: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/itineraries`, itinerary);
+  }
+
+  getItineraryById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/itineraries/${id}`);
+  }
+
+  getUserItineraries(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/itineraries/user/${userId}`);
+  }
+
+  updateItinerary(id: number, itinerary: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/itineraries/${id}`, itinerary);
+  }
+
+  deleteItinerary(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/itineraries/${id}`);
+  }
+
+  // ==================== BOOKING ENDPOINTS ====================
+  createBooking(booking: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/bookings`, booking);
+  }
+
+  getBookingById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/bookings/${id}`);
+  }
+
+  getUserBookings(userId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/bookings/user/${userId}`);
+  }
+
+  updateBooking(id: number, booking: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/bookings/${id}`, booking);
+  }
+
+  cancelBooking(id: number): Observable<any> {
+    return this.http.put(`${this.baseUrl}/bookings/${id}/cancel`, {});
+  }
+
+  // ==================== REVIEW ENDPOINTS ====================
+  createReview(review: any): Observable<any> {
+    return this.http.post(`${this.baseUrl}/reviews`, review);
+  }
+
+  getReviewsByDestination(destinationId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/reviews/destination/${destinationId}`);
+  }
+
+  getReviewsByHotel(hotelId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/reviews/hotel/${hotelId}`);
+  }
+
+  updateReview(id: number, review: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/reviews/${id}`, review);
+  }
+
+  deleteReview(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/reviews/${id}`);
+  }
+
+  // ==================== ADMIN ENDPOINTS ====================
+  getAllUsers(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/admin/users`);
+  }
+
+  getUserById(id: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/admin/users/${id}`);
+  }
+
+  getAllBookings(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/admin/bookings`);
+  }
+
+  getSystemStats(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/admin/stats`);
+  }
+}

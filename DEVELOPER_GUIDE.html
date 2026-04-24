@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Travel Planner - Developer Guide</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --success: #27ae60;
+            --danger: #e74c3c;
+            --warning: #f39c12;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        header p {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        nav {
+            background: white;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h3 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #3498db;
+            padding: 8px 15px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #3498db;
+            color: white;
+        }
+
+        section {
+            background: white;
+            margin: 20px 0;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        h3 {
+            color: #3498db;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            color: #555;
+            margin-top: 15px;
+            margin-bottom: 8px;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 6px;
+            border-radius: 3px;
+            font-family: 'Courier New', monospace;
+            color: #e74c3c;
+        }
+
+        pre {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+            line-height: 1.4;
+        }
+
+        pre code {
+            color: #ecf0f1;
+            background-color: transparent;
+            padding: 0;
+        }
+
+        .info-box {
+            background-color: #ecf7ff;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .success-box {
+            background-color: #eafae8;
+            border-left: 4px solid #27ae60;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .warning-box {
+            background-color: #fef5e7;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        .error-box {
+            background-color: #faddd1;
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+        }
+
+        table th {
+            background-color: #2c3e50;
+            color: white;
+            padding: 12px;
+            text-align: left;
+        }
+
+        table td {
+            border-bottom: 1px solid #ecf0f1;
+            padding: 12px;
+        }
+
+        table tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        .endpoint {
+            background-color: #f8f9fa;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+        }
+
+        .method {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 3px;
+            font-weight: bold;
+            margin-right: 10px;
+            font-size: 0.9em;
+        }
+
+        .method.get { background-color: #27ae60; color: white; }
+        .method.post { background-color: #3498db; color: white; }
+        .method.put { background-color: #f39c12; color: white; }
+        .method.delete { background-color: #e74c3c; color: white; }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .card-header {
+            background-color: #3498db;
+            color: white;
+            padding: 15px;
+            font-weight: bold;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        ul, ol {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            padding: 15px;
+            background-color: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #3498db;
+        }
+
+        .feature-item strong {
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>🌍 Smart Travel Planner</h1>
+        <p>Developer Guide & Technical Documentation</p>
+    </header>
+
+    <div class="container">
+        <nav>
+            <h3>Quick Navigation</h3>
+            <ul>
+                <li><a href="#architecture">Architecture</a></li>
+                <li><a href="#backend">Backend Setup</a></li>
+                <li><a href="#frontend">Frontend Setup</a></li>
+                <li><a href="#database">Database</a></li>
+                <li><a href="#api">API Reference</a></li>
+                <li><a href="#deployment">Deployment</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+        </nav>
+
+        <!-- Architecture Section -->
+        <section id="architecture">
+            <h2>📐 System Architecture</h2>
+
+            <h3>Overview</h3>
+            <p>Smart Travel Planner follows a three-tier architecture:</p>
+
+            <div class="grid">
+                <div class="card">
+                    <div class="card-header">Presentation Layer (Frontend)</div>
+                    <div class="card-body">
+                        <strong>Angular 17</strong><br>
+                        - Responsive UI<br>
+                        - Client-side routing<br>
+                        - Form validation<br>
+                        - State management with RxJS
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">Application Layer (Backend)</div>
+                    <div class="card-body">
+                        <strong>Spring Boot 3.1</strong><br>
+                        - REST API endpoints<br>
+                        - Business logic<br>
+                        - JWT authentication<br>
+                        - Data validation
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-header">Data Layer</div>
+                    <div class="card-body">
+                        <strong>MySQL 8.0</strong><br>
+                        - Relational database<br>
+                        - Data persistence<br>
+                        - Transactional integrity<br>
+                        - Indexing for performance
+                    </div>
+                </div>
+            </div>
+
+            <h3>Data Flow</h3>
+            <pre>
+Client (Angular)
+     ↓↑ HTTP/REST
+API Server (Spring Boot)
+     ↓↑ JDBC
+Database (MySQL)
+            </pre>
+        </section>
+
+        <!-- Backend Setup Section -->
+        <section id="backend">
+            <h2>⚙️ Backend Development Guide</h2>
+
+            <h3>Technology Stack</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                    <th>Version</th>
+                </tr>
+                <tr>
+                    <td>Framework</td>
+                    <td>Spring Boot</td>
+                    <td>3.1.5</td>
+                </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>Java</td>
+                    <td>17+</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>MySQL</td>
+                    <td>8.0+</td>
+                </tr>
+                <tr>
+                    <td>Authentication</td>
+                    <td>JWT + Spring Security</td>
+                    <td>-</td>
+                </tr>
+                <tr>
+                    <td>ORM</td>
+                    <td>Spring Data JPA</td>
+                    <td>3.1.5</td>
+                </tr>
+                <tr>
+                    <td>Build Tool</td>
+                    <td>Maven</td>
+                    <td>3.8+</td>
+                </tr>
+            </table>
+
+            <h3>Project Structure</h3>
+            <pre>
+backend/
+├── src/main/java/com/smarttravel/
+│   ├── SmartTravelApp.java              # Main application
+│   ├── config/                          # Configuration classes
+│   │   ├── JwtConfig.java
+│   │   └── SecurityConfig.java
+│   ├── controller/                      # REST endpoints
+│   │   ├── AuthController.java
+│   │   ├── DestinationController.java
+│   │   ├── HotelController.java
+│   │   └── CostCalculatorController.java
+│   ├── model/                           # Entity classes
+│   │   ├── User.java
+│   │   ├── Destination.java
+│   │   ├── Hotel.java
+│   │   ├── Booking.java
+│   │   └── Review.java
+│   ├── service/                         # Business logic
+│   │   ├── AuthService.java
+│   │   ├── DestinationService.java
+│   │   ├── HotelService.java
+│   │   └── CostCalculatorService.java
+│   ├── repository/                      # Data access
+│   │   ├── UserRepository.java
+│   │   ├── DestinationRepository.java
+│   │   └── HotelRepository.java
+│   ├── util/                            # Utilities
+│   │   ├── JwtUtil.java
+│   │   └── PasswordEncoder.java
+│   └── exception/                       # Exception handling
+│       └── GlobalExceptionHandler.java
+└── resources/
+    ├── application.properties
+    └── schema.sql
+            </pre>
+
+            <h3>Key Concepts</h3>
+
+            <h4>1. JWT Authentication Flow</h4>
+            <div class="info-box">
+                <strong>Process:</strong>
+                <ol>
+                    <li>User login with username/password</li>
+                    <li>Server validates credentials</li>
+                    <li>Server generates JWT token</li>
+                    <li>Client stores token</li>
+                    <li>Client includes token in future requests</li>
+                    <li>Server validates token before processing</li>
+                </ol>
+            </div>
+
+            <h4>2. Service Layer Pattern</h4>
+            <p>Each service handles business logic for a specific domain:</p>
+            <ul>
+                <li><code>AuthService</code> - User authentication and authorization</li>
+                <li><code>DestinationService</code> - Destination management</li>
+                <li><code>HotelService</code> - Hotel management</li>
+                <li><code>CostCalculatorService</code> - Trip cost calculations</li>
+                <li><code>BookingService</code> - Booking management</li>
+            </ul>
+
+            <h4>3. Repository Pattern</h4>
+            <pre>
+@Repository
+public interface UserRepository extends JpaRepository&lt;User, Integer&gt; {
+    Optional&lt;User&gt; findByUsername(String username);
+    Optional&lt;User&gt; findByEmail(String email);
+    boolean existsByUsername(String username);
+}
+            </pre>
+
+            <h3>Running Backend</h3>
+            <pre>
+# Navigate to backend directory
+cd backend
+
+# Build project with Maven
+mvn clean install
+
+# Run application
+mvn spring-boot:run
+
+# Application starts on http://localhost:8080
+            </pre>
+
+            <div class="success-box">
+                <strong>✓ API Documentation:</strong> Access Swagger UI at <code>http://localhost:8080/swagger-ui.html</code>
+            </div>
+        </section>
+
+        <!-- Frontend Setup Section -->
+        <section id="frontend">
+            <h2>🎨 Frontend Development Guide</h2>
+
+            <h3>Technology Stack</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Technology</th>
+                    <th>Version</th>
+                </tr>
+                <tr>
+                    <td>Framework</td>
+                    <td>Angular</td>
+                    <td>17.0.0</td>
+                </tr>
+                <tr>
+                    <td>Language</td>
+                    <td>TypeScript</td>
+                    <td>5.2.2</td>
+                </tr>
+                <tr>
+                    <td>UI Framework</td>
+                    <td>Bootstrap 5</td>
+                    <td>5.3.0</td>
+                </tr>
+                <tr>
+                    <td>HTTP Client</td>
+                    <td>Angular HttpClient</td>
+                    <td>Built-in</td>
+                </tr>
+                <tr>
+                    <td>Forms</td>
+                    <td>Reactive Forms</td>
+                    <td>Built-in</td>
+                </tr>
+                <tr>
+                    <td>Notifications</td>
+                    <td>ngx-toastr</td>
+                    <td>16.1.0</td>
+                </tr>
+            </table>
+
+            <h3>Project Structure</h3>
+            <pre>
+frontend/
+├── src/
+│   ├── app/
+│   │   ├── auth/                        # Authentication module
+│   │   │   ├── login/
+│   │   │   ├── register/
+│   │   │   └── auth.service.ts
+│   │   ├── destinations/                # Destinations module
+│   │   │   ├── search/
+│   │   │   ├── detail/
+│   │   │   └── destination.service.ts
+│   │   ├── hotels/                      # Hotels module
+│   │   │   ├── list/
+│   │   │   ├── detail/
+│   │   │   └── hotel.service.ts
+│   │   ├── calculator/                  # Cost calculator
+│   │   │   └── cost-calculator/
+│   │   ├── itinerary/                   # Itinerary planning
+│   │   │   ├── generator/
+│   │   │   └── detail/
+│   │   ├── admin/                       # Admin module
+│   │   │   └── dashboard/
+│   │   ├── shared/                      # Shared resources
+│   │   │   ├── navbar/
+│   │   │   ├── footer/
+│   │   │   └── interceptor/
+│   │   ├── services/                    # Services
+│   │   │   ├── api.service.ts
+│   │   │   └── auth.service.ts
+│   │   ├── app.module.ts
+│   │   ├── app-routing.module.ts
+│   │   └── app.component.ts
+│   ├── assets/                          # Static files
+│   ├── styles.css                       # Global styles
+│   └── index.html
+├── angular.json
+├── package.json
+└── tsconfig.json
+            </pre>
+
+            <h3>Key Concepts</h3>
+
+            <h4>1. Services & Dependency Injection</h4>
+            <pre>
+// Define service
+@Injectable({
+  providedIn: 'root'
+})
+export class ApiService {
+  constructor(private http: HttpClient) { }
+
+  getDestinations(): Observable&lt;any&gt; {
+    return this.http.get(`${this.baseUrl}/destinations`);
+  }
+}
+
+// Inject in component
+export class DestinationComponent {
+  constructor(private apiService: ApiService) { }
+
+  ngOnInit() {
+    this.apiService.getDestinations().subscribe(
+      data =&gt; this.destinations = data
+    );
+  }
+}
+            </pre>
+
+            <h4>2. Reactive Forms</h4>
+            <pre>
+export class LoginComponent {
+  loginForm: FormGroup;
+
+  constructor(private fb: FormBuilder) {
+    this.loginForm = this.fb.group({
+      username: ['', [Validators.required]],
+      password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+  }
+
+  login() {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe(...);
+    }
+  }
+}
+            </pre>
+
+            <h4>3. JWT Interceptor</h4>
+            <div class="info-box">
+                <p>Automatically adds JWT token to all HTTP requests:</p>
+            </div>
+            <pre>
+@Injectable()
+export class JwtInterceptor implements HttpInterceptor {
+  constructor(private authService: AuthService) { }
+
+  intercept(req: HttpRequest&lt;any&gt;, next: HttpHandler) {
+    const token = this.authService.getToken();
+    if (token) {
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
+    }
+    return next.handle(req);
+  }
+}
+            </pre>
+
+            <h3>Running Frontend</h3>
+            <pre>
+# Navigate to frontend directory
+cd frontend
+
+# Install dependencies
+npm install
+
+# Start development server
+npm start
+
+# Application starts on http://localhost:4200
+            </pre>
+
+            <div class="success-box">
+                <strong>✓ Hot Reload:</strong> Changes are automatically compiled and refreshed in browser
+            </div>
+        </section>
+
+        <!-- Database Section -->
+        <section id="database">
+            <h2>🗄️ Database Design</h2>
+
+            <h3>Core Tables</h3>
+            <table>
+                <tr>
+                    <th>Table</th>
+                    <th>Purpose</th>
+                    <th>Key Columns</th>
+                </tr>
+                <tr>
+                    <td><code>users</code></td>
+                    <td>User accounts</td>
+                    <td>user_id, username, email, password, is_admin</td>
+                </tr>
+                <tr>
+                    <td><code>destinations</code></td>
+                    <td>Travel locations</td>
+                    <td>destination_id, name, country, budget_category, travel_type</td>
+                </tr>
+                <tr>
+                    <td><code>hotels</code></td>
+                    <td>Hotel properties</td>
+                    <td>hotel_id, destination_id, name, price_per_night</td>
+                </tr>
+                <tr>
+                    <td><code>bookings</code></td>
+                    <td>Hotel reservations</td>
+                    <td>booking_id, user_id, hotel_id, check_in_date, total_price</td>
+                </tr>
+                <tr>
+                    <td><code>itineraries</code></td>
+                    <td>Trip plans</td>
+                    <td>itinerary_id, user_id, start_date, end_date, package_type</td>
+                </tr>
+                <tr>
+                    <td><code>reviews</code></td>
+                    <td>User reviews</td>
+                    <td>review_id, user_id, destination_id/hotel_id, rating, content</td>
+                </tr>
+            </table>
+
+            <h3>Relationships</h3>
+            <pre>
+Users (1) ────────→ (M) Bookings
+Users (1) ────────→ (M) Itineraries
+Users (1) ────────→ (M) Reviews
+
+Destinations (1) ──→ (M) Hotels
+Destinations (1) ──→ (M) Reviews
+Hotels (1) ────────→ (M) Bookings
+Hotels (1) ────────→ (M) Reviews
+
+Itineraries (1) ───→ (M) ItineraryDays
+Bookings (1) ──────→ (M) PaymentSplits
+            </pre>
+
+            <h3>Sample Queries</h3>
+            <pre>
+-- Find top-rated hotels in a destination
+SELECT h.*, AVG(r.rating) as avg_rating
+FROM hotels h
+LEFT JOIN reviews r ON h.hotel_id = r.hotel_id
+WHERE h.destination_id = 1
+GROUP BY h.hotel_id
+ORDER BY avg_rating DESC;
+
+-- Get user's bookings with details
+SELECT b.*, h.name as hotel_name, d.name as destination_name
+FROM bookings b
+JOIN hotels h ON b.hotel_id = h.hotel_id
+JOIN destinations d ON b.destination_id = d.destination_id
+WHERE b.user_id = ?
+ORDER BY b.booking_date DESC;
+            </pre>
+        </section>
+
+        <!-- API Reference Section -->
+        <section id="api">
+            <h2>📡 API Reference</h2>
+
+            <h3>Authentication Endpoints</h3>
+
+            <div class="endpoint">
+                <span class="method post">POST</span> /auth/login
+            </div>
+            <p><strong>Login user and get JWT token</strong></p>
+            <pre>
+{
+  "username": "admin",
+  "password": "admin"
+}
+
+Response:
+{
+  "success": true,
+  "message": "Login successful",
+  "data": {
+    "userId": 1,
+    "username": "admin",
+    "email": "admin@smarttravel.com",
+    "token": "eyJhbGc...",
+    "isAdmin": true
+  }
+}
+            </pre>
+
+            <div class="endpoint">
+                <span class="method post">POST</span> /auth/register
+            </div>
+            <p><strong>Register new user</strong></p>
+            <pre>
+{
+  "username": "newuser",
+  "email": "user@example.com",
+  "password": "password123",
+  "fullName": "John Doe",
+  "phone": "+1234567890"
+}
+            </pre>
+
+            <h3>Destination Endpoints</h3>
+
+            <div class="endpoint">
+                <span class="method get">GET</span> /destinations
+            </div>
+            <p><strong>Get all destinations</strong></p>
+
+            <div class="endpoint">
+                <span class="method get">GET</span> /destinations/search
+            </div>
+            <p><strong>Search destinations with filters</strong></p>
+            <pre>
+Query Parameters:
+- country: string (optional)
+- travelType: Nature|Adventure|Budget|Luxury|Cultural|Beach|Mountain
+- budgetCategory: Budget|Mid-Range|Luxury
+- minRating: number (optional)
+
+Example: /destinations/search?country=France&budgetCategory=Luxury
+            </pre>
+
+            <h3>Hotel Endpoints</h3>
+
+            <div class="endpoint">
+                <span class="method get">GET</span> /hotels/destination/{destinationId}
+            </div>
+            <p><strong>Get hotels in a destination</strong></p>
+
+            <div class="endpoint">
+                <span class="method get">GET</span> /hotels/search
+            </div>
+            <p><strong>Search hotels with price filters</strong></p>
+            <pre>
+Query Parameters:
+- destinationId: number (required)
+- minPrice: number (optional)
+- maxPrice: number (optional)
+
+Example: /hotels/search?destinationId=1&minPrice=50&maxPrice=200
+            </pre>
+
+            <h3>Cost Calculator Endpoints</h3>
+
+            <div class="endpoint">
+                <span class="method post">POST</span> /calculator/calculate
+            </div>
+            <p><strong>Calculate trip cost</strong></p>
+            <pre>
+{
+  "numberOfDays": 5,
+  "numberOfPeople": 2,
+  "numberOfRooms": 1,
+  "destinationId": 1,
+  "budgetCategory": "Mid-Range"
+}
+
+Response:
+{
+  "travelCost": 1200.00,
+  "accommodationCost": 500.00,
+  "foodEstimate": 500.00,
+  "activitiesEstimate": 750.00,
+  "miscellaneous": 150.00,
+  "totalEstimatedCost": 3100.00
+}
+            </pre>
+        </section>
+
+        <!-- Deployment Section -->
+        <section id="deployment">
+            <h2>🚀 Deployment Guide</h2>
+
+            <h3>Prerequisites</h3>
+            <ul>
+                <li>Docker and Docker Compose</li>
+                <li>AWS/GCP/Azure account (for cloud deployment)</li>
+                <li>Git for version control</li>
+                <li>SSL certificate (for HTTPS)</li>
+            </ul>
+
+            <h3>Docker Deployment</h3>
+            <pre>
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: smart_travel_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+  backend:
+    build: ./backend
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/smart_travel_db
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "4200:4200"
+    depends_on:
+      - backend
+
+volumes:
+  mysql_data:
+            </pre>
+
+            <h3>AWS Deployment</h3>
+            <div class="info-box">
+                <strong>Architecture:</strong>
+                <ol>
+                    <li>RDS MySQL for database</li>
+                    <li>Elastic Beanstalk for backend</li>
+                    <li>S3 + CloudFront for frontend</li>
+                </ol>
+            </div>
+
+            <h3>Environment Variables</h3>
+            <pre>
+# Backend (application.properties)
+SPRING_DATASOURCE_URL=jdbc:mysql://host:3306/db_name
+SPRING_DATASOURCE_USERNAME=db_user
+SPRING_DATASOURCE_PASSWORD=db_password
+JWT_SECRET=your-secret-key
+CORS_ALLOWED_ORIGINS=https://yourdomain.com
+
+# Frontend (environment.ts)
+export const environment = {
+  production: true,
+  apiUrl: 'https://api.yourdomain.com'
+};
+            </pre>
+        </section>
+
+        <!-- FAQ Section -->
+        <section id="faq">
+            <h2>❓ Frequently Asked Questions</h2>
+
+            <h3>How do I add a new feature?</h3>
+            <div class="info-box">
+                <ol>
+                    <li>Create feature branch: <code>git checkout -b feature/new-feature</code></li>
+                    <li>Backend: Create model, repository, service, and controller</li>
+                    <li>Frontend: Create component and add routing</li>
+                    <li>Test thoroughly</li>
+                    <li>Submit pull request</li>
+                </ol>
+            </div>
+
+            <h3>How do I add a new destination?</h3>
+            <p>Use the admin dashboard or API:</p>
+            <pre>
+POST /api/destinations
+{
+  "name": "Barcelona",
+  "country": "Spain",
+  "description": "Beautiful coastal city",
+  "temperatureAvg": 15,
+  "currency": "EUR",
+  "travelType": "Cultural",
+  "budgetCategory": "Mid-Range"
+}
+            </pre>
+
+            <h3>How do I debug the backend?</h3>
+            <ul>
+                <li>Check logs: <code>tail -f logs/app.log</code></li>
+                <li>Use Spring Boot actuator: <code>http://localhost:8080/actuator</code></li>
+                <li>Enable debug logging in application.properties</li>
+                <li>Use IDE debugger with breakpoints</li>
+            </ul>
+
+            <h3>How do I reset the database?</h3>
+            <pre>
+mysql -u root -p
+DROP DATABASE smart_travel_db;
+SOURCE database/database_schema.sql;
+SOURCE database/sample_data.sql;
+            </pre>
+
+            <h3>What are the default admin credentials?</h3>
+            <div class="warning-box">
+                <strong>Username:</strong> admin<br>
+                <strong>Password:</strong> admin<br>
+                <strong>⚠️ Change these in production!</strong>
+            </div>
+
+            <h3>How do I handle CORS errors?</h3>
+            <p>Check and update CORS configuration in:</p>
+            <ul>
+                <li><code>application.properties</code> (Backend)</li>
+                <li><code>SmartTravelApp.java</code> (CORS bean)</li>
+                <li>Ensure frontend URL is whitelisted</li>
+            </ul>
+        </section>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Smart Travel Planner - Developer Guide</p>
+        <p>Last Updated: April 2026 | Version 1.0.0</p>
+    </footer>
+</body>
+</html>

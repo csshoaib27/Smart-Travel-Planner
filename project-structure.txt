@@ -1,0 +1,101 @@
+SMART TRAVEL PLANNER - PROJECT STRUCTURE
+=========================================
+
+smart-travel-planner/
+├── backend/
+│   ├── pom.xml
+│   ├── src/
+│   │   ├── main/
+│   │   │   ├── java/com/smarttravel/
+│   │   │   │   ├── SmartTravelApp.java
+│   │   │   │   ├── config/
+│   │   │   │   │   ├── JwtConfig.java
+│   │   │   │   │   └── SecurityConfig.java
+│   │   │   │   ├── controller/
+│   │   │   │   │   ├── AuthController.java
+│   │   │   │   │   ├── DestinationController.java
+│   │   │   │   │   ├── HotelController.java
+│   │   │   │   │   ├── CostCalculatorController.java
+│   │   │   │   │   ├── ItineraryController.java
+│   │   │   │   │   └── AdminController.java
+│   │   │   │   ├── model/
+│   │   │   │   │   ├── User.java
+│   │   │   │   │   ├── Destination.java
+│   │   │   │   │   ├── Hotel.java
+│   │   │   │   │   ├── Booking.java
+│   │   │   │   │   ├── Itinerary.java
+│   │   │   │   │   └── Review.java
+│   │   │   │   ├── service/
+│   │   │   │   │   ├── AuthService.java
+│   │   │   │   │   ├── DestinationService.java
+│   │   │   │   │   ├── HotelService.java
+│   │   │   │   │   ├── CostCalculatorService.java
+│   │   │   │   │   └── ItineraryService.java
+│   │   │   │   ├── repository/
+│   │   │   │   │   ├── UserRepository.java
+│   │   │   │   │   ├── DestinationRepository.java
+│   │   │   │   │   ├── HotelRepository.java
+│   │   │   │   │   ├── BookingRepository.java
+│   │   │   │   │   ├── ItineraryRepository.java
+│   │   │   │   │   └── ReviewRepository.java
+│   │   │   │   ├── util/
+│   │   │   │   │   ├── JwtUtil.java
+│   │   │   │   │   └── PasswordEncoder.java
+│   │   │   │   └── exception/
+│   │   │   │       └── GlobalExceptionHandler.java
+│   │   │   └── resources/
+│   │   │       ├── application.properties
+│   │   │       └── schema.sql
+│   │   └── test/
+│   │       └── java/com/smarttravel/
+│   └── README.md
+├── frontend/
+│   ├── angular.json
+│   ├── package.json
+│   ├── src/
+│   │   ├── app/
+│   │   │   ├── app.component.html
+│   │   │   ├── app.component.css
+│   │   │   ├── app.component.ts
+│   │   │   ├── app.module.ts
+│   │   │   ├── app-routing.module.ts
+│   │   │   ├── auth/
+│   │   │   │   ├── login/
+│   │   │   │   ├── register/
+│   │   │   │   └── auth.service.ts
+│   │   │   ├── shared/
+│   │   │   │   ├── navbar/
+│   │   │   │   ├── footer/
+│   │   │   │   └── interceptor/
+│   │   │   ├── destinations/
+│   │   │   │   ├── search/
+│   │   │   │   ├── detail/
+│   │   │   │   └── destination.service.ts
+│   │   │   ├── hotels/
+│   │   │   │   ├── list/
+│   │   │   │   ├── detail/
+│   │   │   │   └── hotel.service.ts
+│   │   │   ├── calculator/
+│   │   │   │   ├── cost-calculator/
+│   │   │   │   └── calculator.service.ts
+│   │   │   ├── itinerary/
+│   │   │   │   ├── generator/
+│   │   │   │   ├── detail/
+│   │   │   │   └── itinerary.service.ts
+│   │   │   └── admin/
+│   │   │       ├── dashboard/
+│   │   │       ├── user-management/
+│   │   │       └── admin.service.ts
+│   │   ├── assets/
+│   │   └── styles.css
+│   └── README.md
+├── database/
+│   ├── schema.sql
+│   ├── seed-data.sql
+│   └── README.md
+├── docs/
+│   ├── README.md
+│   ├── API_DOCUMENTATION.html
+│   ├── DEVELOPER_GUIDE.html
+│   └── DEPLOYMENT.md
+└── root-README.md
