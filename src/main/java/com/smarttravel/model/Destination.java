@@ -1,5 +1,6 @@
 package com.smarttravel.model;
 
+import com.smarttravel.config.BudgetCategoryConverter;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -53,7 +54,7 @@ public class Destination {
     private TravelType travelType;
 
     @Column(name = "budget_category", nullable = false)
-    @Enumerated(EnumType.STRING)
+    @Convert(converter = BudgetCategoryConverter.class)
     private BudgetCategory budgetCategory;
 
     @Column(name = "average_rating")
