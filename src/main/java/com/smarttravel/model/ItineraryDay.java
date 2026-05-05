@@ -1,10 +1,14 @@
 package com.smarttravel.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -45,11 +49,15 @@ public class ItineraryDay {
     @Builder.Default
     private LocalDateTime createdAt = LocalDateTime.now();
 
-    // Relationships
+    // Relationships — excluded from equals/hashCode/toString to prevent circular recursion
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "itinerary_id", insertable = false, updatable = false)
     private Itinerary itinerary;
 
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "destination_id", insertable = false, updatable = false)
     private Destination destination;

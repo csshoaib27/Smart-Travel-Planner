@@ -17,6 +17,9 @@
       <li class="nav-item">
         <button class="nav-link" [class.active]="activeTab === 'bookings'" (click)="activeTab = 'bookings'">📋 Bookings</button>
       </li>
+      <li class="nav-item">
+        <button class="nav-link" [class.active]="activeTab === 'itineraries'" (click)="activeTab = 'itineraries'">🗺️ Itineraries</button>
+      </li>
     </ul>
 
     <!-- Stats Tab -->
@@ -54,12 +57,25 @@
             </div>
           </div>
         </div>
+        <div class="col-md-3">
+          <div class="card text-center shadow-sm border-secondary">
+            <div class="card-body">
+              <div class="display-6 text-secondary">{{ stats.totalItineraries ?? 0 }}</div>
+              <div class="text-muted">Itineraries</div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
     <!-- Users Tab -->
     <div *ngIf="activeTab === 'users'">
-      <div class="table-responsive">
+      <div *ngIf="usersLoading" class="text-center py-4">
+        <div class="spinner-border spinner-border-sm text-primary"></div>
+        <span class="ms-2 text-muted">Loading users…</span>
+      </div>
+      <div *ngIf="usersError" class="alert alert-danger">{{ usersError }}</div>
+      <div *ngIf="!usersLoading && !usersError" class="table-responsive">
         <table class="table table-hover">
           <thead class="table-light">
             <tr>
@@ -77,7 +93,7 @@
             </tr>
           </tbody>
         </table>
-        <p *ngIf="users.length === 0" class="text-muted text-center">No users found.</p>
+        <p *ngIf="users.length === 0" class="text-muted text-center py-3">No users found.</p>
       </div>
     </div>
 
@@ -93,11 +109,11 @@
           <tbody>
             <tr *ngFor="let b of bookings">
               <td>{{ b.bookingId }}</td>
-              <td>{{ b.userId }}</td>
-              <td>{{ b.hotelId }}</td>
+              <td>{{ b.userName || b.userId }}</td>
+              <td>{{ b.hotelName || b.hotelId }}</td>
               <td>{{ b.checkInDate | date:'shortDate' }}</td>
               <td>{{ b.checkOutDate | date:'shortDate' }}</td>
-              <td>${{ b.totalPrice | number:'1.2-2' }}</td>
+              <td>₹{{ b.totalPrice | number:'1.2-2' }}</td>
               <td>
                 <span class="badge"
                   [class.bg-warning]="b.status === 'Pending'"
@@ -113,5 +129,138 @@
         <p *ngIf="bookings.length === 0" class="text-muted text-center">No bookings found.</p>
       </div>
     </div>
+
+    <!-- Itineraries Tab -->
+    <div *ngIf="activeTab === 'itineraries'">
+      <div *ngIf="itinerariesLoading" class="text-center py-4">
+        <div class="spinner-border spinner-border-sm text-primary"></div>
+        <span class="ms-2 text-muted">Loading itineraries…</span>
+      </div>
+      <div *ngIf="itinerariesError" class="alert alert-danger">{{ itinerariesError }}</div>
+
+      <ng-container *ngIf="!itinerariesLoading && !itinerariesError">
+      <!-- Filters -->
+      <div class="row g-2 mb-3">
+        <div class="col-md-5">
+          <input type="text" class="form-control" placeholder="Search by title or username…"
+            [(ngModel)]="itinerarySearch" (input)="applyItineraryFilters()">
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="itineraryPackageFilter" (change)="applyItineraryFilters()">
+            <option value="">All Packages</option>
+            <option value="Solo">🧳 Solo</option>
+            <option value="Couple">💑 Couple</option>
+            <option value="Family">👨‍👩‍👧 Family</option>
+            <option value="Adventure">🏔️ Adventure</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <select class="form-select" [(ngModel)]="itineraryBudgetFilter" (change)="applyItineraryFilters()">
+            <option value="">All Budgets</option>
+            <option value="Economic">Economic</option>
+            <option value="Premium">Premium</option>
+            <option value="Luxury">Luxury</option>
+          </select>
+        </div>
+        <div class="col-md-1 text-end">
+          <span class="badge bg-secondary mt-2">{{ filteredItineraries.length }}</span>
+        </div>
+      </div>
+
+      <!-- Itinerary Table -->
+      <div class="table-responsive">
+        <table class="table table-hover align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>ID</th>
+              <th>Title</th>
+              <th>User</th>
+              <th>Package</th>
+              <th>Budget</th>
+              <th>Days</th>
+              <th>Dates</th>
+              <th>Est. Cost</th>
+              <th>Created</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container *ngFor="let it of filteredItineraries">
+              <!-- Main row -->
+              <tr>
+                <td class="text-muted small">{{ it.itineraryId }}</td>
+                <td>
+                  <button class="btn btn-link btn-sm p-0 text-start fw-semibold"
+                    (click)="toggleItinerary(it.itineraryId)">
+                    {{ it.title }}
+                    <span class="ms-1 text-muted small">{{ expandedItineraryId === it.itineraryId ? '▲' : '▼' }}</span>
+                  </button>
+                </td>
+                <td>
+                  <span class="text-primary small">{{ it.username }}</span>
+                  <br><span class="text-muted" style="font-size:11px">ID {{ it.userId }}</span>
+                </td>
+                <td>{{ packageIcon(it.packageType) }} {{ it.packageType }}</td>
+                <td>
+                  <span class="badge bg-{{ budgetColor(it.budgetTier) }}">{{ it.budgetTier }}</span>
+                </td>
+                <td class="text-center">{{ it.numberOfDays }}</td>
+                <td class="small">
+                  {{ it.startDate | date:'mediumDate' }}<br>
+                  <span class="text-muted">→ {{ it.endDate | date:'mediumDate' }}</span>
+                </td>
+                <td class="fw-semibold">
+                  {{ it.currency }} {{ it.totalEstimatedCost | number:'1.0-0' }}
+                </td>
+                <td class="text-muted small">{{ it.createdAt | date:'shortDate' }}</td>
+                <td>
+                  <button class="btn btn-outline-danger btn-sm"
+                    (click)="deleteItinerary(it.itineraryId)" title="Delete">🗑️</button>
+                </td>
+              </tr>
+
+              <!-- Expanded day-by-day plan -->
+              <tr *ngIf="expandedItineraryId === it.itineraryId">
+                <td colspan="10" class="bg-light p-0">
+                  <div class="p-3">
+                    <h6 class="mb-3 text-secondary">Day-by-Day Plan — {{ it.title }}</h6>
+                    <div *ngIf="!it.days || it.days.length === 0" class="text-muted small">
+                      No day plan available.
+                    </div>
+                    <div class="row g-2">
+                      <div class="col-md-6" *ngFor="let day of it.days">
+                        <div class="card border-0 shadow-sm h-100">
+                          <div class="card-body py-2 px-3">
+                            <div class="d-flex justify-content-between align-items-center mb-1">
+                              <span class="fw-bold text-primary small">Day {{ day.dayNumber }}</span>
+                              <span class="badge bg-light text-dark border small">
+                                {{ it.currency }} {{ day.estimatedBudget | number:'1.0-0' }}
+                              </span>
+                            </div>
+                            <div class="small">
+                              <span *ngFor="let act of day.activities?.split(' | '); let i = index">
+                                <span class="me-1">{{ i > 0 ? '·' : '' }} {{ act }}</span>
+                              </span>
+                            </div>
+                            <div *ngIf="day.notes" class="text-muted mt-1" style="font-size:11px">
+                              📝 {{ day.notes }}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+        <p *ngIf="filteredItineraries.length === 0" class="text-muted text-center py-4">
+          No itineraries found.
+        </p>
+      </div>
+      </ng-container>
+    </div>
+
   </ng-container>
 </div>

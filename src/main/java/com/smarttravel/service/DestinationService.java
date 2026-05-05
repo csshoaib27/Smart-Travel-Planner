@@ -7,7 +7,7 @@ import com.smarttravel.repository.ReviewRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,6 +17,7 @@ public class DestinationService {
 
     private final DestinationRepository destinationRepository;
     private final ReviewRepository reviewRepository;
+    private final GeminiService geminiService;
 
     public DestinationDTO createDestination(Destination destination) {
         log.info("Creating new destination: {}", destination.getName());
@@ -48,50 +49,44 @@ public class DestinationService {
                 .collect(Collectors.toList());
     }
 
-    public List<DestinationDTO> getDestinationsByCountry(String country) {
-        log.info("Fetching destinations for country: {}", country);
-        return destinationRepository.findByCountry(country)
+    public List<DestinationDTO> filterDestinations(String country, String travelType, String budgetCategory, String city) {
+        String c = (country != null && !country.isEmpty()) ? country : null;
+        String ci = (city != null && !city.isEmpty()) ? city : null;
+
+        Destination.TravelType tt = null;
+        if (travelType != null && !travelType.isEmpty()) {
+            try { tt = Destination.TravelType.valueOf(travelType); } catch (IllegalArgumentException ignored) {}
+        }
+
+        Destination.BudgetCategory bc = null;
+        if (budgetCategory != null && !budgetCategory.isEmpty()) {
+            try { bc = Destination.BudgetCategory.valueOf(budgetCategory); } catch (IllegalArgumentException ignored) {}
+        }
+
+        return destinationRepository.filterDestinations(c, tt, bc, ci)
+                .stream()
+                .collect(Collectors.toMap(
+                        d -> (d.getName() + "|" + d.getCountry()).toLowerCase(),
+                        d -> d,
+                        (a, b) -> a,
+                        LinkedHashMap::new
+                ))
+                .values()
                 .stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
     }
 
-    public List<DestinationDTO> getDestinationsByTravelType(String travelType) {
-        try {
-            Destination.TravelType type = Destination.TravelType.valueOf(travelType);
-            return destinationRepository.findByTravelType(type)
-                    .stream()
-                    .map(this::mapToDTO)
-                    .collect(Collectors.toList());
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Invalid travel type: " + travelType);
-        }
+    public List<String> getDistinctCountries() {
+        return destinationRepository.findDistinctCountries();
     }
 
-    public List<DestinationDTO> getDestinationsByBudget(String budgetCategory) {
-        try {
-            Destination.BudgetCategory category = Destination.BudgetCategory.valueOf(budgetCategory);
-            return destinationRepository.findByBudgetCategory(category)
-                    .stream()
-                    .map(this::mapToDTO)
-                    .collect(Collectors.toList());
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Invalid budget category: " + budgetCategory);
-        }
-    }
-
-    public List<DestinationDTO> searchDestinations(String country, String travelType, String budgetCategory) {
-        try {
-            Destination.TravelType type = Destination.TravelType.valueOf(travelType);
-            Destination.BudgetCategory category = Destination.BudgetCategory.valueOf(budgetCategory);
-
-            return destinationRepository.searchDestinations(country, type, category)
-                    .stream()
-                    .map(this::mapToDTO)
-                    .collect(Collectors.toList());
-        } catch (IllegalArgumentException e) {
-            throw new RuntimeException("Invalid filters provided");
-        }
+    public List<String> getCitiesForCountry(String country) {
+        List<String> dbCities = destinationRepository.findNamesByCountry(country);
+        List<String> aiCities = geminiService.getCitiesForCountry(country);
+        LinkedHashSet<String> combined = new LinkedHashSet<>(dbCities);
+        combined.addAll(aiCities);
+        return new ArrayList<>(combined);
     }
 
     public List<DestinationDTO> getTopRatedDestinations() {

@@ -1,10 +1,14 @@
 package com.smarttravel.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -17,6 +21,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Itinerary {
 
     @Id
@@ -53,6 +58,10 @@ public class Itinerary {
     @Builder.Default
     private String currency = "USD";
 
+    @Column(name = "budget_tier", length = 20)
+    @Builder.Default
+    private String budgetTier = "Economic";
+
     @Column(name = "is_public")
     @Builder.Default
     private Boolean isPublic = false;
@@ -66,11 +75,15 @@ public class Itinerary {
     private LocalDateTime updatedAt = LocalDateTime.now();
 
     // Relationships
+    @JsonIgnore
+    @ToString.Exclude @EqualsAndHashCode.Exclude
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private User user;
 
-    @OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL, orphanRemoval = true)
+    @ToString.Exclude @EqualsAndHashCode.Exclude
+    @OneToMany(mappedBy = "itinerary", cascade = CascadeType.ALL, orphanRemoval = true,
+               fetch = FetchType.EAGER)
     private Set<ItineraryDay> days = new HashSet<>();
 
     public enum PackageType {

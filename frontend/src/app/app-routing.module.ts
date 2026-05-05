@@ -11,6 +11,7 @@ import { CostCalculatorComponent } from './calculator/cost-calculator/cost-calcu
 import { ItineraryGeneratorComponent } from './itinerary/generator/generator.component';
 import { ItineraryDetailComponent } from './itinerary/detail/detail.component';
 import { AdminDashboardComponent } from './admin/dashboard/dashboard.component';
+import { MyTripsComponent } from './my-trips/my-trips.component';
 import { AuthGuard } from './shared/guards/auth.guard';
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'calculator', component: CostCalculatorComponent, canActivate: [AuthGuard] },
   { path: 'itineraries/new', component: ItineraryGeneratorComponent, canActivate: [AuthGuard] },
   { path: 'itineraries/:id', component: ItineraryDetailComponent, canActivate: [AuthGuard] },
+  { path: 'my-trips', component: MyTripsComponent, canActivate: [AuthGuard] },
   { path: 'admin', component: AdminDashboardComponent, canActivate: [AuthGuard] },
   { path: '**', redirectTo: '' }
 ];

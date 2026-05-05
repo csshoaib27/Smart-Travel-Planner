@@ -41,7 +41,7 @@
       <div class="col-md-4">
         <div class="card shadow-sm sticky-top" style="top:80px">
           <div class="card-body">
-            <h5 class="text-primary">${{ hotel.pricePerNight }}<small class="text-muted fs-6">/night</small></h5>
+            <h5 class="text-primary">₹{{ hotel.pricePerNight }}<small class="text-muted fs-6">/night</small></h5>
             <hr />
             <div class="mb-2">
               <label class="form-label small">Check-in</label>
@@ -68,7 +68,7 @@
             <div *ngIf="nights > 0" class="mb-3 p-2 bg-light rounded">
               <div class="d-flex justify-content-between">
                 <small>{{ nights }} night(s) × {{ booking.numberOfRooms }} room(s)</small>
-                <strong>${{ totalPrice | number:'1.2-2' }}</strong>
+                <strong>₹{{ totalPrice | number:'1.2-2' }}</strong>
               </div>
             </div>
             <button class="btn btn-primary w-100" (click)="bookNow()" [disabled]="booking_loading">

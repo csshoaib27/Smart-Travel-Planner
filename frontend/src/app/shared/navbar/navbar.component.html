@@ -21,7 +21,10 @@
           <a class="nav-link" routerLink="/calculator" routerLinkActive="active">Cost Calculator</a>
         </li>
         <li class="nav-item" *ngIf="authService.isAuthenticated()">
-          <a class="nav-link" routerLink="/itineraries/new" routerLinkActive="active">Plan Trip</a>
+          <a class="nav-link" routerLink="/itineraries/new" routerLinkActive="active">Plan Itinerary</a>
+        </li>
+        <li class="nav-item" *ngIf="authService.isAuthenticated()">
+          <a class="nav-link" routerLink="/my-trips" routerLinkActive="active">My Trips</a>
         </li>
         <li class="nav-item" *ngIf="authService.isAdmin()">
           <a class="nav-link" routerLink="/admin" routerLinkActive="active">Admin</a>

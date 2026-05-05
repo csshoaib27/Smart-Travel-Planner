@@ -48,8 +48,6 @@ public class AdminController {
                         map.put("phone", user.getPhone());
                         map.put("isAdmin", user.getIsAdmin());
                         map.put("createdAt", user.getCreatedAt());
-                        map.put("bookingCount", user.getBookings().size());
-                        map.put("itineraryCount", user.getItineraries().size());
                         return map;
                     })
                     .collect(Collectors.toList());
@@ -281,6 +279,79 @@ public class AdminController {
             log.info("Booking status updated: {} to {}", id, status);
 
             return ResponseEntity.ok(new ApiResponse<>(true, "Booking status updated", null,
+                    LocalDateTime.now().toString()));
+        } catch (Exception e) {
+            return ResponseEntity.status(500)
+                    .body(new ApiResponse<>(false, e.getMessage(), null,
+                            LocalDateTime.now().toString()));
+        }
+    }
+
+    // ==================== ITINERARY MANAGEMENT ====================
+
+    @GetMapping("/itineraries")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> getAllItineraries() {
+        try {
+            log.info("Admin fetching all itineraries");
+
+            // Pre-load users into a map to avoid N+1 queries
+            Map<Integer, String> usernames = new HashMap<>();
+            userRepository.findAll().forEach(u -> usernames.put(u.getUserId(), u.getUsername()));
+
+            List<Map<String, Object>> result = itineraryRepository.findAll()
+                    .stream()
+                    .sorted((a, b) -> b.getCreatedAt().compareTo(a.getCreatedAt()))
+                    .map(it -> {
+                        Map<String, Object> m = new HashMap<>();
+                        m.put("itineraryId",        it.getItineraryId());
+                        m.put("title",              it.getTitle());
+                        m.put("userId",             it.getUserId());
+                        m.put("username",           usernames.getOrDefault(it.getUserId(), "Unknown"));
+                        m.put("packageType",        it.getPackageType());
+                        m.put("budgetTier",         it.getBudgetTier());
+                        m.put("numberOfDays",       it.getNumberOfDays());
+                        m.put("startDate",          it.getStartDate());
+                        m.put("endDate",            it.getEndDate());
+                        m.put("currency",           it.getCurrency());
+                        m.put("totalEstimatedCost", it.getTotalEstimatedCost());
+                        m.put("isPublic",           it.getIsPublic());
+                        m.put("createdAt",          it.getCreatedAt());
+                        m.put("dayCount",           it.getDays().size());
+
+                        List<Map<String, Object>> days = it.getDays().stream()
+                                .sorted(java.util.Comparator.comparing(ItineraryDay::getDayNumber))
+                                .map(d -> {
+                                    Map<String, Object> dm = new HashMap<>();
+                                    dm.put("dayNumber",       d.getDayNumber());
+                                    dm.put("activities",      d.getActivities());
+                                    dm.put("notes",           d.getNotes());
+                                    dm.put("estimatedBudget", d.getEstimatedBudget());
+                                    return dm;
+                                })
+                                .collect(Collectors.toList());
+                        m.put("days", days);
+                        return m;
+                    })
+                    .collect(Collectors.toList());
+
+            return ResponseEntity.ok(new ApiResponse<>(true, "All itineraries retrieved",
+                    result, LocalDateTime.now().toString()));
+        } catch (Exception e) {
+            log.error("Error fetching itineraries: {}", e.getMessage());
+            return ResponseEntity.status(500)
+                    .body(new ApiResponse<>(false, e.getMessage(), null,
+                            LocalDateTime.now().toString()));
+        }
+    }
+
+    @DeleteMapping("/itineraries/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<?> deleteItinerary(@PathVariable Integer id) {
+        try {
+            itineraryRepository.deleteById(id);
+            log.info("Admin deleted itinerary: {}", id);
+            return ResponseEntity.ok(new ApiResponse<>(true, "Itinerary deleted", null,
                     LocalDateTime.now().toString()));
         } catch (Exception e) {
             return ResponseEntity.status(500)

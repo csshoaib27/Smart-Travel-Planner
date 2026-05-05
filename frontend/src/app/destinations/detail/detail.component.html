@@ -10,6 +10,7 @@
         <a routerLink="/destinations" class="btn btn-outline-secondary btn-sm mb-3">← Back</a>
         <img *ngIf="destination.imageUrl" [src]="destination.imageUrl" class="w-100 rounded mb-3"
              style="height:320px;object-fit:cover;background:#e9ecef"
+             loading="eager" decoding="async"
              (error)="destination.imageUrl = null" alt="{{ destination.name }}">
         <h2>{{ destination.name }}</h2>
         <p class="text-muted">📍 {{ destination.country }} &nbsp; ⭐ {{ destination.averageRating | number:'1.1-1' }} ({{ destination.reviewCount }} reviews)</p>
@@ -42,7 +43,7 @@
               <div class="card-body">
                 <h6 class="card-title">{{ hotel.name }}</h6>
                 <p class="text-muted small mb-1">⭐ {{ hotel.starRating }} stars</p>
-                <p class="fw-bold text-primary mb-0">${{ hotel.pricePerNight }}/night</p>
+                <p class="fw-bold text-primary mb-0">₹{{ hotel.pricePerNight }}/night</p>
               </div>
             </div>
           </div>
@@ -55,8 +56,8 @@
         <div class="card shadow-sm mb-3">
           <div class="card-body">
             <h6>Quick Actions</h6>
-            <a routerLink="/calculator" class="btn btn-primary w-100 mb-2">💰 Calculate Cost</a>
-            <a routerLink="/itineraries/new" class="btn btn-outline-primary w-100">📅 Plan Itinerary</a>
+            <a [routerLink]="['/calculator']" [queryParams]="{dest: destination.name}" class="btn btn-primary w-100 mb-2">💰 Calculate Cost</a>
+            <a [routerLink]="['/itineraries/new']" [queryParams]="{destinationId: destination?.destinationId}" class="btn btn-outline-primary w-100">📅 Plan Itinerary</a>
           </div>
         </div>
 

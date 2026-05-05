@@ -9,15 +9,24 @@ import java.util.List;
 
 @Repository
 public interface DestinationRepository extends JpaRepository<Destination, Integer> {
-    List<Destination> findByCountry(String country);
-    List<Destination> findByTravelType(Destination.TravelType travelType);
-    List<Destination> findByBudgetCategory(Destination.BudgetCategory budgetCategory);
 
-    @Query("SELECT d FROM Destination d WHERE d.country LIKE %:country% AND d.travelType = :travelType AND d.budgetCategory = :budgetCategory")
-    List<Destination> searchDestinations(@Param("country") String country,
-                                         @Param("travelType") Destination.TravelType travelType,
-                                         @Param("budgetCategory") Destination.BudgetCategory budgetCategory);
+    @Query("SELECT d FROM Destination d WHERE " +
+           "(:country IS NULL OR d.country = :country) AND " +
+           "(:travelType IS NULL OR d.travelType = :travelType) AND " +
+           "(:budgetCategory IS NULL OR d.budgetCategory = :budgetCategory) AND " +
+           "(:city IS NULL OR LOWER(d.name) LIKE LOWER(CONCAT('%', :city, '%')))")
+    List<Destination> filterDestinations(
+            @Param("country") String country,
+            @Param("travelType") Destination.TravelType travelType,
+            @Param("budgetCategory") Destination.BudgetCategory budgetCategory,
+            @Param("city") String city);
 
     @Query("SELECT d FROM Destination d ORDER BY d.averageRating DESC")
     List<Destination> findTopRatedDestinations();
+
+    @Query("SELECT DISTINCT d.country FROM Destination d ORDER BY d.country")
+    List<String> findDistinctCountries();
+
+    @Query("SELECT DISTINCT d.name FROM Destination d WHERE d.country = :country ORDER BY d.name")
+    List<String> findNamesByCountry(@Param("country") String country);
 }

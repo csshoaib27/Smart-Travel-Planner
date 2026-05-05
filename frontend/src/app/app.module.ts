@@ -21,6 +21,7 @@ import { CostCalculatorComponent } from './calculator/cost-calculator/cost-calcu
 import { ItineraryGeneratorComponent } from './itinerary/generator/generator.component';
 import { ItineraryDetailComponent } from './itinerary/detail/detail.component';
 import { AdminDashboardComponent } from './admin/dashboard/dashboard.component';
+import { MyTripsComponent } from './my-trips/my-trips.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
 
@@ -43,6 +44,7 @@ import { JwtInterceptor } from './shared/interceptor/jwt.interceptor';
     ItineraryGeneratorComponent,
     ItineraryDetailComponent,
     AdminDashboardComponent,
+    MyTripsComponent,
     NavbarComponent,
     FooterComponent
   ],

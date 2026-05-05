@@ -21,14 +21,7 @@ export class AuthService {
   }
 
   register(username: string, email: string, password: string, fullName: string, phone: string): Observable<any> {
-    return this.api.register({ username, email, password, fullName, phone }).pipe(
-      map(response => {
-        if (response?.data) {
-          this.saveUser(response.data);
-        }
-        return response;
-      })
-    );
+    return this.api.register({ username, email, password, fullName, phone });
   }
 
   login(username: string, password: string): Observable<any> {

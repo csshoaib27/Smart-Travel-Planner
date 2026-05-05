@@ -9,6 +9,7 @@ import { ApiService } from '../../api.service';
 })
 export class DestinationSearchComponent implements OnInit {
   destinations: any[] = [];
+  countries: string[] = [];
   loading = false;
   country = '';
   travelType = '';
@@ -24,6 +25,10 @@ export class DestinationSearchComponent implements OnInit {
   constructor(private api: ApiService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
+    this.api.getDestinationCountries().subscribe({
+      next: (res) => { this.countries = res.data ?? []; },
+      error: () => {}
+    });
     this.route.queryParams.subscribe(params => {
       this.country = params['country'] ?? '';
       this.search();
@@ -32,13 +37,17 @@ export class DestinationSearchComponent implements OnInit {
 
   search(): void {
     this.loading = true;
-    this.api.searchDestinations(this.country, this.travelType, this.budgetCategory).subscribe({
+    this.api.searchDestinations(this.country, this.travelType, this.budgetCategory, '').subscribe({
       next: (res) => {
         this.destinations = res.data ?? [];
         this.loading = false;
       },
       error: () => { this.loading = false; }
     });
+  }
+
+  onCountryChange(): void {
+    this.search();
   }
 
   clearFilters(): void {

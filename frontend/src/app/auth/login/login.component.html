@@ -1,24 +1,109 @@
-<div class="login-wrapper d-flex align-items-center justify-content-center">
-  <div class="card shadow login-card">
-    <div class="card-body p-4">
-      <h3 class="card-title text-center mb-4">✈️ Login</h3>
-      <form (ngSubmit)="onSubmit()">
+<div class="login-wrapper">
+  <div class="login-card">
+
+    <!-- ===== LOGIN FORM ===== -->
+    <ng-container *ngIf="mode === 'login'">
+      <div class="login-header">
+        <span class="login-icon">✈️</span>
+        <h2 class="login-title">Welcome Back</h2>
+        <p class="login-subtitle">Sign in to plan your next adventure</p>
+      </div>
+      <div class="login-divider"></div>
+
+      <form (ngSubmit)="onSubmit()" class="login-form">
         <div class="mb-3">
-          <label class="form-label">Username</label>
-          <input type="text" class="form-control" [(ngModel)]="username" name="username" placeholder="Enter username" required />
+          <label class="form-label">Username or Email</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control" [(ngModel)]="username" name="username"
+              placeholder="Enter username or email" required autocomplete="username" />
+          </div>
         </div>
+
         <div class="mb-3">
           <label class="form-label">Password</label>
-          <input type="password" class="form-control" [(ngModel)]="password" name="password" placeholder="Enter password" required />
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control" [(ngModel)]="password" name="password"
+              placeholder="Enter your password" required autocomplete="current-password" />
+          </div>
         </div>
-        <button type="submit" class="btn btn-primary w-100" [disabled]="loading">
+
+        <div class="text-end mb-4">
+          <a href="javascript:void(0)" class="forgot-link" (click)="switchToReset()">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-login w-100" [disabled]="loading">
           <span *ngIf="loading" class="spinner-border spinner-border-sm me-2"></span>
-          Login
+          <span *ngIf="!loading"><i class="bi bi-box-arrow-in-right me-2"></i></span>
+          {{ loading ? 'Signing in...' : 'Sign In' }}
         </button>
       </form>
-      <p class="text-center mt-3 mb-0">
-        Don't have an account? <a routerLink="/register">Register</a>
+
+      <p class="register-text text-center mt-4 mb-0">
+        Don't have an account? <a routerLink="/register">Create one</a>
       </p>
-    </div>
+    </ng-container>
+
+    <!-- ===== RESET PASSWORD FORM ===== -->
+    <ng-container *ngIf="mode === 'reset'">
+      <div class="login-header">
+        <span class="login-icon">🔑</span>
+        <h2 class="login-title">Reset Password</h2>
+        <p class="login-subtitle">Enter your details to set a new password</p>
+      </div>
+      <div class="login-divider"></div>
+
+      <form (ngSubmit)="onResetSubmit()" class="login-form">
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-person"></i></span>
+            <input type="text" class="form-control" [(ngModel)]="resetUsername" name="resetUsername"
+              placeholder="Your username" required />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">Registered Email</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-envelope"></i></span>
+            <input type="email" class="form-control" [(ngModel)]="resetEmail" name="resetEmail"
+              placeholder="your@email.com" required />
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">New Password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-lock"></i></span>
+            <input type="password" class="form-control" [(ngModel)]="resetNewPassword" name="resetNewPassword"
+              placeholder="Min. 6 characters" required />
+          </div>
+        </div>
+
+        <div class="mb-4">
+          <label class="form-label">Confirm New Password</label>
+          <div class="input-group">
+            <span class="input-group-text"><i class="bi bi-shield-lock"></i></span>
+            <input type="password" class="form-control" [(ngModel)]="resetConfirmPassword" name="resetConfirmPassword"
+              placeholder="Repeat new password" required />
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-reset w-100" [disabled]="resetLoading">
+          <span *ngIf="resetLoading" class="spinner-border spinner-border-sm me-2"></span>
+          <span *ngIf="!resetLoading"><i class="bi bi-arrow-clockwise me-2"></i></span>
+          {{ resetLoading ? 'Resetting...' : 'Reset Password' }}
+        </button>
+      </form>
+
+      <p class="text-center mt-4 mb-0">
+        <a href="javascript:void(0)" class="back-link" (click)="switchToLogin()">
+          <i class="bi bi-arrow-left me-1"></i>Back to Sign In
+        </a>
+      </p>
+    </ng-container>
+
   </div>
 </div>

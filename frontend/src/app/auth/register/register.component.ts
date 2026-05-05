@@ -34,7 +34,8 @@ export class RegisterComponent {
         this.router.navigate(['/login']);
       },
       error: (err) => {
-        this.toastr.error(err?.error?.message || 'Registration failed.');
+        const msg = err?.error?.message || err?.message || 'Registration failed. Please try again.';
+        this.toastr.error(msg);
         this.loading = false;
       }
     });

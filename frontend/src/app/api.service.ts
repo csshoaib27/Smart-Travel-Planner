@@ -20,6 +20,10 @@ export class ApiService {
     return this.http.post(`${this.baseUrl}/auth/login`, credentials);
   }
 
+  resetPassword(username: string, email: string, newPassword: string): Observable<any> {
+    return this.http.post(`${this.baseUrl}/auth/reset-password`, { username, email, newPassword });
+  }
+
   validateToken(token: string): Observable<any> {
     const headers = new HttpHeaders({
       'Authorization': `Bearer ${token}`
@@ -36,16 +40,25 @@ export class ApiService {
     return this.http.get(`${this.baseUrl}/destinations/${id}`);
   }
 
-  searchDestinations(country?: string, travelType?: string, budgetCategory?: string): Observable<any> {
+  searchDestinations(country?: string, travelType?: string, budgetCategory?: string, city?: string): Observable<any> {
     let url = `${this.baseUrl}/destinations/search?`;
-    if (country) url += `country=${country}&`;
-    if (travelType) url += `travelType=${travelType}&`;
-    if (budgetCategory) url += `budgetCategory=${budgetCategory}&`;
+    if (country) url += `country=${encodeURIComponent(country)}&`;
+    if (travelType) url += `travelType=${encodeURIComponent(travelType)}&`;
+    if (budgetCategory) url += `budgetCategory=${encodeURIComponent(budgetCategory)}&`;
+    if (city) url += `city=${encodeURIComponent(city)}&`;
     return this.http.get(url);
+  }
+
+  getDestinationCountries(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/destinations/countries`);
   }
 
   getTopRatedDestinations(): Observable<any> {
     return this.http.get(`${this.baseUrl}/destinations/top-rated`);
+  }
+
+  getCitiesForCountry(country: string): Observable<any> {
+    return this.http.get(`${this.baseUrl}/destinations/cities?country=${encodeURIComponent(country)}`);
   }
 
   createDestination(destination: any): Observable<any> {
@@ -83,6 +96,24 @@ export class ApiService {
 
   calculateCostPerPerson(request: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/calculator/calculate-per-person`, request);
+  }
+
+  downloadItineraryPdf(request: any): Observable<Blob> {
+    return this.http.post(`${this.baseUrl}/calculator/download-pdf`, request, {
+      responseType: 'blob'
+    });
+  }
+
+  downloadItineraryPlanPdf(request: any): Observable<Blob> {
+    return this.http.post(`${this.baseUrl}/itineraries/plan-pdf`, request, {
+      responseType: 'blob'
+    });
+  }
+
+  searchGoogleHotels(destination: string, budgetTier: string, destinationId?: number | null): Observable<any> {
+    let url = `${this.baseUrl}/hotels/google-hotels?destination=${encodeURIComponent(destination)}&budgetTier=${budgetTier}`;
+    if (destinationId) url += `&destinationId=${destinationId}`;
+    return this.http.get(url);
   }
 
   // ==================== ITINERARY ENDPOINTS ====================
@@ -163,5 +194,13 @@ export class ApiService {
 
   getSystemStats(): Observable<any> {
     return this.http.get(`${this.baseUrl}/admin/stats`);
+  }
+
+  getAllItineraries(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/admin/itineraries`);
+  }
+
+  deleteAdminItinerary(id: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/admin/itineraries/${id}`);
   }
 }

@@ -16,7 +16,10 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.api.getTopRatedDestinations().subscribe({
       next: (res) => {
-        this.topDestinations = res.data?.slice(0, 6) ?? [];
+        const seen = new Set<string>();
+        this.topDestinations = (res.data ?? [])
+          .filter((d: any) => seen.has(d.name) ? false : !!seen.add(d.name))
+          .slice(0, 6);
         this.loading = false;
       },
       error: () => { this.loading = false; }

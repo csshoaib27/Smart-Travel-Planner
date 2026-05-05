@@ -1,6 +1,42 @@
 <div class="container py-4">
   <h2 class="mb-4">🏨 Hotels</h2>
 
+  <!-- Filters -->
+  <div class="card mb-4 shadow-sm">
+    <div class="card-body">
+      <div class="row g-3">
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="country" (change)="onCountryChange()">
+            <option value="">All Countries</option>
+            <option *ngFor="let c of countries" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="city" (change)="applyFilters()">
+            <option value="">All Cities</option>
+            <option *ngFor="let c of cities" [value]="c">{{ c }}</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="destinationType" (change)="applyFilters()">
+            <option value="">All Types</option>
+            <option *ngFor="let t of destinationTypes" [value]="t">{{ t }}</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <select class="form-select" [(ngModel)]="category" (change)="applyFilters()">
+            <option value="">All Categories</option>
+            <option *ngFor="let cat of categories" [value]="cat">{{ cat }}</option>
+          </select>
+        </div>
+        <div class="col-md-2 d-flex gap-2">
+          <button class="btn btn-primary flex-fill" (click)="applyFilters()">Filter</button>
+          <button class="btn btn-outline-secondary" (click)="clearFilters()" title="Clear">✕</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div *ngIf="loading" class="text-center py-5">
     <div class="spinner-border text-primary"></div>
   </div>
@@ -10,11 +46,24 @@
       <div class="card h-100 shadow-sm hotel-card" [routerLink]="['/hotels', hotel.hotelId]" style="cursor:pointer">
         <div class="card-body">
           <h5 class="card-title">{{ hotel.name }}</h5>
-          <p class="text-muted small mb-1">{{ hotel.address }}</p>
+          <p class="text-muted small mb-1">
+            <span *ngIf="hotel.city">📍 {{ hotel.city }}</span>
+            <span *ngIf="hotel.country" class="ms-1 text-muted">({{ hotel.country }})</span>
+          </p>
           <p class="small mb-2">{{ hotel.description | slice:0:80 }}...</p>
           <div class="d-flex justify-content-between align-items-center">
-            <span class="fw-bold text-primary fs-5">${{ hotel.pricePerNight }}<small class="text-muted fs-6">/night</small></span>
+            <span class="fw-bold text-primary fs-5">₹{{ hotel.pricePerNight }}<small class="text-muted fs-6">/night</small></span>
             <span class="text-warning">⭐ {{ hotel.starRating }} stars</span>
+          </div>
+          <div class="mt-2">
+            <span class="badge"
+              [ngClass]="{
+                'bg-success': getCategoryForHotel(hotel) === 'Budget',
+                'bg-warning text-dark': getCategoryForHotel(hotel) === 'Premium',
+                'bg-danger': getCategoryForHotel(hotel) === 'Luxury'
+              }">
+              {{ getCategoryForHotel(hotel) }}
+            </span>
           </div>
         </div>
         <div class="card-footer bg-transparent">
@@ -23,7 +72,7 @@
       </div>
     </div>
     <div *ngIf="hotels.length === 0" class="col-12 text-center text-muted py-4">
-      No hotels found.
+      No hotels found. Try different filters.
     </div>
   </div>
 </div>

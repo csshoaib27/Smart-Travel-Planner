@@ -75,8 +75,11 @@ public class AuthService {
                     )
             );
 
-            User user = userRepository.findByUsername(request.getUsername())
-                    .orElseThrow(() -> new RuntimeException("User not found"));
+            User user = request.getUsername().contains("@")
+                    ? userRepository.findByEmail(request.getUsername())
+                            .orElseThrow(() -> new RuntimeException("User not found"))
+                    : userRepository.findByUsername(request.getUsername())
+                            .orElseThrow(() -> new RuntimeException("User not found"));
 
             String token = jwtUtil.generateToken(user);
 
@@ -126,6 +129,19 @@ public class AuthService {
     public void deleteUser(Integer userId) {
         userRepository.deleteById(userId);
         log.info("User deleted: {}", userId);
+    }
+
+    public boolean resetPassword(String username, String email, String newPassword) {
+        return userRepository.findByUsername(username)
+                .filter(u -> u.getEmail().equalsIgnoreCase(email))
+                .map(u -> {
+                    u.setPassword(passwordEncoder.encode(newPassword));
+                    u.setUpdatedAt(LocalDateTime.now());
+                    userRepository.save(u);
+                    log.info("Password reset for user: {}", u.getUserId());
+                    return true;
+                })
+                .orElse(false);
     }
 
     public boolean validateToken(String token) {

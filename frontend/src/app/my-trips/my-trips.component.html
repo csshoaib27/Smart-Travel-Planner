@@ -1,0 +1,95 @@
+<div class="container py-4">
+  <h3 class="mb-4">🧳 My Trips</h3>
+
+  <ul class="nav nav-tabs mb-4">
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'bookings'" (click)="activeTab = 'bookings'">
+        🏨 My Bookings
+        <span *ngIf="!bookingsLoading" class="badge bg-secondary ms-1">{{ bookings.length }}</span>
+      </button>
+    </li>
+    <li class="nav-item">
+      <button class="nav-link" [class.active]="activeTab === 'itineraries'" (click)="activeTab = 'itineraries'">
+        🗺️ My Itineraries
+        <span *ngIf="!itinerariesLoading" class="badge bg-secondary ms-1">{{ itineraries.length }}</span>
+      </button>
+    </li>
+  </ul>
+
+  <!-- ========== BOOKINGS TAB ========== -->
+  <div *ngIf="activeTab === 'bookings'">
+    <div *ngIf="bookingsLoading" class="text-center py-5">
+      <div class="spinner-border text-primary"></div>
+    </div>
+    <div *ngIf="bookingsError" class="alert alert-danger">{{ bookingsError }}</div>
+
+    <ng-container *ngIf="!bookingsLoading && !bookingsError">
+      <div *ngIf="bookings.length === 0" class="text-center py-5 text-muted">
+        <p class="fs-5">No bookings yet.</p>
+        <a routerLink="/hotels" class="btn btn-primary">Browse Hotels</a>
+      </div>
+
+      <div class="row g-3" *ngIf="bookings.length > 0">
+        <div class="col-md-6" *ngFor="let b of bookings">
+          <div class="card shadow-sm h-100">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h6 class="card-title mb-0">{{ b.hotelName || 'Hotel #' + b.hotelId }}</h6>
+                <span class="badge bg-{{ statusBadge(b.status) }}">{{ b.status }}</span>
+              </div>
+              <p class="text-muted small mb-1">
+                📅 {{ b.checkInDate | date:'mediumDate' }} → {{ b.checkOutDate | date:'mediumDate' }}
+              </p>
+              <p class="text-muted small mb-1">
+                🌙 {{ b.numberOfNights }} night(s) &nbsp; 👥 {{ b.numberOfGuests }} guest(s) &nbsp; 🛏️ {{ b.roomType }}
+              </p>
+              <p class="fw-bold text-primary mb-0">${{ b.totalPrice | number:'1.2-2' }}</p>
+            </div>
+            <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+              <small class="text-muted">Booked {{ b.bookingDate | date:'shortDate' }}</small>
+              <button *ngIf="b.status === 'Confirmed' || b.status === 'Pending'"
+                class="btn btn-outline-danger btn-sm"
+                (click)="cancelBooking(b.bookingId)">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <!-- ========== ITINERARIES TAB ========== -->
+  <div *ngIf="activeTab === 'itineraries'">
+    <div *ngIf="itinerariesLoading" class="text-center py-5">
+      <div class="spinner-border text-primary"></div>
+    </div>
+    <div *ngIf="itinerariesError" class="alert alert-danger">{{ itinerariesError }}</div>
+
+    <ng-container *ngIf="!itinerariesLoading && !itinerariesError">
+      <div *ngIf="itineraries.length === 0" class="text-center py-5 text-muted">
+        <p class="fs-5">No itineraries yet.</p>
+        <a routerLink="/itineraries/new" class="btn btn-primary">Plan a Trip</a>
+      </div>
+
+      <div class="row g-3" *ngIf="itineraries.length > 0">
+        <div class="col-md-6" *ngFor="let it of itineraries">
+          <div class="card shadow-sm h-100" style="cursor:pointer" [routerLink]="['/itineraries', it.itineraryId]">
+            <div class="card-body">
+              <div class="d-flex justify-content-between align-items-start mb-2">
+                <h6 class="card-title mb-0">{{ it.title }}</h6>
+                <span class="badge bg-primary">{{ it.packageType }}</span>
+              </div>
+              <p class="text-muted small mb-1">
+                📅 {{ it.startDate | date:'mediumDate' }} → {{ it.endDate | date:'mediumDate' }}
+              </p>
+              <p class="text-muted small mb-1">🌙 {{ it.numberOfDays }} day(s)</p>
+              <p class="fw-bold text-primary mb-0">{{ it.currency }} {{ it.totalEstimatedCost | number:'1.0-0' }}</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <small class="text-muted">Created {{ it.createdAt | date:'shortDate' }}</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+</div>

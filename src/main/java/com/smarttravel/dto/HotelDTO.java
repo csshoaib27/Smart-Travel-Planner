@@ -21,4 +21,7 @@ public class HotelDTO {
     private Double averageRating;
     private Integer reviewCount;
     private Integer availableRooms;
+    private String country;
+    private String city;
+    private String travelType;
 }
