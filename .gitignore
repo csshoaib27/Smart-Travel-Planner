@@ -4,3 +4,4 @@ backend/target/
 node_modules/
 .DS_Store
 .env
+.claude/settings.local.json
